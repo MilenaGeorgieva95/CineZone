@@ -1,0 +1,13 @@
+.header-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+}
+
+.top-bar{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}

@@ -17,7 +17,7 @@
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <mat-toolbar color="primary">
+    <mat-toolbar color="primary" class="top-nav">
       <!-- Hamburger menu button only on handset -->
       <button
         type="button"
@@ -30,14 +30,10 @@
       </button>
 
       <span>CineZone</span>
+      <!-- <span class="spacer"></span> -->
       <!-- Desktop navigation links only visible on non-handset -->
       <ng-container *ngIf="!(isHandset$ | async)">
-        <a mat-button routerLink="/catalog" routerLinkActive="active-link"
-          >Catalog</a
-        >
-        <a mat-button routerLink="/watchlists" routerLinkActive="active-link"
-          >Watchlists</a
-        >
+        <app-header class="spacer"></app-header>
         <!-- More links -->
       </ng-container>
     </mat-toolbar>
