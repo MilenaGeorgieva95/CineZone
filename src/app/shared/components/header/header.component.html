@@ -1,5 +1,19 @@
-<p>header works!</p>
-<a mat-button routerLink="/catalog" routerLinkActive="active-link">Catalog</a>
-<a mat-button routerLink="/watchlists" routerLinkActive="active-link"
-  >Watchlists</a
->
+<div class="header-container">
+  <div class="links top-bar">
+    <a mat-button routerLink="/catalog" routerLinkActive="active-link"
+      >Catalog</a
+    >
+    <a mat-button routerLink="/watchlists" routerLinkActive="active-link"
+      >Watchlists</a
+    >
+  </div>
+  <div class="auth top-bar">
+    <a mat-button routerLink="/login" routerLinkActive="active-link">Login</a>
+    <a mat-button routerLink="/register" routerLinkActive="active-link"
+      >Register</a
+    >
+    <a mat-button routerLink="/logoutr" routerLinkActive="active-link"
+      >Logout</a
+    >
+  </div>
+</div>
