@@ -25,12 +25,13 @@ Guest users can view content but must log in to interact (create watchlists, com
 | **TMDB API**       | Provides real-time movie metadata |
 | **Back4App (Parse)** | Backend for authentication, comments, watchlists |
 | **RxJS + HttpClient** | Data fetching and reactive state handling |
-| **SCSS / Tailwind (optional)** | Styling components |
+| **CSS / Angular Material** | Styling components |
 
 ---
 
 ## 📁 Project Structure
 
+```
 src/
 └── app/
     ├── core/ # Core services, interceptors, guards
@@ -100,7 +101,7 @@ src/
     ├── app-routing.module.ts          # Lazy-loads each feature module
     ├── app.component.ts
     └── app.module.ts
-
+```
 
 ---
 
