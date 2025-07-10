@@ -8,9 +8,6 @@
       "schematics": {
         "@schematics/angular:component": {
           "skipTests": true
-        },
-        "@schematics/angular:module": {
-          "skipTests": true
         }
       },
       "root": "",
