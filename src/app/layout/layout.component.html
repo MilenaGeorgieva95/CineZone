@@ -1,8 +1,14 @@
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport
-      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-      [mode]="(isHandset$ | async) ? 'over' : 'side'"
-      [opened]="(isHandset$ | async) === false">
+  <!-- Sidenav only visible on handset -->
+  <mat-sidenav
+    #drawer
+    *ngIf="isHandset$ | async"
+    class="sidenav"
+  fixedInViewport
+  mode="over"
+  opened="false"
+  role="dialog"
+  >
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
       <a mat-list-item href="#">Link 1</a>
@@ -12,16 +18,28 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="primary">
+      <!-- Hamburger menu button only on handset -->
       <button
         type="button"
         aria-label="Toggle sidenav"
         mat-icon-button
         (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async">
+        *ngIf="isHandset$ | async"
+      >
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
+
       <span>CineZone</span>
-      <!-- Optionally add header links or user menu -->
+      <!-- Desktop navigation links only visible on non-handset -->
+      <ng-container *ngIf="!(isHandset$ | async)">
+        <a mat-button routerLink="/catalog" routerLinkActive="active-link"
+          >Catalog</a
+        >
+        <a mat-button routerLink="/watchlists" routerLinkActive="active-link"
+          >Watchlists</a
+        >
+        <!-- More links -->
+      </ng-container>
     </mat-toolbar>
     <router-outlet></router-outlet>
   </mat-sidenav-content>
