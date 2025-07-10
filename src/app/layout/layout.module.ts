@@ -10,6 +10,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 
 import { RouterModule } from '@angular/router';
+import { SharedModule } from "../shared/shared.module";
 
 @NgModule({
   declarations: [LayoutComponent],
@@ -21,7 +22,8 @@ import { RouterModule } from '@angular/router';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-  ],
+    SharedModule
+],
   exports: [LayoutComponent],
 })
 export class LayoutModule {}
