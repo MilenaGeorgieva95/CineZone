@@ -6,9 +6,10 @@ import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from './layout/layout.module';
+import { CatalogComponent } from './movies/catalog/catalog.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, CatalogComponent],
   imports: [BrowserModule, AppRoutingModule, SharedModule, BrowserAnimationsModule, LayoutModule],
   providers: [],
   bootstrap: [AppComponent],
