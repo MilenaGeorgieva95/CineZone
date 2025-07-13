@@ -6,13 +6,14 @@ import { environment } from 'src/environments/environment.development';
   providedIn: 'root',
 })
 export class TmdbApiService {
-  baseUrl: string = environment.TMDB_ACCESS_TOKEN;
+  accessToken: string = environment.TMDB_ACCESS_TOKEN;
+  baseUrl:string=environment.TMDB_BASE_URL;
   constructor(private http: HttpClient) {}
 
   fetchMovies() {
     this.http
-      .get('https://api.themoviedb.org/3/discover/movie', {
-        headers: { Authorization: `Bearer ${this.baseUrl}` },
+      .get(this.baseUrl, {
+        headers: { Authorization: `Bearer ${this.accessToken}` },
       })
       .subscribe((res) => console.log(res));
   }
