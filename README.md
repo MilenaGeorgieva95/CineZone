@@ -190,3 +190,10 @@ Milena Georgieva – Project Lead & Developer
 📄 License
 This project is for educational use only.
 
+### Data Source
+
+This project uses the [TMDb API](https://developer.themoviedb.org/) to fetch movie data.
+
+> This product uses the TMDb API but is not endorsed or certified by TMDb.
+
+
