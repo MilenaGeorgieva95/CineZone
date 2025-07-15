@@ -1,15 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import { TMDBApiService } from '../services/tmdb-api.service';
+import { Movie, MovieResults } from 'src/app/types/movie';
 
 @Component({
   selector: 'app-catalog',
   templateUrl: './catalog.component.html',
-  styleUrls: ['./catalog.component.css']
+  styleUrls: ['./catalog.component.css'],
 })
-export class CatalogComponent implements OnInit{
+export class CatalogComponent implements OnInit {
+  moviesList: Movie[]=[];
+  isLoading:boolean=true
+  constructor(private tmdbApiService: TMDBApiService) {}
 
-constructor(private tmdbApiService:TMDBApiService){}  
-ngOnInit(): void {
-  this.tmdbApiService.fetchMovies()
-}
+  ngOnInit(): void {
+
+    this.tmdbApiService.fetchMovies().subscribe({
+      next: (res:MovieResults) => {
+        this.moviesList = res.results;
+        this.isLoading = false;
+      },
+      error: (err) => {
+        this.isLoading = false;
+        console.log('Error: ' + err);
+      },
+    });
+  }
 }

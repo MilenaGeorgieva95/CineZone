@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { MovieResults } from 'src/app/types/movie';
 import { environment } from 'src/environments/environment.development';
 
 @Injectable({
@@ -18,10 +19,9 @@ export class TMDBApiService {
   constructor(private http: HttpClient) {}
 
   fetchMovies() {
-    this.http
-      .get(this.endpoints.allMovies, {
+   return this.http
+      .get<MovieResults>(this.endpoints.allMovies, {
         headers: { Authorization: `Bearer ${this.accessToken}` },
       })
-      .subscribe((res) => console.log(res));
   }
 }
