@@ -25,4 +25,5 @@ export class CatalogComponent implements OnInit {
       },
     });
   }
+  showDetails(movieId:number){}
 }
