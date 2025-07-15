@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { DetailsComponent } from './details/details.component';
 import { CreateComponent } from './create/create.component';
 import { EditComponent } from './edit/edit.component';
+import { CatalogComponent } from './catalog/catalog.component';
 
 
 
@@ -10,10 +11,12 @@ import { EditComponent } from './edit/edit.component';
   declarations: [
     DetailsComponent,
     CreateComponent,
-    EditComponent
+    EditComponent,
+    CatalogComponent
   ],
   imports: [
     CommonModule
-  ]
+  ],
+  exports:[CatalogComponent]
 })
 export class MoviesModule { }
