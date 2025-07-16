@@ -1,6 +1,6 @@
-<div>
-  <ul>
-    <li *ngFor="let movie of moviesList">
+<div class="container">
+  <ul class="catalog-wrapper">
+    <li class="movie-card" *ngFor="let movie of moviesList">
       <div>
         <div>
           <img
@@ -8,9 +8,13 @@
             alt=""
           />
         </div>
-        <div>
-          {{ movie.title }} - {{movie.vote_average}}
+        <div class="details-wrapper">
+          <h3>{{ movie.title }}</h3>
+          <span>{{showStars(movie.vote_average)}}</span>
+          <div>
           <button (click)="showDetails(movie.id)">Details</button>
+          </div>
+
         </div>
       </div>
     </li>

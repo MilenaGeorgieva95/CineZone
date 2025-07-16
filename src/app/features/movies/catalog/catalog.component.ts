@@ -26,4 +26,8 @@ export class CatalogComponent implements OnInit {
     });
   }
   showDetails(movieId:number){}
+  showStars(rating:number){
+    return '★'.repeat(rating)
+  }
 }
+//☆
