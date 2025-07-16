@@ -4,6 +4,7 @@ import { DetailsComponent } from './details/details.component';
 import { CreateComponent } from './create/create.component';
 import { EditComponent } from './edit/edit.component';
 import { CatalogComponent } from './catalog/catalog.component';
+import { MoviesRoutingModule } from './movies-routing.module';
 
 
 
@@ -15,8 +16,9 @@ import { CatalogComponent } from './catalog/catalog.component';
     CatalogComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    MoviesRoutingModule
   ],
-  exports:[CatalogComponent]
+  exports:[CatalogComponent, DetailsComponent]
 })
 export class MoviesModule { }
