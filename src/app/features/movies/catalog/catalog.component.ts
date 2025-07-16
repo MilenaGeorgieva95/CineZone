@@ -25,7 +25,9 @@ export class CatalogComponent implements OnInit {
       },
     });
   }
-  showDetails(movieId:number){}
+  showDetails(movieId:number){
+    return `/movies/${movieId}/details`
+  }
   showStars(rating:number){
     return '★'.repeat(rating)
   }
