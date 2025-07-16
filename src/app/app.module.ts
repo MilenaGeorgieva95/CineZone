@@ -8,11 +8,20 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from './layout/layout.module';
 import { MoviesModule } from './features/movies/movies.module';
 import { HttpClientModule } from '@angular/common/http';
-
+import { MoviesRoutingModule } from './features/movies/movies-routing.module';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, SharedModule, BrowserAnimationsModule, HttpClientModule ,LayoutModule, MoviesModule],
+  imports: [
+    BrowserModule,
+    MoviesRoutingModule,
+    SharedModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    LayoutModule,
+    MoviesModule,
+    AppRoutingModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
