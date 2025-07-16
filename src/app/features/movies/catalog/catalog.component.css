@@ -5,24 +5,46 @@
   flex-wrap: wrap;
   justify-content: space-evenly;
   align-items: center;
-  border: 2px solid green;
 }
 
 .movie-card {
   display: inline-block;
-  padding: 1em;
   margin: 1em;
   background-color: #3c3c3c;
   border-radius: 8px;
+  cursor:pointer;
+  max-width: 250px;
 }
 
 .movie-card img {
   max-width: 250px;
-  border-radius: 8px;
+  border-radius: 8px 8px 0 0;
 }
 
 .details-wrapper{
     display: flex;
     flex-direction: column;
 
+}
+
+.stars-rating{
+    text-align: right;
+    padding: 0 0.4em;
+    font-size: 12px;
+    color: rgb(255, 255, 0);
+
+}
+
+.details-wrapper h3{
+    padding: 0 0.4em;
+    font-size: 20px;
+    word-wrap: wrap;
+}
+
+.details-btn {
+    display: flex;
+    justify-content: center;
+    background-color: #111;
+    padding: 0.4em 0;
+    border-radius: 0 0 8px 8px;
 }

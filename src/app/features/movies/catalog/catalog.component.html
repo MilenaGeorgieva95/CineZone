@@ -1,7 +1,7 @@
 <div class="container">
   <ul class="catalog-wrapper">
     <li class="movie-card" *ngFor="let movie of moviesList">
-      <div>
+      <div (click)="showDetails(movie.id)">
         <div>
           <img
             src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}"
@@ -9,12 +9,12 @@
           />
         </div>
         <div class="details-wrapper">
+          <span class="stars-rating">{{ showStars(movie.vote_average) }}</span>
           <h3>{{ movie.title }}</h3>
-          <span>{{showStars(movie.vote_average)}}</span>
-          <div>
-          <button (click)="showDetails(movie.id)">Details</button>
-          </div>
 
+          <div class="details-btn">
+            <span (click)="showDetails(movie.id)">Details</span>
+          </div>
         </div>
       </div>
     </li>
