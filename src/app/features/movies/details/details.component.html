@@ -1,1 +1,12 @@
-<p>{{movieDetails.title}}</p>
+<div
+  [ngStyle]="{ 'background-image': 'url(' + backgroundUrl + ')' }"
+  class="backdrop"
+>
+  <div class="wrapper">
+<div class="movie">
+<h3>{{movie.title}}</h3>
+<p>{{movie.overview}}</p>
+</div>
+
+  </div>
+</div>
