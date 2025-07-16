@@ -1,0 +1,11 @@
+.wrapper{
+    max-width: 20em;
+    background-color: rgba(56, 53, 53, 0.5);
+}
+
+.backdrop {
+  height: 75vh;
+  background-size: cover;
+  background-position: left;
+  border-radius: 8px;
+}

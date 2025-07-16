@@ -10,7 +10,8 @@ import { fullMovieDetails } from 'src/app/types/movie';
 })
 export class DetailsComponent implements OnInit {
   movieId: string = '';
-  movieDetails = {} as fullMovieDetails;
+  movie = {} as fullMovieDetails;
+  backgroundUrl: string = 'https://image.tmdb.org/t/p/original';
 
   constructor(
     private tmdbApiService: TMDBApiService,
@@ -20,9 +21,10 @@ export class DetailsComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       this.movieId = params.get('movieId')!;
-      this.tmdbApiService
-        .fetchMovieById(this.movieId)
-        .subscribe((movie) => this.movieDetails=movie);
+      this.tmdbApiService.fetchMovieById(this.movieId).subscribe((movie) => {
+        this.backgroundUrl += movie.backdrop_path;
+        this.movie = movie;
+      });
     });
   }
 }
