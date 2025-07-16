@@ -1,0 +1,28 @@
+.catalog-wrapper {
+  list-style: none;
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  border: 2px solid green;
+}
+
+.movie-card {
+  display: inline-block;
+  padding: 1em;
+  margin: 1em;
+  background-color: #3c3c3c;
+  border-radius: 8px;
+}
+
+.movie-card img {
+  max-width: 250px;
+  border-radius: 8px;
+}
+
+.details-wrapper{
+    display: flex;
+    flex-direction: column;
+
+}
