@@ -20,6 +20,6 @@ export class HeaderComponent {
 
   logout() {
     this.userService.logout();
-    this.router.navigate(['/home']);
+    this.router.navigate(['/catalog']);
   }
 }
