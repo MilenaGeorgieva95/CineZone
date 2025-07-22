@@ -66,24 +66,22 @@ src/
     │   ├── movies/                    # TMDB integration
     │   │   ├── catalog/               # Public movie list
     │   │   ├── details/               # TMDB movie details
-    │   │   ├── create/                # (User-created entries)
-    │   │   ├── edit/
     │   │   ├── services/
-    │   │   │   └── movie.service.ts
+    │   │   │   └── tmdb-api.service.ts
     │   │   └── movies.module.ts
     │   ├── watchlist/                 # User-created watchlists
-    │   │   ├── list/                  # Shows all watchlists for user
-    │   │   │   └── watchlist-list.component.ts
+    │   │   ├── catalog/                  # Shows all watchlists for user
+    │   │   │   └── catalog.component.ts
     │   │   ├── details/               # View a single watchlist (with movie cards)
-    │   │   │   └── watchlist-details.component.ts
+    │   │   │   └── details.component.ts
     │   │   ├── create/                # Create a new watchlist
-    │   │   │   └── watchlist-create.component.ts
+    │   │   │   └── create.component.ts
     │   │   ├── edit/                  # Rename or manage movies in watchlist
-    │   │   │   └── watchlist-edit.component.ts
+    │   │   │   └── edit.component.ts
     │   │   ├── services/
-    │   │   │   └── watchlist.service.ts
-    │   │   ├── watchlist-routing.module.ts
-    │   │   └── watchlist.module.ts
+    │   │   │   └── watchlists.service.ts
+    │   │   ├── watchlists-routing.module.ts
+    │   │   └── watchlists.module.ts
     │   ├── comments/                  # CRUD comments on movies or watchlists
     │   │   ├── list/
     │   │   ├── services/
