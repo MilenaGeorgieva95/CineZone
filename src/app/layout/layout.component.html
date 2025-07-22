@@ -4,16 +4,19 @@
     #drawer
     *ngIf="isHandset$ | async"
     class="sidenav"
-  fixedInViewport
-  mode="over"
-  opened="false"
-  role="dialog"
+    fixedInViewport
+    mode="over"
+    opened="false"
+    role="dialog"
   >
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item href="#">Link 1</a>
-      <a mat-list-item href="#">Link 2</a>
-      <a mat-list-item href="#">Link 3</a>
+      <a mat-list-item routerLink="/catalog">Catalog</a>
+      <a mat-list-item routerLink="/watchlist">Watchlist</a>
+      <a mat-list-item routerLink="/profile">Profile</a>
+      <a mat-list-item routerLink="/login">Login</a>
+      <a mat-list-item routerLink="/register">Register</a>
+      <a mat-list-item routerLink="/logout">Logout</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
