@@ -29,7 +29,7 @@ export class CatalogComponent implements OnInit {
     return `/movies/${movieId}/details`
   }
   showStars(rating:number){
-    return '★'.repeat(rating)
+    return '⭐'.repeat(rating)
   }
 }
 //☆

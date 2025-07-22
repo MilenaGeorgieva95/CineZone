@@ -5,6 +5,7 @@ import { CreateComponent } from './create/create.component';
 import { EditComponent } from './edit/edit.component';
 import { CatalogComponent } from './catalog/catalog.component';
 import { MoviesRoutingModule } from './movies-routing.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 
@@ -17,7 +18,8 @@ import { MoviesRoutingModule } from './movies-routing.module';
   ],
   imports: [
     CommonModule,
-    MoviesRoutingModule
+    MoviesRoutingModule,
+    SharedModule
   ],
   exports:[CatalogComponent, DetailsComponent]
 })

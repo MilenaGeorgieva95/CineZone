@@ -2,11 +2,54 @@
   [ngStyle]="{ 'background-image': 'url(' + backgroundUrl + ')' }"
   class="backdrop"
 >
-  <div class="wrapper">
-<div class="movie">
-<h3>{{movie.title}}</h3>
-<p>{{movie.overview}}</p>
+ <!-- Hero backdrop -->
+<div
+  class="wrapper"
+
+>
+  <div class="overlay">
+    <h1 class="title">{{ movie.title }}</h1>
+    <p class="tagline" *ngIf="movie.tagline">"{{ movie.tagline }}"</p>
+  </div>
+
+
+<!-- Main content -->
+<div class="movie-details-container">
+
+  <div class="movie-info">
+    <h2>{{ movie.original_title }}</h2>
+
+    <p><strong>Overview:</strong> {{ movie.overview }}</p>
+
+    <p><strong>Genres:</strong>
+      <span *ngFor="let genre of movie.genres; let last = last">
+        {{ genre.name }}<span *ngIf="!last">, </span>
+      </span>
+    </p>
+
+    <p><strong>Runtime:</strong> {{ movie.runtime }} min</p>
+    <p><strong>Release Date:</strong> {{ movie.release_date }}</p>
+    <p><strong>Status:</strong> {{ movie.status }}</p>
+    <p><strong>Vote Average:</strong> {{ movie.vote_average }} ⭐ ({{ movie.vote_count }} votes)</p>
+
+    <p *ngIf="movie.homepage">
+      <strong>Official Site:</strong>
+      <a [href]="movie.homepage" target="_blank">{{ movie.homepage }}</a>
+    </p>
+
+    <p><strong>Production Companies:</strong></p>
+    <ul>
+      <li *ngFor="let company of movie.production_companies">
+        <img
+          *ngIf="company.logo_path"
+          [src]="'https://image.tmdb.org/t/p/w92' + company.logo_path"
+          [alt]="company.name"
+        />
+        {{ company.name }}
+      </li>
+    </ul>
+  </div>
 </div>
 
-  </div>
+</div>
 </div>
