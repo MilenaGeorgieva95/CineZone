@@ -1,7 +1,7 @@
 <div class="container">
   <ul class="catalog-wrapper">
     <li class="movie-card" *ngFor="let movie of moviesList">
-      <div routerLink="{{showDetails(movie.id)}}">
+      <div routerLink="{{ showDetails(movie.id) }}">
         <div>
           <img
             src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}"
@@ -9,11 +9,13 @@
           />
         </div>
         <div class="details-wrapper">
-          <span class="stars-rating">{{ showStars(movie.vote_average) }}</span>
+          <span class="stars-rating">{{
+            movie.vote_average | starRating
+          }}</span>
           <h3>{{ movie.title }}</h3>
 
           <div class="details-btn">
-            <span routerLink="{{showDetails(movie.id)}}">Details</span>
+            <span routerLink="{{ showDetails(movie.id) }}">Details</span>
           </div>
         </div>
       </div>
