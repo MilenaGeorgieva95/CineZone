@@ -12,7 +12,7 @@
   margin: 1em;
   background-color: #3c3c3c;
   border-radius: 8px;
-  cursor:pointer;
+  cursor: pointer;
   max-width: 250px;
 }
 
@@ -21,30 +21,35 @@
   border-radius: 8px 8px 0 0;
 }
 
-.details-wrapper{
-    display: flex;
-    flex-direction: column;
-
+.details-wrapper {
+  display: flex;
+  flex-direction: column;
 }
 
-.stars-rating{
-    text-align: right;
-    padding: 0 0.4em;
-    font-size: 15px;
-    color: rgb(255, 255, 0);
-
+.stars-rating {
+  padding: 0 0.4em;
+  font-size: 15px;
+  color: rgb(255, 255, 0);
 }
 
-.details-wrapper h3{
-    padding: 0 0.4em;
-    font-size: 20px;
-    word-wrap: wrap;
+.details-wrapper h3 {
+  padding: 0 0.4em;
+  font-size: 20px;
+  word-wrap: wrap;
 }
 
 .details-btn {
+  background-color: #111;
+  padding: 0.4em 1em;
+  border-radius: 0 0 8px 8px;
+}
+
+@media (min-width: 280px) {
+  .stars-rating {
+    text-align: right;
+  }
+  .details-btn {
     display: flex;
     justify-content: center;
-    background-color: #111;
-    padding: 0.4em 0;
-    border-radius: 0 0 8px 8px;
+  }
 }
