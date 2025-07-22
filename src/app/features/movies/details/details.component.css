@@ -3,7 +3,7 @@
   background-color: rgba(36, 35, 35, 0.7);
   line-height: 1;
   padding: 14px;
-  height: 72vh;
+  height: 100vh;
 }
 
 .backdrop {
@@ -33,4 +33,14 @@ h1 {
 .companies-list span {
   margin: 5px 5px;
   font-size: 0.7rem;
+}
+.small-screen-img{
+  display: none;
+}
+
+@media(max-width:550px){
+.small-screen-img{
+  display: block;
+  width: 100%;
+}
 }
