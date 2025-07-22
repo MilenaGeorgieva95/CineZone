@@ -1,0 +1,47 @@
+<div class="container">
+  <form class="register" action="" method="post">
+    <h2>Registration Form</h2>
+    <div>
+      <label for="username">Username: </label>
+      <input
+        class="input-error"
+        type="text"
+        name="username"
+        id="username"
+        placeholder="Username..."
+      />
+    </div>
+
+    <div>
+      <label for="email">Email: </label>
+      <input type="email" name="email" id="email" placeholder="Email..." />
+    </div>
+
+    <div>
+      <label for="password">Password: </label>
+      <input
+        type="password"
+        name="password"
+        id="password"
+        placeholder="******"
+      />
+    </div>
+
+    <div>
+      <label for="rePassword">Repeat Password: </label>
+      <input
+        type="password"
+        name="rePassword"
+        id="rePassword"
+        placeholder="******"
+      />
+    </div>
+
+    <button>Create Account</button>
+
+    <div>
+      Have an account?
+      <a routerLink="/login">Login</a>
+    </div>
+  </form>
+</div>

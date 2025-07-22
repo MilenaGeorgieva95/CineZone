@@ -57,12 +57,13 @@ src/
     │   ├── pipes/
     │   └── shared.module.ts
     ├── features/
-    │   ├── auth/                      # Login/Register logic
+    │   ├── user/                      # Login/Register logic
     │   │   ├── login/
     │   │   ├── register/
     │   │   ├── services/
-    │   │   │   └── auth.service.ts
-    │   │   └── auth.module.ts
+    │   │   │   └── user.service.ts
+    │   │   └── user.module.ts
+    │   │   └── user-routing.module.ts
     │   ├── movies/                    # TMDB integration
     │   │   ├── catalog/               # Public movie list
     │   │   ├── details/               # TMDB movie details
