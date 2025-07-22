@@ -1,6 +1,9 @@
-.wrapper{
-    max-width: 40em;
-    background-color: rgba(56, 53, 53, 0.5);
+.wrapper {
+  max-width: 28em;
+  background-color: rgba(36, 35, 35, 0.7);
+  line-height: 1;
+  padding: 14px;
+  height: 72vh;
 }
 
 .backdrop {
@@ -8,4 +11,26 @@
   background-size: cover;
   background-position: left;
   border-radius: 8px;
+}
+
+h1 {
+  font-size: 3em;
+}
+
+.companies-list {
+  margin: 15px 8px;
+  font-size: 0.8rem;
+}
+.companies-list img {
+  max-width: 30px;
+}
+
+.companies-list li {
+  margin: 5px 2px;
+  display: flex;
+  align-items: center;
+}
+.companies-list span {
+  margin: 5px 5px;
+  font-size: 0.7rem;
 }
