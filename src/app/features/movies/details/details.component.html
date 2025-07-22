@@ -2,58 +2,58 @@
   [ngStyle]="{ 'background-image': 'url(' + backgroundUrl + ')' }"
   class="backdrop"
 >
- <!-- Hero backdrop -->
-<div
-  class="wrapper"
+  <div class="wrapper">
+    <div class="overlay">
+      <h1 class="title">{{ movie.title }}</h1>
+      <p class="tagline" *ngIf="movie.tagline">{{ movie.tagline }}</p>
+    </div>
 
->
-  <div class="overlay">
-    <h1 class="title">{{ movie.title }}</h1>
-    <p class="tagline" *ngIf="movie.tagline">{{ movie.tagline }}</p>
-  </div>
-
-
-<!-- Main content -->
-<div class="movie-details-container">
-
-  <div class="movie-info">
-    <p><span class="stars-rating">{{
+    <div class="movie-details-container">
+      <div class="movie-info">
+        <p>
+          <span class="stars-rating">{{
             movie.vote_average | starRating
-          }}</span> ({{ movie.vote_count }} votes)</p>
+          }}</span>
+          ({{ movie.vote_count }} votes)
+        </p>
 
-    <p> {{ movie.overview }}</p>
+        <p>{{ movie.overview }}</p>
 
-    <p>Genres:
-      <span *ngFor="let genre of movie.genres; let last = last">
-        {{ genre.name }}<span *ngIf="!last">, </span>
-      </span>
-    </p>
+        <p>
+          Genres:
+          <span *ngFor="let genre of movie.genres; let last = last">
+            {{ genre.name }}<span *ngIf="!last">, </span>
+          </span>
+        </p>
 
-    <p>Runtime: {{ movie.runtime }} min</p>
-    <p>Release Date: {{ movie.release_date }}</p>
-    <p>Status: {{ movie.status }}</p>
+        <p>Runtime: {{ movie.runtime }} min</p>
+        <p>Release Date: {{ movie.release_date }}</p>
+        <p>Status: {{ movie.status }}</p>
 
-
-    <p *ngIf="movie.homepage">
-      Official Site: 
-      <a [href]="movie.homepage" target="_blank">{{ movie.homepage }}</a>
-    </p>
-<div class="companies-list">
- <p>Production Companies:</p>
-    <ul >
-      <li *ngFor="let company of movie.production_companies">
-        <img
-          *ngIf="company.logo_path"
-          [src]="'https://image.tmdb.org/t/p/w92' + company.logo_path"
-          [alt]="company.name"
-        />
-        <span>{{ company.name }}</span>
-      </li>
-    </ul>
-</div>
-   
+        <p *ngIf="movie.homepage">
+          Official Site:
+          <a [href]="movie.homepage" target="_blank">{{ movie.homepage }}</a>
+        </p>
+        <div class="companies-list">
+          <p>Production Companies:</p>
+          <ul>
+            <li *ngFor="let company of movie.production_companies">
+              <img
+                *ngIf="company.logo_path"
+                [src]="'https://image.tmdb.org/t/p/w92' + company.logo_path"
+                [alt]="company.name"
+              />
+              <span>{{ company.name }}</span>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <img class="small-screen-img"
+            src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}"
+            alt=""
+          />
+        </div>
+      </div>
+    </div>
   </div>
-</div>
-
-</div>
 </div>
