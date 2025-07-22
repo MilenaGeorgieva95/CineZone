@@ -10,7 +10,7 @@
     role="dialog"
   >
     <mat-toolbar>Menu</mat-toolbar>
-    <mat-nav-list>
+    <mat-nav-list (click)="drawer.toggle()">
       <a mat-list-item routerLink="/catalog">Catalog</a>
       <a mat-list-item routerLink="/watchlist">Watchlist</a>
       <a mat-list-item routerLink="/profile">Profile</a>
