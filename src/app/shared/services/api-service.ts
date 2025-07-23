@@ -8,11 +8,26 @@ import { UserService } from 'src/app/features/user/user.service';
   providedIn: 'root',
 })
 export class ApiService {
-  baseUrl = environment.BASE_URL + '/watchlists';
+  baseUrl = environment.BASE_URL;
   user: UserForAuth | undefined;
 
   constructor(private http: HttpClient, private userService: UserService) {
     this.user = this.userService.user;
+  }
+
+  getRequest(url: string) {
+    const options: any = {
+      headers: {
+        'X-Parse-Application-Id': environment.APP_ID,
+        'X-Parse-REST-API-Key': environment.API_KEY,
+        'X-Parse-Revocable-Session': 1,
+      },
+    };
+    const token = this.user?.token;
+    if (token) {
+      options.headers['X-Parse-Session-Token'] = token;
+    }
+    return this.http.post(this.baseUrl+url, options);
   }
 
   postRequest(url: string, data: object) {
@@ -30,6 +45,6 @@ export class ApiService {
     }
 
     const body = JSON.stringify(data);
-    return this.http.post(this.baseUrl, body, options);
+    return this.http.post(this.baseUrl+url, body, options);
   }
 }
