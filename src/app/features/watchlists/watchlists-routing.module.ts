@@ -4,6 +4,7 @@ import { DetailsComponent } from './details/details.component';
 import { CatalogComponent } from './catalog/catalog.component';
 import { EditComponent } from './edit/edit.component';
 import { CreateComponent } from './create/create.component';
+import { AuthActivate } from 'src/app/core/guards/auth.activate';
 
 const routes: Routes = [
   {
@@ -11,8 +12,16 @@ const routes: Routes = [
     children: [
       { path: '', pathMatch: 'full', component: CatalogComponent },
       { path: ':watchlistId/details', component: DetailsComponent },
-      { path: 'create', component: CreateComponent },
-      { path: ':watchlistId/edit', component: EditComponent },
+      {
+        path: 'create',
+        component: CreateComponent,
+        canActivate: [AuthActivate],
+      },
+      {
+        path: ':watchlistId/edit',
+        component: EditComponent,
+        canActivate: [AuthActivate],
+      },
     ],
   },
 ];
