@@ -7,4 +7,8 @@ export const environment = {
     movies: '/discover/movie',
     qry: '?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_keywords=abc',
   },
+  BASE_URL:'https://parseapi.back4app.com',
+  APP_ID:'5IgptbDbqGJyL9jrN0E22H5aNErlrsLT95wsmYj5',
+  API_KEY:'zmEGoj97JNp8xgy993p8yEuj5wC4tehdpf6Zqh7H',
+  APP_JS_KEY:'4wPYRKbpTJeCdmFNaS31AiQZ8344aaYubk6Uo8VW'
 };
