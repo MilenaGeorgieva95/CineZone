@@ -9,12 +9,19 @@
         name="username"
         id="username"
         placeholder="Username..."
+        #usernameInput
       />
     </div>
 
     <div>
       <label for="email">Email: </label>
-      <input type="email" name="email" id="email" placeholder="Email..." />
+      <input
+        type="email"
+        name="email"
+        id="email"
+        placeholder="Email..."
+        #emailInput
+      />
     </div>
 
     <div>
@@ -34,10 +41,22 @@
         name="rePassword"
         id="rePassword"
         placeholder="******"
+        #passwordInput
       />
     </div>
 
-    <button>Create Account</button>
+    <button
+      (click)="
+        registerUser(
+          $event,
+          usernameInput.value,
+          emailInput.value,
+          passwordInput.value
+        )
+      "
+    >
+      Create Account
+    </button>
 
     <div>
       Have an account?

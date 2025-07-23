@@ -11,8 +11,13 @@ export class ApiService {
   baseUrl = environment.BASE_URL;
   user: UserForAuth | undefined;
 
-  constructor(private http: HttpClient, private userService: UserService) {
-    this.user = this.userService.user;
+  constructor(private http: HttpClient) {
+    const userJson = localStorage.getItem('user');
+    if (userJson) {
+      this.user = JSON.parse(userJson) as UserForAuth;
+    } else {
+      this.user = undefined;
+    }
   }
 
   getRequest(url: string) {
@@ -27,7 +32,7 @@ export class ApiService {
     if (token) {
       options.headers['X-Parse-Session-Token'] = token;
     }
-    return this.http.post(this.baseUrl+url, options);
+    return this.http.post(this.baseUrl + url, options);
   }
 
   postRequest(url: string, data: object) {
@@ -45,6 +50,6 @@ export class ApiService {
     }
 
     const body = JSON.stringify(data);
-    return this.http.post(this.baseUrl+url, body, options);
+    return this.http.post(this.baseUrl + url, body, options);
   }
 }
