@@ -2,19 +2,22 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.development';
 import { UserService } from '../../user/user.service';
+import { UserForAuth } from 'src/app/types/user';
 
 @Injectable({
   providedIn: 'root',
 })
 export class WatchlistsService {
-  constructor(private http: HttpClient, private userService: UserService) {}
   baseUrl = environment.BASE_URL + '/watchlists';
+  user: UserForAuth | undefined;
+
+  constructor(private http: HttpClient, private userService: UserService) {
+    this.user = this.userService.user;
+  }
 
   createWatchlist(title: string, description: string) {
-    const token = this.userService.user?.token;
-    console.log(token);
-
-    const userId = this.userService.user?.id;
+    const userId = this.user?.id;
+    const token = this.user?.token;
     const options: any = {
       headers: {
         'X-Parse-Application-Id': environment.APP_ID,

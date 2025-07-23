@@ -5,6 +5,14 @@ import { UserForAuth } from 'src/app/types/user';
   providedIn: 'root',
 })
 export class UserService {
+endpoints = {
+  register: "/users",
+  login: "/login",
+  logout: "/logout",
+  sessionByToken: (token:string) => `/sessions?where={"sessionToken":"${token}"}`,
+  sessionById: (id:string) => `/sessions/${id}`,
+};
+
   user: UserForAuth | undefined;
   USER_KEY = '[user]';
 
@@ -37,4 +45,6 @@ export class UserService {
     localStorage.removeItem(this.USER_KEY);
   }
   register() {}
+
+
 }
