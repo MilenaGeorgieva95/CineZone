@@ -13,7 +13,7 @@
     <mat-nav-list (click)="drawer.toggle()">
       <a mat-list-item routerLink="/catalog">Catalog</a>
       <a *ngIf="isLoggedIn" mat-list-item routerLink="/watchlists">Watchlist</a>
-      <a *ngIf="isLoggedIn" mat-list-item routerLink="/profile">Profile</a>
+      <a *ngIf="isLoggedIn" mat-list-item routerLink="/watchlists/create">Create Watchlist</a>
       <a *ngIf="!isLoggedIn" mat-list-item routerLink="/login">Login</a>
       <a *ngIf="!isLoggedIn" mat-list-item routerLink="/register">Register</a>
       <a *ngIf="isLoggedIn" mat-list-item (click)="logout()">Logout</a>

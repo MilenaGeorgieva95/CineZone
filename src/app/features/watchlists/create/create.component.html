@@ -1,1 +1,25 @@
-<p>create works!</p>
+<div>
+  <h2>Create Watchlist Form</h2>
+  <form action="">
+    <div>
+      <label for="title">Title: </label>
+      <input type="text" id="title" #titleInput/>
+    </div>
+    <div>
+      <label for="description">Description: </label>
+      <input type="text" id="description" #descriptionInput/>
+    </div>
+    <div>
+      <button (click)="createWatchlist($event, titleInput.value, descriptionInput.value)">Create</button>
+      <button>Cancel</button>
+    </div>
+  </form>
+</div>
+
+<!-- export interface Watchlist {
+  id: number;
+  title: string;
+  description: string;
+  votes: string[];
+  movies_list: Array<movie_item>|[];
+} -->

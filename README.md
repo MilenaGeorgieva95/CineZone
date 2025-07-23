@@ -50,6 +50,8 @@ src/
 └── app/
     ├── core/                          # Core services, interceptors, guards
     │   ├── guards/
+    │   │      └── auth.activate.ts
+    │   │      └── guest.activate.ts
     │   ├── interceptors/
     │   └── core.module.ts
     ├── shared/                        # Reusable UI components, pipes, directives
@@ -88,11 +90,6 @@ src/
     │   │   ├── services/
     │   │   │   └── comment.service.ts
     │   │   └── comments.module.ts
-    │   ├── profile/                   # User profile
-    │   │   ├── details/
-    │   │   ├── services/
-    │   │   │   └── profile.service.ts
-    │   │   └── profile.module.ts
     │   ├── pages/                     # Static pages (about, contact)
     │   │   ├── about/
     │   │   ├── contact/
