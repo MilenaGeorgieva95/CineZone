@@ -8,7 +8,7 @@ import { ApiService } from 'src/app/shared/services/api-service';
   providedIn: 'root',
 })
 export class WatchlistsService {
-  baseUrl = environment.BASE_URL + '/watchlists';
+  baseUrl ='/watchlists';
   user: UserForAuth | undefined;
 
   constructor(private userService: UserService, private apiService:ApiService) {
