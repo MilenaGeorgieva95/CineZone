@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MoviesRoutingModule } from './features/movies/movies-routing.module';
 import { WatchlistsModule } from './features/watchlists/watchlists.module';
 import { UserModule } from './features/user/user.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent],

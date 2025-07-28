@@ -1,31 +1,16 @@
 <div class="container">
-  <form class="login" action="" method="post">
+  <form class="login" #loginForm="ngForm" (ngSubmit)="formSubmithandler(loginForm)">
     <h2>Login Form</h2>
 
     <div>
       <label for="email">Email: </label>
-      <input
-        class="input-error"
-        type="email"
-        name="email"
-        id="email"
-        placeholder="Email..."
-        #emailInput
-      />
+      <input type="email" name="email" id="email" placeholder="Email..." ngModel #emailInput="ngModel" />
     </div>
     <div>
       <label for="password">Password: </label>
-      <input
-        type="password"
-        name="password"
-        id="password"
-        placeholder="******"
-        #passwordInput
-      />
+      <input type="password" name="password" id="password" placeholder="******" ngModel #passwordInput="ngModel" />
     </div>
-    <button (click)="login($event, emailInput.value, passwordInput.value)">
-      Login
-    </button>
+    <button>Login</button>
     <p>
       Have an account?
       <a routerLink="/register">Register</a>
