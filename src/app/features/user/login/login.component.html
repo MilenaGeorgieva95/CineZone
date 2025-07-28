@@ -3,14 +3,19 @@
     <h2>Login Form</h2>
 
     <div>
-      <label for="email">Email: </label>
-      <input type="email" name="email" id="email" placeholder="Email..." ngModel #emailInput="ngModel" />
+      <input type="email" name="email" id="email" placeholder="Email..." ngModel #emailInput="ngModel" email required />
+    </div>
+     <div class="error-msg" *ngIf="emailInput.touched">
+        <p *ngIf="emailInput.errors?.['required']">Error: Email is required!</p>
+        <p *ngIf="emailInput.errors?.['email']">Error: Email is invalid!</p>
     </div>
     <div>
-      <label for="password">Password: </label>
-      <input type="password" name="password" id="password" placeholder="******" ngModel #passwordInput="ngModel" />
+      <input type="password" name="password" id="password" placeholder="******" ngModel #passwordInput="ngModel" required/>
     </div>
-    <button>Login</button>
+    <div class="error-msg" *ngIf="passwordInput.touched">
+      <p *ngIf="passwordInput.errors?.['required']">Error: Password is required!</p>
+    </div>
+    <button class="login-btn" [disabled]="emailInput.errors || passwordInput.errors">Login</button>
     <p>
       Have an account?
       <a routerLink="/register">Register</a>

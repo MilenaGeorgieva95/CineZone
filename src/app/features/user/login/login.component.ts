@@ -11,8 +11,6 @@ import { NgForm } from '@angular/forms';
 export class LoginComponent {
   constructor(private userService: UserService, private router: Router) {}
   formSubmithandler(form: NgForm) {
-    console.log(form.value);
-
     const { email, password } = form?.value;
     this.userService.login(email, password);
     form.setValue({ email: '', password: '' });
