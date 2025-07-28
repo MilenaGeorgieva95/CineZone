@@ -12,3 +12,7 @@ body {
 app-layout {
   flex: 1;
 }
+
+.app-container{
+  height: 100vh;
+}
