@@ -1,62 +1,35 @@
 <div class="container">
-  <form class="register" action="" method="post">
+  <form [formGroup]="registerForm" (ngSubmit)="handleSubmit()" class="register">
     <h2>Registration Form</h2>
     <div>
-      <label for="username">Username: </label>
-      <input
-        class="input-error"
-        type="text"
-        name="username"
-        id="username"
-        placeholder="Username..."
-        #usernameInput
-      />
+      <input type="text" name="username" id="username" placeholder="Username..." formControlName="username" required/>
     </div>
-
+    <div class="error-msg" *ngIf="registerForm.get('username')?.touched">
+      <p *ngIf="registerForm.get('username')?.errors?.['required']">Error: Username is required!</p>
+      <p *ngIf="usernameError.length>0">{{usernameError}}</p>
+    </div>
     <div>
-      <label for="email">Email: </label>
-      <input
-        type="email"
-        name="email"
-        id="email"
-        placeholder="Email..."
-        #emailInput
-      />
+      <input type="email" name="email" id="email" placeholder="Email..." formControlName="email" email required/>
     </div>
-
+    <div class="error-msg" *ngIf="registerForm.get('email')?.touched">
+      <p *ngIf="registerForm.get('email')?.errors?.['required']">Error: Email is required!</p>
+      <p *ngIf="registerForm.get('email')?.errors?.['email']">Error: Email is not valid!</p>
+    </div>
     <div>
-      <label for="password">Password: </label>
-      <input
-        type="password"
-        name="password"
-        id="password"
-        placeholder="******"
-      />
+      <input type="password" name="password" id="password" placeholder="Password..." formControlName="password" required/>
     </div>
-
+    <div class="error-msg"  *ngIf="registerForm.get('password')?.touched">
+      <p *ngIf="registerForm.get('password')?.errors?.['required']">Error: Password is required!</p>
+      <p *ngIf="registerForm.get('password')?.errors?.['minLength']">Error: Password should be at least 3 characters!</p>
+    </div>
     <div>
-      <label for="rePassword">Repeat Password: </label>
-      <input
-        type="password"
-        name="rePassword"
-        id="rePassword"
-        placeholder="******"
-        #passwordInput
-      />
+      <input type="password" name="rePassword" id="rePassword" placeholder="Repeat Password..." formControlName="rePassword"/>
+    </div>
+    <div class="error-msg"  *ngIf="registerForm.get('rePassword')?.touched">
+      <p *ngIf="passwordError">{{passwordError}}</p>
     </div>
 
-    <button
-      (click)="
-        registerUser(
-          $event,
-          usernameInput.value,
-          emailInput.value,
-          passwordInput.value
-        )
-      "
-    >
-      Create Account
-    </button>
+    <button class="register-btn">Create Account</button>
 
     <div>
       Have an account?

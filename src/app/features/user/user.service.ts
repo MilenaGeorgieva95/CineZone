@@ -18,7 +18,7 @@ export class UserService {
   };
 
   user: UserForAuth | undefined;
-  USER_KEY = '[user]';
+  private readonly USER_KEY = '[user]';
 
   get isAuth(): boolean {
     return !!this.user;
@@ -33,21 +33,25 @@ export class UserService {
     }
   }
   login(username: string, password: string) {
-    // this.user = {
-    //   id: '1234',
-    //   username: 'Peter',
-    //   email: 'peter@gmail.com',
-    //   password: '1234',
-    //   token: '123',
-    // };
-
-    console.log(username);
-    console.log(password);
-    localStorage.removeItem('user');
+    localStorage.removeItem(this.USER_KEY);
     this.apiService
       .postRequest(this.endpoints.login, { username, password })
-      .subscribe((userData) => console.log(userData));
-    // localStorage.setItem(this.USER_KEY, JSON.stringify(this.user));
+      .subscribe({
+        next:(userData) => {
+        localStorage.setItem(this.USER_KEY, JSON.stringify(userData)); 
+
+          try {
+            const lsUser = localStorage.getItem(this.USER_KEY) || '';
+            this.user = JSON.parse(lsUser);
+          } catch (error) {
+            this.user = undefined;
+          }
+      },
+      error: (err) => {
+        console.error('Login failed:', err);
+      }
+    })
+
   }
 
   logout() {
@@ -55,9 +59,7 @@ export class UserService {
     localStorage.removeItem(this.USER_KEY);
   }
   register(username: string, email: string, password: string) {
-    console.log(username);
-    console.log(password);
-    localStorage.removeItem('user');
+    localStorage.removeItem(this.USER_KEY);
     this.apiService
       .postRequest(this.endpoints.register, { username, password, email })
       .subscribe((userData) => console.log(userData));
