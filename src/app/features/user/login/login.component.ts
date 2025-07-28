@@ -9,8 +9,14 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
+  invalidForm:boolean=false;
   constructor(private userService: UserService, private router: Router) {}
   formSubmithandler(form: NgForm) {
+    if(form.invalid){
+      this.invalidForm=true;
+      console.log('Invalid form!');
+      return;
+    }
     const { email, password } = form?.value;
     this.userService.login(email, password);
     form.setValue({ email: '', password: '' });

@@ -15,6 +15,9 @@
     <div class="error-msg" *ngIf="passwordInput.touched">
       <p *ngIf="passwordInput.errors?.['required']">Error: Password is required!</p>
     </div>
+        <div class="error-msg" *ngIf="invalidForm">
+      <p>Error: Invalid form values!</p>
+    </div>
     <button class="login-btn" [disabled]="emailInput.errors || passwordInput.errors">Login</button>
     <p>
       Have an account?
