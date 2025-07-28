@@ -12,7 +12,7 @@ export class ApiService {
   user: UserForAuth | undefined;
 
   constructor(private http: HttpClient) {
-    const userJson = localStorage.getItem('user');
+     const userJson = localStorage.getItem('user');
     if (userJson) {
       this.user = JSON.parse(userJson) as UserForAuth;
     } else {
@@ -21,6 +21,10 @@ export class ApiService {
   }
 
   getRequest(url: string) {
+    const userJson = localStorage.getItem('user');
+    if (userJson) {
+      this.user = JSON.parse(userJson) as UserForAuth;
+    }
     const options: any = {
       headers: {
         'X-Parse-Application-Id': environment.APP_ID,
@@ -28,14 +32,19 @@ export class ApiService {
         'X-Parse-Revocable-Session': 1,
       },
     };
-    const token = this.user?.token;
+    const token = this.user?.sessionToken;
     if (token) {
+      console.log(token);
       options.headers['X-Parse-Session-Token'] = token;
     }
     return this.http.post(this.baseUrl + url, options);
   }
 
   postRequest(url: string, data: object) {
+    const userJson = localStorage.getItem('user');
+    if (userJson) {
+      this.user = JSON.parse(userJson) as UserForAuth;
+    }
     const options: any = {
       headers: {
         'X-Parse-Application-Id': environment.APP_ID,
@@ -44,8 +53,10 @@ export class ApiService {
         'Content-Type': 'application/json',
       },
     };
-    const token = this.user?.token;
+    const token = this.user?.sessionToken;
     if (token) {
+      console.log(token);
+
       options.headers['X-Parse-Session-Token'] = token;
     }
 

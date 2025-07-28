@@ -11,9 +11,14 @@ export interface User {
 }
 
 export interface UserForAuth {
-  id:string
+  objectId: string;
   username: string;
   email: string;
-  password: string;
-  token:string;
+  createdAt: string;
+  updatedAt: string;
+  sessionToken: string;
+  ACL: {
+    "*": { read: boolean };
+    [key: string]: { read?: boolean; write?: boolean };
+  };
 }

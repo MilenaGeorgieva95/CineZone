@@ -16,7 +16,7 @@ export class WatchlistsService {
   }
 
   createWatchlist(title: string, description: string) {
-    const userId = this.user?.id;
+    const userId = this.user?.objectId;
    return this.apiService.postRequest(this.baseUrl,{ title, description, ownerId: userId });
   }
 }
