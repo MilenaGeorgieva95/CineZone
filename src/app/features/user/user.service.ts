@@ -37,8 +37,8 @@ export class UserService {
     this.apiService
       .postRequest(this.endpoints.login, { username, password })
       .subscribe({
-        next:(userData) => {
-        localStorage.setItem(this.USER_KEY, JSON.stringify(userData)); 
+        next: (userData) => {
+          localStorage.setItem(this.USER_KEY, JSON.stringify(userData));
 
           try {
             const lsUser = localStorage.getItem(this.USER_KEY) || '';
@@ -46,23 +46,39 @@ export class UserService {
           } catch (error) {
             this.user = undefined;
           }
-      },
-      error: (err) => {
-        console.error('Login failed:', err);
-      }
-    })
-
+        },
+        error: (err) => {
+          console.error('Login failed:', err);
+        },
+      });
   }
 
   logout() {
     this.user = undefined;
     localStorage.removeItem(this.USER_KEY);
   }
+
   register(username: string, email: string, password: string) {
     localStorage.removeItem(this.USER_KEY);
     this.apiService
       .postRequest(this.endpoints.register, { username, password, email })
-      .subscribe((userData) => console.log(userData));
-    // localStorage.setItem(this.USER_KEY, JSON.stringify(this.user));
+      .subscribe({
+        next: (userData) => {
+          localStorage.setItem(
+            this.USER_KEY,
+            JSON.stringify({ ...userData, username, email })
+          );
+
+          try {
+            const lsUser = localStorage.getItem(this.USER_KEY) || '';
+            this.user = JSON.parse(lsUser);
+          } catch (error) {
+            this.user = undefined;
+          }
+        },
+        error: (err) => {
+          console.error('Login failed:', err);
+        },
+      });
   }
 }

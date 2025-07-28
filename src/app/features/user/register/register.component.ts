@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { UserService } from '../user.service';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -16,7 +17,11 @@ export class RegisterComponent {
   });
   passwordError: string = '';
   usernameError: string = '';
-  constructor(private userService: UserService, private fb: FormBuilder) {}
+  constructor(
+    private userService: UserService,
+    private fb: FormBuilder,
+    private router: Router
+  ) {}
 
   handleSubmit(): void {
     console.log(this.registerForm.value);
@@ -27,6 +32,7 @@ export class RegisterComponent {
     }
     if (username && email && password) {
       this.userService.register(username, email, password);
+      this.router.navigate(['/catalog']);
     }
   }
 
@@ -36,8 +42,8 @@ export class RegisterComponent {
         if (x.password !== x.rePassword) {
           this.passwordError = "Error: Passwords don't match!";
           return;
-        }else{
-          this.passwordError=''
+        } else {
+          this.passwordError = '';
         }
         if (x.username && x.username.length <= 2) {
           this.usernameError = 'Username should be at least 3 characters long!';
