@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ApiService } from 'src/app/shared/services/api-service';
 import { UserForAuth } from 'src/app/types/user';
-import { environment } from 'src/environments/environment.development';
 
 @Injectable({
   providedIn: 'root',
