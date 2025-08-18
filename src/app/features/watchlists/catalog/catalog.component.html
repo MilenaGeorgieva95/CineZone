@@ -1,1 +1,10 @@
-<p>watchlist works!</p>
+<div>
+  <ul *ngIf="watchlists.length > 0; else noWatchlists">
+    <li *ngFor="let watchlist of watchlists">
+      {{ watchlist.title }}
+    </li>
+  </ul>
+  <ng-template #noWatchlists>
+    <p>No watchlists found.</p>
+  </ng-template>
+</div>

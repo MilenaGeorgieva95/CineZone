@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment.development';
 import { UserService } from '../../user/user.service';
 import { UserForAuth } from 'src/app/types/user';
 import { ApiService } from 'src/app/shared/services/api-service';
-import { CreateWatchlist } from 'src/app/types/watchlist';
+import { ApiWatchlistResponse, CreateWatchlist, resWatchlist } from 'src/app/types/watchlist';
+import { Observable, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -22,7 +22,7 @@ export class WatchlistsService {
   createWatchlist(title: string, description: string) {
     const userId = this.user?.objectId;
     if (!userId) {
-      throw new Error('Invalid User')
+      return throwError(() => new Error('Invalid User'));
     }
     const watchlistData: CreateWatchlist = {
       title,
@@ -35,5 +35,9 @@ export class WatchlistsService {
     };
 
     return this.apiService.postRequest(this.baseUrl, watchlistData);
+  }
+
+  getAll():Observable<ApiWatchlistResponse>{
+    return this.apiService.getRequest(this.baseUrl)
   }
 }

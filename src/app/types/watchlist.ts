@@ -24,3 +24,12 @@ interface OwnerId {
   className: '_User';
   objectId: string;
 }
+
+export interface resWatchlist extends CreateWatchlist {
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface ApiWatchlistResponse {
+  results: resWatchlist[];
+}
