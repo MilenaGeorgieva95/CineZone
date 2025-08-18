@@ -26,7 +26,7 @@ export class CreateComponent {
         next: (data) => {
           console.log(data);
           form.setValue({ title: '', description: '' });
-          this.router.navigate(['/catalog']);
+          this.router.navigate(['/watchlists']);
         },
         error: (err) => {
           this.errorMsg = err.error?.message || err.message;

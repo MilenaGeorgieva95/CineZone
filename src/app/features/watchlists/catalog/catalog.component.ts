@@ -21,4 +21,18 @@ export class CatalogComponent implements OnInit {
       error: (err) => console.error(err),
     });
   }
+
+  delWatchlistHandler(watchlistId:string, watchlistTitle:string){
+    const choice:boolean=confirm(`Are you sure you want to delete ${watchlistTitle} watchlist`)
+    if (choice) {
+    this.watchlistService.delWatchlist(watchlistId).subscribe({
+      next: () => {
+        this.watchlists = this.watchlists.filter(w => w.objectId !== watchlistId);
+        console.log(`Deleted ${watchlistTitle}`);
+      },
+      error: (err) => console.error("Delete failed:", err)
+    });
+  }
+    
+  }
 }

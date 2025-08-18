@@ -84,4 +84,26 @@ export class ApiService {
     const body = JSON.stringify(data);
     return this.http.put(this.baseUrl + url, body, options);
   }
+
+  delRequest(url: string) {
+    const userJson = localStorage.getItem('user');
+    if (userJson) {
+      this.user = JSON.parse(userJson) as UserForAuth;
+    }
+    const options: any = {
+      headers: {
+        'X-Parse-Application-Id': environment.APP_ID,
+        'X-Parse-REST-API-Key': environment.API_KEY,
+        'X-Parse-Revocable-Session': 1,
+        'Content-Type': 'application/json',
+      },
+    };
+    const token = this.user?.sessionToken;
+    if (token) {
+      console.log(token);
+
+      options.headers['X-Parse-Session-Token'] = token;
+    }
+    return this.http.delete(this.baseUrl + url, options);
+  }
 }

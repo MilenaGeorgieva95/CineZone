@@ -71,4 +71,8 @@ export class WatchlistsService {
       })
     );
   }
+
+  delWatchlist(watchlistId:string){
+    return this.apiService.delRequest(`${this.baseUrl}/${watchlistId}`)
+}
 }

@@ -7,7 +7,7 @@
       <div class="watchlist-btns">
         <a routerLink="/watchlists/{{watchlist.objectId}}/details" class="btn details">Details</a>
         <a routerLink="/watchlists/{{watchlist.objectId}}/edit" class="btn edit">Edit</a>
-        <span class="btn del">Delete</span>
+        <span class="btn del" (click)="delWatchlistHandler(watchlist.objectId, watchlist.title)">Delete</span>
       </div>
       <div>
         <ul class="catalog-wrapper" *ngIf="watchlist.movieList&&watchlist.movieList.length > 0; else noMovies">
