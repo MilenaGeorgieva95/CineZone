@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { WatchlistsService } from '../services/watchlists.service';
+import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create',
@@ -7,11 +9,26 @@ import { WatchlistsService } from '../services/watchlists.service';
   styleUrls: ['./create.component.css'],
 })
 export class CreateComponent {
-  constructor(private watchlistsService: WatchlistsService) {}
-  createWatchlist(e: Event, title: string, description: string) {
-    e.preventDefault();
-    this.watchlistsService
-      .createWatchlist(title, description)
-      .subscribe((e) => console.log(e));
+  constructor(
+    private watchlistsService: WatchlistsService,
+    private router: Router
+  ) {}
+  createWatchlist(form: NgForm) {
+    if (form.invalid) {
+      return;
+    }
+    const { title, description } = form?.value;
+    if (title && description) {
+      try {
+        this.watchlistsService
+          .createWatchlist(title, description)
+          .subscribe((data) => console.log(data));
+
+        form.setValue({ title: '', description: '' });
+        this.router.navigate(['/']);
+      } catch (error) {
+        console.log(error);
+      }
+    }
   }
 }

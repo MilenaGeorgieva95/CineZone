@@ -5,6 +5,7 @@ import { CreateComponent } from './create/create.component';
 import { EditComponent } from './edit/edit.component';
 import { DetailsComponent } from './details/details.component';
 import { WatchlistsRoutingModule } from './watchlists-routing.module';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -17,7 +18,8 @@ import { WatchlistsRoutingModule } from './watchlists-routing.module';
   ],
   imports: [
     CommonModule,
-    WatchlistsRoutingModule
+    WatchlistsRoutingModule,
+    FormsModule
   ],
 })
 export class WatchlistsModule { }
