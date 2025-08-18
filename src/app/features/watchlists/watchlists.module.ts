@@ -7,6 +7,7 @@ import { DetailsComponent } from './details/details.component';
 import { WatchlistsRoutingModule } from './watchlists-routing.module';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -21,7 +22,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
     CommonModule,
     WatchlistsRoutingModule,
     FormsModule,
-    SharedModule
+    SharedModule,
+    RouterModule
   ],
 })
 export class WatchlistsModule { }

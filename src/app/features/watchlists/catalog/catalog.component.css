@@ -28,9 +28,18 @@ h1{
   font-weight: 200;
   text-align: center;
   margin: 0.8rem 0;
+  padding: 0 0.4em;
+  font-size: 20px;
+  word-wrap: wrap;
 }
 
+.watchlist-btns {
+  margin: 20px 0 10px 0;
+}
+
+
 .watchlist-btns .btn {
+  text-decoration: none;
   background-color: #C2185B;
   color: white;
   padding: 10px 20px;
