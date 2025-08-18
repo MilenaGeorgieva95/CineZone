@@ -1,0 +1,38 @@
+h2{
+  font-weight: 200;
+  text-align: center;
+  margin: 0.8rem 0;
+}
+
+.create{
+    text-align: center;
+    margin: 1em;
+}
+
+.create input{
+  padding: 10px 16px;
+    border-radius: 4px;
+}
+
+.error-msg p{
+  color: red;
+  font-weight: 400;
+  padding: 6px;
+  margin: 0 0.2em;
+  font-size: 10px;
+}
+
+.create-btn {
+  background-color: #C2185B;
+  color: white;
+  padding: 10px 20px;
+  margin: 1em;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.create-btn.create{
+    background-color: rgb(74, 239, 110);
+}

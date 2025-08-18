@@ -35,4 +35,7 @@ export class CreateComponent {
       });
     }
   }
+  cancelHandler(form: NgForm) {
+    form.setValue({ title: '', description: '' });
+  }
 }

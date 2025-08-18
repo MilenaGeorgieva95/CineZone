@@ -1,18 +1,15 @@
-<div>
+<div class="create">
   <h2>Create Watchlist Form</h2>
   <form #createForm="ngForm" (ngSubmit)="createWatchlist(createForm)">
-    <h2>Create Watchlist Form</h2>
     <div>
-      <label for="title">Title: </label>
-      <input type="text" id="title" name="title"  #titleInput="ngModel" ngModel required/>
+      <input type="text" id="title" name="title"  #titleInput="ngModel" ngModel required placeholder="Title..."/>
     </div>
 
     <ng-container>
 
     </ng-container>
     <div>
-      <label for="description">Description: </label>
-      <input type="text" id="description" name="description" #descriptionInput="ngModel" ngModel required/>
+      <input type="text" id="description" name="description" #descriptionInput="ngModel" ngModel required placeholder="Descrription..."/>
     </div>
 
 <ng-container *ngIf="invalidForm">
@@ -21,8 +18,8 @@ Please make sure that you are logged in your account!
 </ng-container>
 
     <div class="form-btns">
-      <button class="submit-btn">Create</button>
-      <div class="submit-btn">Cancel</div>
+      <button class="create-btn create">Create</button>
+      <span (click)="cancelHandler(createForm)" class="create-btn">Cancel</span>
     </div>
   </form>
 </div>
