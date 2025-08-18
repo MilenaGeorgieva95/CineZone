@@ -4,6 +4,11 @@
     <li class="watchlists-wrapper" *ngFor="let watchlist of watchlists">
       <h2>{{ watchlist.title }}</h2>
       <div>{{ watchlist.description }}</div>
+      <div class="watchlist-btns">
+        <button class="btn details">Details</button>
+        <button class="btn edit">Edit</button>
+        <button class="btn del">Delete</button>
+      </div>
       <div>
         <ul class="catalog-wrapper" *ngIf="watchlist.movieList&&watchlist.movieList.length > 0; else noMovies">
           <li class="movie-card" *ngFor="let movie of watchlist.movieList">

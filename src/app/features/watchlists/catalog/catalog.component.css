@@ -1,8 +1,9 @@
 .watchlists-wrapper{
   text-align: center;
-margin: 0.8rem 0.8rem;
+  margin: 0.8rem 0.8rem;
   background-color:  rgba(36, 35, 35, 0.7);
   border-radius: 8px;
+  padding: 1.2rem 0;
 }
 
 .catalog-wrapper {
@@ -27,4 +28,24 @@ h1{
   font-weight: 200;
   text-align: center;
   margin: 0.8rem 0;
+}
+
+.watchlist-btns .btn {
+  background-color: #C2185B;
+  color: white;
+  padding: 10px 20px;
+  margin: 1em;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.watchlist-btns .edit{
+    background-color: rgb(74, 239, 110);
+    padding: 10px 30px;
+}
+
+.watchlist-btns .del{
+    background-color: rgb(235, 28, 45);
 }

@@ -1,1 +1,25 @@
-<p>edit works!</p>
+<div class="edit">
+  <h2>Edit Watchlist Form</h2>
+  <form #editForm="ngForm" (ngSubmit)="editWatchlist(editForm)">
+    <div>
+      <input type="text" id="title" name="title"  #titleInput="ngModel" ngModel required placeholder="Title..."/>
+    </div>
+
+    <ng-container>
+
+    </ng-container>
+    <div>
+      <input type="text" id="description" name="description" #descriptionInput="ngModel" ngModel required placeholder="Descrription..."/>
+    </div>
+
+<ng-container *ngIf="invalidForm">
+<p>{{errorMsg}}</p>
+Please make sure that you are logged in your account!
+</ng-container>
+
+    <div class="form-btns">
+      <button class="edit-btn edit">Save</button>
+      <span (click)="cancelHandler(editForm)" class="edit-btn">Cancel</span>
+    </div>
+  </form>
+</div>
