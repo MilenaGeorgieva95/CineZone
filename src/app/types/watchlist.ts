@@ -24,6 +24,7 @@ interface OwnerId {
 }
 
 export interface resWatchlist extends CreateWatchlist {
+  objectId: string,
   createdAt: string;
   updatedAt: string;
 }

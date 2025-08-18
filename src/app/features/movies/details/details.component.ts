@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { fullMovieDetails } from 'src/app/types/movie';
 import { ApiWatchlistResponse, resWatchlist, Watchlist } from 'src/app/types/watchlist';
 import { WatchlistsService } from '../../watchlists/services/watchlists.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-details',
@@ -55,10 +56,11 @@ export class DetailsComponent implements OnInit {
         {console.log(data.results)
         
         this.watchlists=data.results||[]}
-    })
+    },)
+  }
+  addToWatchlist(form:NgForm){
+    console.log(form.value);
+    
   }
 }
 
-// this.route.queryParamMap.subscribe(params => {
-//   const page = params.get('page');
-// });
