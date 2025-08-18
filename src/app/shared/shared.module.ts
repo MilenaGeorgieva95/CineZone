@@ -7,10 +7,11 @@ import { StarRatingPipe } from './pipes/star-rating.pipe';
 import { EmailDirective } from './validators/email.directive';
 import { MovieCardComponent } from './components/movie-card/movie-card.component';
 import { LoaderComponent } from './components/loader/loader.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent, StarRatingPipe, EmailDirective,MovieCardComponent],
+  declarations: [HeaderComponent, FooterComponent, StarRatingPipe, EmailDirective,MovieCardComponent, LoaderComponent, PageNotFoundComponent],
   imports: [CommonModule, RouterModule],
-  exports: [HeaderComponent, FooterComponent, StarRatingPipe, EmailDirective, MovieCardComponent, LoaderComponent],
+  exports: [HeaderComponent, FooterComponent, StarRatingPipe, EmailDirective, MovieCardComponent, LoaderComponent, PageNotFoundComponent],
 })
 export class SharedModule {}
