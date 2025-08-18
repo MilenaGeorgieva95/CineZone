@@ -3,11 +3,13 @@ import { UserService } from '../../user/user.service';
 import { UserForAuth } from 'src/app/types/user';
 import { ApiService } from 'src/app/shared/services/api-service';
 import {
+  ApiSingleWatchlistResponse,
   ApiWatchlistResponse,
   CreateWatchlist,
   resWatchlist,
 } from 'src/app/types/watchlist';
-import { Observable, throwError } from 'rxjs';
+import { Observable, switchMap, throwError } from 'rxjs';
+import { MovieItem } from 'src/app/types/movie';
 
 @Injectable({
   providedIn: 'root',
@@ -50,5 +52,23 @@ export class WatchlistsService {
     const userId = this.userService.user?.objectId;
     const searchParam = `where={"ownerId":{"__type":"Pointer","className":"_User","objectId":"${userId}"}}`;
     return this.apiService.getRequest(`${this.baseUrl}?${searchParam}`);
+  }
+
+  getById(watchlistId: string): Observable<resWatchlist> {
+    return this.apiService.getRequest(`${this.baseUrl}/${watchlistId}`);
+  }
+
+  addMovieToWatchlist(watchlistId: string, newMovie: MovieItem): Observable<any> {
+    return this.getById(watchlistId).pipe(
+      switchMap((watchlistData) => {
+        const movieList: MovieItem[] = watchlistData.movieList || [];
+        movieList.push(newMovie);
+        console.log(movieList);
+
+        return this.apiService.putRequest(`${this.baseUrl}/${watchlistId}`, {
+          movieList,
+        });
+      })
+    );
   }
 }

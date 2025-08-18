@@ -12,7 +12,7 @@ export interface CreateWatchlist {
   title: string;
   description: string;
   ownerId: OwnerId;
-  movieList:[] | Array<MovieItem> | undefined;
+  movieList:[] | Array<MovieItem>
 }
 
 
@@ -30,5 +30,9 @@ export interface resWatchlist extends CreateWatchlist {
 }
 
 export interface ApiWatchlistResponse {
-  results: resWatchlist[];
+  results: resWatchlist[]
+}
+
+export interface ApiSingleWatchlistResponse {
+  results: resWatchlist
 }

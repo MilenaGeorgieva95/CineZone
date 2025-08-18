@@ -52,15 +52,16 @@
     <div>
       <div>
         <form #addToWatchlistForm="ngForm" (ngSubmit)="addToWatchlist(addToWatchlistForm)">
-          <select name="watchlist" ngModel #watchlistSelect="ngModel" required>
+          <select name="watchlistSelect" ngModel #watchlistSelect="ngModel" required>
+            <option value="" disabled selected>Select from your watchlists:</option>
             <option
               *ngFor="let watchlist of watchlists"
-              value="{{watchlist.objectId}}"
+              [value]="watchlist.objectId"
             >
               {{ watchlist.title }}
             </option>
           </select>
-          <button>Add to Watchlist</button>
+          <button [disabled]="addToWatchlistForm.invalid">Add to Watchlist</button>
         </form>
       </div>
     </div>

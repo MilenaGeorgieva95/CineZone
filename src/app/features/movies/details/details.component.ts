@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { TMDBApiService } from '../services/tmdb-api.service';
 import { ActivatedRoute } from '@angular/router';
-import { fullMovieDetails } from 'src/app/types/movie';
-import { ApiWatchlistResponse, resWatchlist, Watchlist } from 'src/app/types/watchlist';
+import { fullMovieDetails, MovieItem } from 'src/app/types/movie';
+import {
+  ApiWatchlistResponse,
+  resWatchlist,
+  Watchlist,
+} from 'src/app/types/watchlist';
 import { WatchlistsService } from '../../watchlists/services/watchlists.service';
 import { NgForm } from '@angular/forms';
 
@@ -16,31 +20,12 @@ export class DetailsComponent implements OnInit {
   movie = {} as fullMovieDetails;
   backgroundUrl: string = 'https://image.tmdb.org/t/p/original';
 
-  watchlists:resWatchlist[]=[]
-  //{
-  //   id: 123,
-  //   title: 'Happy Days',
-  //   description: 'sunshine',
-  //   votes: ['123', '234'],
-  //   movies_list: [],
-  // },{
-  //   id: 124,
-  //   title: 'Rainy Days',
-  //   description: 'sunshine',
-  //   votes: ['123', '234'],
-  //   movies_list: [],
-  // }, {
-  //   id: 125,
-  //   title: 'Happy Happy Days',
-  //   description: 'sunshine',
-  //   votes: ['123', '234'],
-  //   movies_list: [],
-  // }]
+  watchlists: resWatchlist[] = [];
 
   constructor(
     private tmdbApiService: TMDBApiService,
     private route: ActivatedRoute,
-    private watchlistsService:WatchlistsService
+    private watchlistsService: WatchlistsService
   ) {}
 
   ngOnInit(): void {
@@ -52,15 +37,22 @@ export class DetailsComponent implements OnInit {
       });
     });
     this.watchlistsService.getByOwner().subscribe({
-      next: (data:ApiWatchlistResponse)=>
-        {console.log(data.results)
-        
-        this.watchlists=data.results||[]}
-    },)
+      next: (data: ApiWatchlistResponse) => {
+        console.log(data.results);
+
+        this.watchlists = data.results || [];
+      },
+    });
   }
-  addToWatchlist(form:NgForm){
-    console.log(form.value);
-    
+  addToWatchlist(form: NgForm) {
+    const watchlistId: string = form.value['watchlistSelect'];
+    const newMovie: MovieItem = {
+      id: this.movie.id,
+      title: this.movie.title,
+      vote_average: this.movie.vote_average,
+      poster_path: this.movie.poster_path,
+    };
+    this.watchlistsService.addMovieToWatchlist(watchlistId, newMovie).subscribe(el=>console.log(el)
+    )
   }
 }
-
