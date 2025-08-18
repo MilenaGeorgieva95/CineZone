@@ -3,7 +3,7 @@
     <h2>Login Form</h2>
 
     <div>
-      <input type="email" name="email" id="email" placeholder="Email..." ngModel #emailInput="ngModel" email required [appEmail]="['bg', 'com', 'co\.uk']"/>
+      <input type="email" name="email" id="email" placeholder="Email..." ngModel #emailInput="ngModel" email required [appEmail]="domains"/>
     </div>
      <div class="error-msg" *ngIf="emailInput.touched">
         <p *ngIf="emailInput.errors?.['required']">Email is required!</p>
