@@ -3,7 +3,6 @@ import { UserService } from '../../user/user.service';
 import { UserForAuth } from 'src/app/types/user';
 import { ApiService } from 'src/app/shared/services/api-service';
 import {
-  ApiSingleWatchlistResponse,
   ApiWatchlistResponse,
   CreateWatchlist,
   resWatchlist,

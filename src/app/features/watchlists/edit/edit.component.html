@@ -2,14 +2,16 @@
   <h2>Edit Watchlist Form</h2>
   <form #editForm="ngForm" (ngSubmit)="editWatchlist(editForm)">
     <div>
-      <input type="text" id="title" name="title"  #titleInput="ngModel" ngModel required placeholder="Title..."/>
+      <label for="description">Title: </label>
+      <input type="text" id="title" name="title"  #titleInput="ngModel" ngModel required placeholder="Title..." [value]="watchlist.title"/>
     </div>
 
     <ng-container>
 
     </ng-container>
     <div>
-      <input type="text" id="description" name="description" #descriptionInput="ngModel" ngModel required placeholder="Descrription..."/>
+      <label for="description">Description: </label>
+      <input type="text" id="description" name="description" #descriptionInput="ngModel" ngModel required placeholder="Descrription..." [value]="watchlist.description"/>
     </div>
 
 <ng-container *ngIf="invalidForm">

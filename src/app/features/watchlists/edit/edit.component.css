@@ -37,3 +37,8 @@ h2{
     background-color: rgb(74, 239, 110);
     padding: 10px 23px;
 }
+
+.edit label{
+    display: block;
+    padding: 1rem 0 0.4rem 0;
+}
