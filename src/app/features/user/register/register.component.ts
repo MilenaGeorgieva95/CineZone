@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { UserService } from '../user.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { matchPasswordsValidator } from 'src/app/shared/validators/match-passwords-validator';
 
 @Component({
   selector: 'app-register',
@@ -10,10 +11,17 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent {
   registerForm = this.fb.group({
-    username: ['', [Validators.required]],
+    username: ['', [Validators.required, Validators.minLength(3)]],
     email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required, Validators.minLength(3)]],
-    rePassword: ['', [Validators.maxLength(4)]],
+    passGroup: this.fb.group(
+      {
+        password: ['', [Validators.required, Validators.minLength(3)]],
+        rePassword: ['', [Validators.required]],
+      },
+      {
+        validators: [matchPasswordsValidator('password', 'rePassword')],
+      }
+    ),
   });
   passwordError: string = '';
   usernameError: string = '';
@@ -25,35 +33,18 @@ export class RegisterComponent {
 
   handleSubmit(): void {
     console.log(this.registerForm.value);
-    const { username, email, password, rePassword } = this.registerForm.value;
-    if (!username! || !email || !password || !rePassword) {
-      this.passwordError = 'Error: All fields are required!';
+    if (this.registerForm.invalid) {
       return;
     }
-    if (username && email && password) {
+ const username=this.registerForm.get('username')?.value;
+ const email=this.registerForm.get('email')?.value;
+ const password=this.registerForm.get('passGroup')?.get('password')?.value;
+if(username&&email&&password){
       this.userService.register(username, email, password);
-      this.router.navigate(['/catalog']);
-    }
-  }
+            this.router.navigate(['/catalog']);
+}
 
-  ngAfterViewInit() {
-    if (this.registerForm) {
-      this.registerForm.valueChanges.subscribe((x) => {
-        if (x.password !== x.rePassword) {
-          this.passwordError = "Error: Passwords don't match!";
-          return;
-        } else {
-          this.passwordError = '';
-        }
-        if (x.username && x.username.length <= 2) {
-          this.usernameError = 'Username should be at least 3 characters long!';
-        } else if (x.username && x.username.length > 5) {
-          this.usernameError =
-            'Username should be maximum of 5 characters long!';
-        } else {
-          this.usernameError = '';
-        }
-      });
-    }
+
+
   }
 }
