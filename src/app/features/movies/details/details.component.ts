@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { TMDBApiService } from '../services/tmdb-api.service';
 import { ActivatedRoute } from '@angular/router';
 import { fullMovieDetails } from 'src/app/types/movie';
+import { ApiWatchlistResponse, resWatchlist, Watchlist } from 'src/app/types/watchlist';
+import { WatchlistsService } from '../../watchlists/services/watchlists.service';
 
 @Component({
   selector: 'app-details',
@@ -13,9 +15,31 @@ export class DetailsComponent implements OnInit {
   movie = {} as fullMovieDetails;
   backgroundUrl: string = 'https://image.tmdb.org/t/p/original';
 
+  watchlists:resWatchlist[]=[]
+  //{
+  //   id: 123,
+  //   title: 'Happy Days',
+  //   description: 'sunshine',
+  //   votes: ['123', '234'],
+  //   movies_list: [],
+  // },{
+  //   id: 124,
+  //   title: 'Rainy Days',
+  //   description: 'sunshine',
+  //   votes: ['123', '234'],
+  //   movies_list: [],
+  // }, {
+  //   id: 125,
+  //   title: 'Happy Happy Days',
+  //   description: 'sunshine',
+  //   votes: ['123', '234'],
+  //   movies_list: [],
+  // }]
+
   constructor(
     private tmdbApiService: TMDBApiService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private watchlistsService:WatchlistsService
   ) {}
 
   ngOnInit(): void {
@@ -26,6 +50,12 @@ export class DetailsComponent implements OnInit {
         this.movie = movie;
       });
     });
+    this.watchlistsService.getByOwner().subscribe({
+      next: (data:ApiWatchlistResponse)=>
+        {console.log(data.results)
+        
+        this.watchlists=data.results||[]}
+    })
   }
 }
 

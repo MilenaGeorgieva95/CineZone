@@ -49,6 +49,21 @@
         </div>
       </div>
     </div>
+    <div>
+      <div>
+        <form action="">
+          <select name="watchlist">
+            <option
+              *ngFor="let watchlist of watchlists"
+              value="watchlist.objectid"
+            >
+              {{ watchlist.title }}
+            </option>
+          </select>
+          <button>Add to Watchlist</button>
+        </form>
+      </div>
+    </div>
   </div>
   <div>
     <img

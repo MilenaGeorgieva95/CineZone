@@ -4,6 +4,7 @@ import { DetailsComponent } from './details/details.component';
 import { CatalogComponent } from './catalog/catalog.component';
 import { MoviesRoutingModule } from './movies-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
   imports: [
     CommonModule,
     MoviesRoutingModule,
-    SharedModule
+    SharedModule,
+    FormsModule
   ],
   exports:[CatalogComponent, DetailsComponent]
 })
