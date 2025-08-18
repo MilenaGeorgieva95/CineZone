@@ -27,6 +27,7 @@ export class WatchlistsService {
     const watchlistData: CreateWatchlist = {
       title,
       description,
+      movieList:[],
       ownerId: {
         __type: 'Pointer',
         className: '_User',

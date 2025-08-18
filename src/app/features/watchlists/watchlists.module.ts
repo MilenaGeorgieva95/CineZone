@@ -6,6 +6,7 @@ import { EditComponent } from './edit/edit.component';
 import { DetailsComponent } from './details/details.component';
 import { WatchlistsRoutingModule } from './watchlists-routing.module';
 import { FormsModule } from '@angular/forms';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 
@@ -19,7 +20,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     WatchlistsRoutingModule,
-    FormsModule
+    FormsModule,
+    SharedModule
   ],
 })
 export class WatchlistsModule { }

@@ -1,7 +1,18 @@
 <div>
   <ul *ngIf="watchlists.length > 0; else noWatchlists">
     <li *ngFor="let watchlist of watchlists">
-      {{ watchlist.title }}
+      <h2>{{ watchlist.title }}</h2>
+      <div>{{ watchlist.description }}</div>
+      <div>
+        <ul *ngIf="watchlist.movieList&&watchlist.movieList.length > 0; else noMovies">
+          <li *ngFor="let movie of watchlist.movieList">
+            <app-movie-card [movie]="movie"></app-movie-card>
+          </li>
+        </ul>
+        <ng-template #noMovies>
+          <p>No movies found. Browse <a routerLink="/catalog">Movies Catalog</a></p>
+        </ng-template>
+      </div>
     </li>
   </ul>
   <ng-template #noWatchlists>

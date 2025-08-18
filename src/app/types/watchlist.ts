@@ -1,3 +1,5 @@
+import { MovieItem } from "./movie";
+
 export interface Watchlist {
   id: number;
   title: string;
@@ -10,14 +12,10 @@ export interface CreateWatchlist {
   title: string;
   description: string;
   ownerId: OwnerId;
+  movieList:[] | Array<MovieItem> | undefined;
 }
 
-interface MovieItem {
-  id: number;
-  title: string;
-  rating: number;
-  poster_path: string;
-}
+
 
 interface OwnerId {
   __type: 'Pointer';

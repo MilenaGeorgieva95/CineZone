@@ -66,3 +66,10 @@ interface spoken_language {
   iso_639_1: string;
   name: string;
 }
+
+export interface MovieItem {
+  id: number;
+  title: string;
+  vote_average:number,
+  poster_path: string;
+}

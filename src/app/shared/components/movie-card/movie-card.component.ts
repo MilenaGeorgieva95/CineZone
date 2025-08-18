@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Movie } from 'src/app/types/movie';
+import { MovieItem } from 'src/app/types/movie';
 
 @Component({
   selector: 'app-movie-card',
@@ -7,7 +7,7 @@ import { Movie } from 'src/app/types/movie';
   styleUrls: ['./movie-card.component.css']
 })
 export class MovieCardComponent {
-  @Input() movie= {} as Movie;
+  @Input() movie= {} as MovieItem;
 showDetails(movieId:number){
     return `/movies/${movieId}/details`
   }
