@@ -1,0 +1,30 @@
+.watchlists-wrapper{
+  text-align: center;
+margin: 0.8rem 0.8rem;
+  background-color:  rgba(36, 35, 35, 0.7);
+  border-radius: 8px;
+}
+
+.catalog-wrapper {
+  list-style: none;
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.movie-card {
+  display: inline-block;
+  margin: 1em;
+  background-color: #3c3c3c;
+  border-radius: 8px;
+  cursor: pointer;
+  max-width: 250px;
+}
+
+h1{
+  font-weight: 200;
+  text-align: center;
+  margin: 0.8rem 0;
+}
