@@ -2,7 +2,7 @@
  
  export function emailValidator(domains: string[]): ValidatorFn {
     const domainsStr = domains.join('|');
-    const regExp = new RegExp(`[A-Za-z]+@gmail.(${domainsStr})`);
+    const regExp = new RegExp(`^[A-Za-z0-9\-\_]+\@.+\.(${domainsStr})`);
 
     return (control) => {
       const isEmailInvalid: boolean =
