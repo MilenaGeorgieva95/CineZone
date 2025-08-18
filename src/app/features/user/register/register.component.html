@@ -15,8 +15,9 @@
     </div>
 
     <div class="error-msg" *ngIf="registerForm.get('email')?.touched">
-      <p *ngIf="registerForm.get('email')?.errors?.['required']">Error: Email is required!</p>
-      <p *ngIf="registerForm.get('email')?.errors?.['emailValidator']">Error: Email is not valid!</p>
+      <p *ngIf="registerForm.get('email')?.errors?.['required']">Email is required!</p>
+      <p *ngIf="registerForm.get('email')?.errors?.['email']">Email is not valid!</p>
+      <p *ngIf="registerForm.get('email')?.errors?.['emailValidator']">Email has to end with .bg, .com or .co.uk and showldn't contain any spaces! </p>
     </div>
    
 
