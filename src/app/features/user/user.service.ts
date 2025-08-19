@@ -32,25 +32,9 @@ export class UserService {
     }
   }
   login(username: string, password: string) {
-    localStorage.removeItem(this.USER_KEY);
-    this.apiService
-      .postRequest(this.endpoints.login, { username, password })
-      .subscribe({
-        next: (userData) => {
-          localStorage.setItem(this.USER_KEY, JSON.stringify(userData));
-
-          try {
-            const lsUser = localStorage.getItem(this.USER_KEY) || '';
-            this.user = JSON.parse(lsUser);
-          } catch (error) {
-            this.user = undefined;
-          }
-        },
-        error: (err) => {
-          console.error('Login failed:', err);
-        },
-      });
-  }
+  localStorage.removeItem(this.USER_KEY);
+  return this.apiService.postRequest(this.endpoints.login, { username, password });
+}
 
   logout() {
     this.user = undefined;

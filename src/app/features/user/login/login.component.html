@@ -3,7 +3,7 @@
     <h2>Login Form</h2>
 
     <div>
-      <input type="email" name="email" id="email" placeholder="Email..." ngModel #emailInput="ngModel" email required [appEmail]="domains"/>
+      <input type="email" name="email" id="email" placeholder="Email..." ngModel #emailInput="ngModel" email required [appEmail]="domains" (input)="onInputChange()"/>
     </div>
      <div class="error-msg" *ngIf="emailInput.touched">
         <p *ngIf="emailInput.errors?.['required']">Email is required!</p>
@@ -11,18 +11,22 @@
         <p *ngIf="emailInput.errors?.['emailValidator']">Email has to end with .bg, .com or .co.uk and showldn't contain any spaces! </p>
     </div>
     <div>
-      <input type="password" name="password" id="password" placeholder="******" ngModel #passwordInput="ngModel" required/>
+      <input type="password" name="password" id="password" placeholder="******" ngModel #passwordInput="ngModel" required (input)="onInputChange()"/>
     </div>
     <div class="error-msg" *ngIf="passwordInput.touched">
       <p *ngIf="passwordInput.errors?.['required']">Error: Password is required!</p>
     </div>
-        <div class="error-msg" *ngIf="invalidForm">
+        <div class="error-msg" *ngIf="lockUntilChange">
       <p>Error: Invalid form values!</p>
     </div>
-    <button class="login-btn" [disabled]="emailInput.errors || passwordInput.errors">Login</button>
+      <div class="error-msg" *ngIf="requestFailed">
+    <p>{{errMsg}}</p>
+  </div>
+    <button class="login-btn" [disabled]="loading || loginForm.invalid || lockUntilChange">Login</button>
     <p>
       Have an account?
       <a routerLink="/register">Register</a>
     </p>
   </form>
+
 </div>
