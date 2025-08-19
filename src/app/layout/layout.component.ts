@@ -15,8 +15,11 @@ import { Router } from '@angular/router';
 export class LayoutComponent {
   @ViewChild('drawer') drawer!: MatSidenav;
 
-  constructor(private breakpointObserver: BreakpointObserver, private userService: UserService, private router: Router) {}
+  constructor(private breakpointObserver: BreakpointObserver, private userService: UserService, private router: Router) {
+    this.isLoggedIn$ = this.userService.isAuthSubject$$;
+  }
 
+  isLoggedIn$: Observable<boolean>;
   isHandset$: Observable<boolean> = this.breakpointObserver
     .observe(Breakpoints.Handset)
     .pipe(

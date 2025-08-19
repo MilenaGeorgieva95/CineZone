@@ -3,19 +3,19 @@
     <a mat-button routerLink="/catalog" routerLinkActive="active-link"
       >Catalog</a
     >
-    <a *ngIf="isLoggedIn" mat-button routerLink="/watchlists" routerLinkActive="active-link"
+    <a  mat-button routerLink="/watchlists" routerLinkActive="active-link"
       >Watchlists</a
     >
-    <a *ngIf="isLoggedIn" mat-button routerLink="/watchlists/create" routerLinkActive="active-link"
+    <a [hidden]="!(isLoggedIn$ | async)" mat-button routerLink="/watchlists/create" routerLinkActive="active-link"
       >Create Watchlist</a
     >
   </div>
   <div class="auth top-bar">
-    <a *ngIf="!isLoggedIn" mat-button routerLink="/login" routerLinkActive="active-link">Login</a>
-    <a *ngIf="!isLoggedIn" mat-button routerLink="/register" routerLinkActive="active-link"
+    <a [hidden]="(isLoggedIn$ | async)" mat-button routerLink="/login" routerLinkActive="active-link">Login</a>
+    <a [hidden]="(isLoggedIn$ | async)" mat-button routerLink="/register" routerLinkActive="active-link"
       >Register</a
     >
-    <a *ngIf="isLoggedIn" mat-button (click)="logout()"
+    <a [hidden]="!(isLoggedIn$ | async)" mat-button (click)="logout()"
       >Logout</a
     >
   </div>

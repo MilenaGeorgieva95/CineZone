@@ -1,6 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { tap } from 'rxjs';
+import { BehaviorSubject, tap } from 'rxjs';
 import { ApiService } from 'src/app/shared/services/api-service';
 import { UserForAuth } from 'src/app/types/user';
 
@@ -17,6 +16,7 @@ export class UserService {
     sessionById: (id: string) => `/sessions/${id}`,
   };
 
+  isAuthSubject$$ = new BehaviorSubject<boolean>(false);
   user: UserForAuth | undefined;
   private readonly USER_KEY = '[user]';
 
@@ -38,12 +38,23 @@ export class UserService {
   }
   login(username: string, password: string) {
   localStorage.removeItem(this.USER_KEY);
-  return this.apiService.postRequest(this.endpoints.login, { username, password });
+  return this.apiService.postRequest<UserForAuth>(this.endpoints.login, { username, password }).pipe(
+    tap(userData => {
+      localStorage.setItem(
+        this.USER_KEY,
+        JSON.stringify({ ...userData})
+         
+      );
+      this.isAuthSubject$$.next(true);
+    }
+    )
+  )
 }
 
   logout() {
     this.user = undefined;
     localStorage.removeItem(this.USER_KEY);
+    this.isAuthSubject$$.next(false);
   }
 
   register(username: string, email: string, password: string) {
@@ -53,9 +64,10 @@ export class UserService {
     tap(userData => {
       localStorage.setItem(
         this.USER_KEY,
-        JSON.stringify({ ...userData, username, email })
+        JSON.stringify({ ...userData})
+         
       );
-
+this.isAuthSubject$$.next(true)
       try {
         const lsUser = localStorage.getItem(this.USER_KEY) || '';
         this.user = JSON.parse(lsUser);

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { UserService } from 'src/app/features/user/user.service';
 
 @Component({
@@ -8,8 +9,12 @@ import { UserService } from 'src/app/features/user/user.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
- constructor(private userService: UserService, private router: Router) {}
+ constructor(private userService: UserService, private router: Router) {
+  this.isLoggedIn$ = this.userService.isAuthSubject$$;
+ }
 
+ isLoggedIn$: Observable<boolean>;
+ 
   get isLoggedIn(): boolean {
     return this.userService.isAuth;
   }

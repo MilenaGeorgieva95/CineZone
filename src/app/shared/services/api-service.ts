@@ -37,7 +37,7 @@ export class ApiService {
     return this.http.get<T>(this.baseUrl + url, { headers});
   }
 
-  postRequest(url: string, data: object) {
+  postRequest<T>(url: string, data: object) {
     const userJson = localStorage.getItem('user');
     if (userJson) {
       this.user = JSON.parse(userJson) as UserForAuth;
@@ -58,7 +58,7 @@ export class ApiService {
     }
 
     const body = JSON.stringify(data);
-    return this.http.post(this.baseUrl + url, body, options);
+    return this.http.post<T>(this.baseUrl + url, body, options);
   }
 
     putRequest(url: string, data: object) {
