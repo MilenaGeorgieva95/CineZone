@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { FormBuilder, NgForm, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { WatchlistsService } from '../services/watchlists.service';
 import { resWatchlist } from 'src/app/types/watchlist';
 import { MovieItem } from 'src/app/types/movie';
@@ -13,31 +13,62 @@ import { MovieItem } from 'src/app/types/movie';
 export class EditComponent {
   constructor(
     private route: ActivatedRoute,
-    private watchlistsService: WatchlistsService
+    private watchlistsService: WatchlistsService,
+    private router: Router,
+    private fb: FormBuilder
   ) {}
 
-  watchlist = {} as resWatchlist;
   movieList = [] as MovieItem[];
+  watchlistId: string = '';
+  errorMsg: string = ''
+
+  editForm = this.fb.group({
+    title: ['', [Validators.required, Validators.minLength(3)]],
+    description: ['', [Validators.required, Validators.minLength(3)]],
+  });
 
   ngOnInit() {
     this.route.paramMap.subscribe((params) => {
-      const watchlistId = params.get('watchlistId');
-      if (!watchlistId) {
+      this.watchlistId = params.get('watchlistId') || '';
+      if (!this.watchlistId) {
         return;
       }
-      this.watchlistsService.getById(watchlistId).subscribe((data) => {
-        this.watchlist = data;
-        this.movieList = data.movieList || [];
+      this.watchlistsService.getById(this.watchlistId).subscribe({
+        next: (data: resWatchlist) => {
+          this.errorMsg=''
+          this.movieList = data.movieList || [];
+          this.editForm.setValue({
+            title: data.title,
+            description: data.description,
+          });
+        },
+        error: (err)=>{
+           console.error("Edit failed:", err)
+        }
       });
     });
   }
 
-  invalidForm: boolean = false;
-  errorMsg: string = '';
-  editWatchlist(form: NgForm) {
-    
+  editWatchlist(): void {
+    if (this.editForm.invalid) {
+      return;
+    }
+
+    const title = this.editForm.get('title')?.value;
+    const description = this.editForm.get('description')?.value;
+
+    if (title && description) {
+      this.watchlistsService
+        .editWatchlist(this.watchlistId, title, description)
+        .subscribe((data) => console.log(data));
+    }
+    this.router.navigate(['/watchlists']);
   }
-  cancelHandler(form: NgForm) {
-    form.setValue({ title: '', description: '' });
+  cancelHandler() {
+    this.editForm.setValue({
+      title: '',
+      description: '',
+    });
+    this.router.navigate(['/watchlists']);
   }
 }

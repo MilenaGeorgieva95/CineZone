@@ -57,12 +57,14 @@ export class WatchlistsService {
     return this.apiService.getRequest(`${this.baseUrl}/${watchlistId}`);
   }
 
-  addMovieToWatchlist(watchlistId: string, newMovie: MovieItem): Observable<any> {
+  addMovieToWatchlist(
+    watchlistId: string,
+    newMovie: MovieItem
+  ): Observable<any> {
     return this.getById(watchlistId).pipe(
       switchMap((watchlistData) => {
         const movieList: MovieItem[] = watchlistData.movieList || [];
         movieList.push(newMovie);
-        console.log(movieList);
 
         return this.apiService.putRequest(`${this.baseUrl}/${watchlistId}`, {
           movieList,
@@ -71,7 +73,14 @@ export class WatchlistsService {
     );
   }
 
-  delWatchlist(watchlistId:string){
-    return this.apiService.delRequest(`${this.baseUrl}/${watchlistId}`)
-}
+  delWatchlist(watchlistId: string) {
+    return this.apiService.delRequest(`${this.baseUrl}/${watchlistId}`);
+  }
+
+  editWatchlist(watchlistId: string, title: string, description: string): Observable<any>  {
+    return this.apiService.putRequest(`${this.baseUrl}/${watchlistId}`, {
+      title,
+      description,
+    });
+  }
 }

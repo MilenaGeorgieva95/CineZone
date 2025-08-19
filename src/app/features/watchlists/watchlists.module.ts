@@ -5,7 +5,7 @@ import { CreateComponent } from './create/create.component';
 import { EditComponent } from './edit/edit.component';
 import { DetailsComponent } from './details/details.component';
 import { WatchlistsRoutingModule } from './watchlists-routing.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { RouterModule } from '@angular/router';
 
@@ -23,7 +23,8 @@ import { RouterModule } from '@angular/router';
     WatchlistsRoutingModule,
     FormsModule,
     SharedModule,
-    RouterModule
+    RouterModule,
+    ReactiveFormsModule
   ],
 })
 export class WatchlistsModule { }

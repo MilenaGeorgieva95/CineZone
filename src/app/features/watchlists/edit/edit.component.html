@@ -1,27 +1,29 @@
 <div class="edit">
   <h2>Edit Watchlist Form</h2>
-  <form #editForm="ngForm" (ngSubmit)="editWatchlist(editForm)">
+  <form [formGroup]="editForm" (ngSubmit)="editWatchlist()">
     <div>
       <label for="description">Title: </label>
-      <input type="text" id="title" name="title"  #titleInput="ngModel" ngModel required placeholder="Title..." [value]="watchlist.title"/>
+      <input type="text" id="title" name="title" formControlName="title" placeholder="Title..." />
     </div>
 
-    <ng-container>
-
-    </ng-container>
+    <div class="error-msg" *ngIf="editForm.get('title')?.touched">
+      <p *ngIf="editForm.get('title')?.errors?.['required']">Title is required!</p>
+      <p *ngIf="editForm.get('title')?.errors?.['minlength']">Title must be at least 3 characters!</p>
+    </div>
+    
     <div>
       <label for="description">Description: </label>
-      <input type="text" id="description" name="description" #descriptionInput="ngModel" ngModel required placeholder="Descrription..." [value]="watchlist.description"/>
+      <input type="text" id="description" name="description" formControlName="description" placeholder="Descrription..." />
     </div>
 
-<ng-container *ngIf="invalidForm">
-<p>{{errorMsg}}</p>
-Please make sure that you are logged in your account!
-</ng-container>
+    <div class="error-msg" *ngIf="editForm.get('description')?.touched">
+      <p *ngIf="editForm.get('description')?.errors?.['required']">Description is required!</p>
+      <p *ngIf="editForm.get('description')?.errors?.['minlength']">Description must be at least 3 characters!</p>
+    </div>
 
     <div class="form-btns">
       <button class="edit-btn edit">Save</button>
-      <span (click)="cancelHandler(editForm)" class="edit-btn">Cancel</span>
+      <span (click)="cancelHandler()" class="edit-btn">Cancel</span>
     </div>
   </form>
 </div>

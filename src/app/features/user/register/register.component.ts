@@ -25,8 +25,7 @@ export class RegisterComponent {
       }
     ),
   });
-  passwordError: string = '';
-  usernameError: string = '';
+
   constructor(
     private userService: UserService,
     private fb: FormBuilder,
@@ -34,13 +33,13 @@ export class RegisterComponent {
   ) {}
 
   handleSubmit(): void {
-    console.log(this.registerForm.value);
     if (this.registerForm.invalid) {
       return;
     }
     const username = this.registerForm.get('username')?.value;
     const email = this.registerForm.get('email')?.value;
     const password = this.registerForm.get('passGroup')?.get('password')?.value;
+    
     if (username && email && password) {
       this.userService.register(username, email, password);
       this.router.navigate(['/catalog']);
