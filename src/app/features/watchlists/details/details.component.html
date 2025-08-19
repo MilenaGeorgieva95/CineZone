@@ -1,1 +1,48 @@
-<p>details works!</p>
+<div >
+<div class="details">
+  <h2>Watchlist Details</h2>
+
+  <div class="watchlist-wrapper">
+    <div>Title: <span>{{watchlist.title}}</span></div>
+    <div>Description: <span>{{watchlist.description}}</span></div>
+  </div>
+  <form class="create-comment" [formGroup]="commentForm" (ngSubmit)="postComment()">
+    <div>
+      <input type="text" id="title" name="title" formControlName="title" placeholder="Title..." />
+    </div>
+
+    <div class="error-msg" *ngIf="commentForm.get('title')?.touched">
+      <p *ngIf="commentForm.get('title')?.errors?.['required']">Title is required!</p>
+      <p *ngIf="commentForm.get('title')?.errors?.['minlength']">Title must be at least 3 characters!</p>
+    </div>
+    
+    <div>
+      <input type="text" id="comment" name="comment" formControlName="comment" placeholder="Comment..." />
+    </div>
+
+    <div class="error-msg" *ngIf="commentForm.get('comment')?.touched">
+      <p *ngIf="commentForm.get('comment')?.errors?.['required']">Comment is required!</p>
+      <p *ngIf="commentForm.get('comment')?.errors?.['minlength']">Comment must be at least 3 characters!</p>
+    </div>
+
+    <div class="form-btns">
+      <button class="post-btn">Post Comment</button>
+    </div>
+  </form>
+
+  <div>
+    <div class="error-msg" *ngIf="errorMsg">
+      <p>{{errorMsg}}</p>
+    </div>
+      <h2>Movie List</h2>
+    <ul class="moveList-container"  *ngIf="movieList.length>0">
+    <li *ngFor="let movie of movieList">
+      <ng-container *ngIf="loading">
+        <app-loader></app-loader>
+      </ng-container>
+      <app-movie-card [movie]="movie"></app-movie-card>
+    </li>
+  </ul>
+</div>
+</div>
+</div>

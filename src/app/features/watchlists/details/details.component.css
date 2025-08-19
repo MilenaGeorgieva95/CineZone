@@ -1,0 +1,68 @@
+h2 {
+  font-weight: 400;
+  text-align: center;
+  margin: 0.8rem 0;
+}
+
+.details {
+  text-align: center;
+  margin: 1em;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.details input {
+  padding: 10px 16px;
+  border-radius: 4px;
+}
+
+.error-msg p {
+  color: red;
+  font-weight: 400;
+  padding: 6px;
+  margin: 0 0.2em;
+  font-size: 10px;
+}
+
+.post-btn {
+  background-color: rgb(74, 239, 110);
+  color: white;
+  padding: 10px 20px;
+  margin: 0.5em;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.moveList-container {
+  margin: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.watchlist-wrapper {
+  margin: 1rem 0;
+  font-weight: 400;
+  background-color: #111;
+  max-width: 300px;
+  padding: 1.5rem;
+  border-radius: 10px;
+}
+
+.watchlist-wrapper span {
+  margin: 1rem;
+  font-size: 20px;
+  font-weight: 200;
+  color: #c2185b;
+}
+
+.create-comment {
+  background-color: rgba(36, 35, 35, 0.7);
+  padding: 1.2rem;
+  border-radius: 10px;
+  max-width: 300px;
+}
