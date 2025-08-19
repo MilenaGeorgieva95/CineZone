@@ -23,7 +23,15 @@
       </div>
     </li>
   </ul>
-  <ng-template #noWatchlists>
-    <p>No watchlists found.</p>
+
+    <div class="error-msg" *ngIf="errMsg">
+    <p>{{errMsg}}</p>
+    </div>
+    <ng-container *ngIf="loading">
+      <app-loader></app-loader>
+    </ng-container>
+<div>
+  <ng-template #noWatchlists >
+    <p ngIf="!loading">No watchlists found.</p>
   </ng-template>
-</div>
+

@@ -16,15 +16,22 @@ export class CatalogComponent implements OnInit {
 
   watchlists: resWatchlist[] = [];
   currentUserId: string = '';
+  loading = false;
+  errMsg: string = '';
 
   ngOnInit(): void {
+    this.loading = true;
+    this.errMsg=''
     this.currentUserId = this.userService.userId;
     this.watchlistService.getAll().subscribe({
       next: (data: ApiWatchlistResponse) => {
-        console.log(data);
         this.watchlists = data.results || [];
+        this.loading = false;
       },
-      error: (err) => console.error(err),
+      error: (err) => {
+        this.loading = false;
+        this.errMsg = `Error occured: ${err.error.error || err.message}!`;
+      },
     });
   }
 
@@ -40,14 +47,21 @@ export class CatalogComponent implements OnInit {
       `Are you sure you want to delete ${watchlistTitle} watchlist?`
     );
     if (choice) {
+      this.loading = true;
+      this.errMsg=''
       this.watchlistService.delWatchlist(watchlistId).subscribe({
         next: () => {
           this.watchlists = this.watchlists.filter(
             (w) => w.objectId !== watchlistId
           );
+
+          this.loading = false;
           console.log(`Deleted ${watchlistTitle}`);
         },
-        error: (err) => console.error('Delete failed:', err),
+        error: (err) => {
+          this.loading = false;
+          this.errMsg = `Error occured: ${err.error.error || err.message}!`;
+        },
       });
     }
   }
