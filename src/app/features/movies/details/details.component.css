@@ -44,3 +44,35 @@ h1 {
   width: 100%;
 }
 }
+
+.watchlists-wrapper{
+  background-color: #aa0547;
+  text-align: center;
+  border-radius: 10px;
+  padding: 1rem;
+  font-weight: 200;
+  font-size: 1rem;
+  min-height: 40px;
+}
+
+.watchlists-wrapper a{
+font-weight: 400;
+text-decoration: none;
+color: #fff;
+cursor: pointer;
+}
+
+.watchlists-wrapper span{
+font-weight: 400;
+text-decoration: none;
+color: #0000EE;
+}
+
+.watchlists-wrapper select, .watchlists-wrapper button{
+font-weight: 400;
+color: #0000EE;
+padding: 10px;
+border-radius: 10px;
+margin: 0 5px;
+border: none;
+}

@@ -9,6 +9,7 @@ import {
 } from 'src/app/types/watchlist';
 import { WatchlistsService } from '../../watchlists/services/watchlists.service';
 import { NgForm } from '@angular/forms';
+import { UserService } from '../../user/user.service';
 
 @Component({
   selector: 'app-details',
@@ -21,14 +22,17 @@ export class DetailsComponent implements OnInit {
   backgroundUrl: string = 'https://image.tmdb.org/t/p/original';
 
   watchlists: resWatchlist[] = [];
+  isAuth:boolean=false;
 
   constructor(
     private tmdbApiService: TMDBApiService,
     private route: ActivatedRoute,
-    private watchlistsService: WatchlistsService
+    private watchlistsService: WatchlistsService,
+    private userService:UserService
   ) {}
 
   ngOnInit(): void {
+    this.isAuth=this.userService.isAuth;
     this.route.paramMap.subscribe((params) => {
       this.movieId = params.get('movieId')!;
       this.tmdbApiService.fetchMovieById(this.movieId).subscribe((movie) => {

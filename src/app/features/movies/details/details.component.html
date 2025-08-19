@@ -49,11 +49,21 @@
         </div>
       </div>
     </div>
-    <div>
-      <div>
-        <form #addToWatchlistForm="ngForm" (ngSubmit)="addToWatchlist(addToWatchlistForm)">
-          <select name="watchlistSelect" ngModel #watchlistSelect="ngModel" required>
-            <option value="" disabled selected>Select from your watchlists:</option>
+    <div class="watchlists-wrapper">
+      <div *ngIf="watchlists.length > 0; else noWatchlists">
+        <form
+          #addToWatchlistForm="ngForm"
+          (ngSubmit)="addToWatchlist(addToWatchlistForm)"
+        >
+          <select
+            name="watchlistSelect"
+            ngModel
+            #watchlistSelect="ngModel"
+            required
+          >
+            <option value="" disabled selected>
+              Select from your watchlists:
+            </option>
             <option
               *ngFor="let watchlist of watchlists"
               [value]="watchlist.objectId"
@@ -61,7 +71,9 @@
               {{ watchlist.title }}
             </option>
           </select>
-          <button [disabled]="addToWatchlistForm.invalid">Add to Watchlist</button>
+          <button [disabled]="addToWatchlistForm.invalid">
+            Add to Watchlist
+          </button>
         </form>
       </div>
     </div>
@@ -74,3 +86,20 @@
     />
   </div>
 </div>
+
+<ng-template #noWatchlists>
+  <div class="watchlists-wrapper">
+    <ng-container *ngIf="isAuth">
+      <a routerLink="/watchlists/create">
+        <p>You don't have any watchlists yet.</p>
+        <p><span>Create Watchlist</span> to start saving movies.</p></a
+      >
+    </ng-container>
+    <ng-container *ngIf="!isAuth">
+      <p>
+        <a routerLink="/register"><span>Register</span></a> or <a routerLink="/login"><span>Login</span></a> to start creating watchlists and save
+        movies.
+      </p>
+    </ng-container>
+  </div>
+</ng-template>
