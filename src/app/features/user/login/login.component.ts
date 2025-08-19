@@ -14,6 +14,8 @@ export class LoginComponent {
   lockUntilChange = false;
   loading = false;
   errMsg:string=''
+  private readonly USER_KEY = '[user]';
+  
   constructor(private userService: UserService, private router: Router) {}
 
   formSubmithandler(form: NgForm) {
@@ -25,7 +27,7 @@ export class LoginComponent {
     const { email, password } = form?.value;
     this.userService.login(email, password).subscribe({
       next: (userData) => {
-        localStorage.setItem('USER_KEY', JSON.stringify(userData));
+        localStorage.setItem(this.USER_KEY, JSON.stringify(userData));
       this.router.navigate(['/catalog']);
       this.loading = false;
       this.lockUntilChange = false;

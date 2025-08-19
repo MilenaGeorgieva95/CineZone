@@ -28,6 +28,9 @@
   </form>
 
   <div>
+    <div class="error-msg" *ngIf="errorMsg">
+      <p>{{errorMsg}}</p>
+    </div>
     <ul class="moveList-container"  *ngIf="movieList.length>0">
     <li *ngFor="let movie of movieList">
       <ng-container *ngIf="loading">

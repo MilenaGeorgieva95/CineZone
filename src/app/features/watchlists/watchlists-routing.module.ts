@@ -5,6 +5,7 @@ import { CatalogComponent } from './catalog/catalog.component';
 import { EditComponent } from './edit/edit.component';
 import { CreateComponent } from './create/create.component';
 import { AuthActivate } from 'src/app/core/guards/auth.activate';
+import { OwnerGuard } from 'src/app/core/guards/is-owner.activate';
 
 const routes: Routes = [
   {
@@ -20,7 +21,7 @@ const routes: Routes = [
       {
         path: ':watchlistId/edit',
         component: EditComponent,
-        canActivate: [AuthActivate],
+        canActivate: [OwnerGuard],
       },
     ],
   },

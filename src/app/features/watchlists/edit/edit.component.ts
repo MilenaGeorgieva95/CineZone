@@ -81,6 +81,7 @@ export class EditComponent {
     );
     if (choice) {
       this.loading = true;
+      this.errorMsg=''
       this.movieList = this.movieList.filter((w) => w.id !== movieId);
       this.watchlistsService
         .updateMovieList(this.watchlistId, this.movieList)
@@ -92,7 +93,6 @@ export class EditComponent {
           error: (err) => {
             this.errorMsg = `Error occured: ${err.error.error}!`;
             this.loading = false;
-            console.log('error from comp', err);
             console.error('Delete failed:', err);
           },
         });

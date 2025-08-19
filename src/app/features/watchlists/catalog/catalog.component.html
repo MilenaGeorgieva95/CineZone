@@ -4,11 +4,13 @@
     <li class="watchlists-wrapper" *ngFor="let watchlist of watchlists">
       <h2>{{ watchlist.title }}</h2>
       <div>{{ watchlist.description }}</div>
+
       <div class="watchlist-btns">
-        <a routerLink="/watchlists/{{watchlist.objectId}}/details" class="btn details">Details</a>
-        <a routerLink="/watchlists/{{watchlist.objectId}}/edit" class="btn edit">Edit</a>
-        <span class="btn del" (click)="delWatchlistHandler(watchlist.objectId, watchlist.title)">Delete</span>
+        <a  routerLink="/watchlists/{{watchlist.objectId}}/details" class="btn details">Details</a>
+        <a *ngIf="watchlist.ownerId.objectId===currentUserId" routerLink="/watchlists/{{watchlist.objectId}}/edit" class="btn edit">Edit</a>
+        <span *ngIf="watchlist.ownerId?.objectId===currentUserId" class="btn del" (click)="delWatchlistHandler(watchlist.ownerId.objectId, watchlist.objectId, watchlist.title)">Delete</span>
       </div>
+
       <div>
         <ul class="catalog-wrapper" *ngIf="watchlist.movieList&&watchlist.movieList.length > 0; else noMovies">
           <li class="movie-card" *ngFor="let movie of watchlist.movieList">

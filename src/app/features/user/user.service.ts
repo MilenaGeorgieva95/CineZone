@@ -23,6 +23,10 @@ export class UserService {
     return !!this.user;
   }
 
+  get userId(): string {
+    return this.user?.objectId || '';
+  }
+
   constructor(private apiService: ApiService) {
     try {
       const lsUser = localStorage.getItem(this.USER_KEY) || '';
