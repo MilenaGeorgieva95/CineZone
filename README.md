@@ -34,19 +34,6 @@ Guest users can view content but must log in to interact (create watchlists, com
 ## 📁 Project Structure
 
 ```
-src/
-└── app/
-    ├── core/ # Core services, interceptors, guards
-    ├── shared/ # Shared UI components, pipes, etc.
-    ├── features/
-    │   ├── auth/ # Login & registration
-    │   ├── movies/ # TMDB movie browsing & details
-    │   ├── watchlist/ # User-created watchlists
-    │   ├── comments/ # Commenting system
-    │   ├── profile/ # User profile info
-    │   └── pages/ # Static pages (About, Contact)
-    ├── app-routing.module.ts # Top-level routing
-    └── app.module.ts
 
 src/
 └── app/
@@ -54,12 +41,22 @@ src/
     │   ├── guards/
     │   │      └── auth.activate.ts
     │   │      └── guest.activate.ts
+    │   │      └── is-owner.activate.ts
     │   ├── interceptors/
     │   └── core.module.ts
     ├── shared/                        # Reusable UI components, pipes, directives
     │   ├── components/
+    │   │      └── footer/
+    │   │      └── header/
+    │   │      └── loader/
+    │   │      └── movie-card/
+    │   │      └── page-not-found/
     │   ├── pipes/
+    │   ├── services/
+    │   ├── validators/
     │   └── shared.module.ts
+    ├── types/
+    ├── layout/
     ├── features/
     │   ├── user/                      # Login/Register logic
     │   │   ├── login/
@@ -96,6 +93,8 @@ src/
     │   │   ├── about/
     │   │   ├── contact/
     │   │   └── pages.module.ts
+└── environments/
+└── styles/
     ├── app-routing.module.ts          # Lazy-loads each feature module
     ├── app.component.ts
     └── app.module.ts
@@ -154,19 +153,35 @@ src/
 
 ## 🚀 Getting Started
 
+### 🔗 The app is deployed on Firebase: [https://cinezone-2894c.web.app](https://cinezone-2894c.web.app)
+
+### If you would like to start it locally TMDB Api and Back4App registrations are required.
+
 1. **Install dependencies**
 
-   npm install
+   Run npm install to add dependencies
 
 2. Configure environment files
 
 Add your TMDB API key and Back4App credentials to:
 
-- src/environments/environment.ts
+Once registered run ng generate environments in terminal and in environments/environment.development.ts add your keys and tokens:
+
+  export const environment = {
+      //!TMDB-keys
+   TMDB_API_KEY: '...',
+   TMDB_ACCESS_TOKEN:'...',
+   TMDB_BASE_URL: 'https://api.themoviedb.org/3',
+
+      //!Back4App-keys
+  BASE_URL: 'https://parseapi.back4app.com',
+  APP_ID: '...',
+  API_KEY: '...',
+  APP_JS_KEY: '...'
+ };
 
 3. Run the development server in terminal:
-
-ng serve
+   Run ng serve to start the app
 
 4. Visit http://localhost:4200/ in your browser.
 
@@ -179,8 +194,17 @@ ng serve
 🔹 Back4App (Parse REST API)
 - Store users, watchlists, likes, and comments
 
-- Used via HttpClient with session tokens
+In the Back4App database are needed the Columns: 
+- _Users
+- Watchlists {
+    ownerId: Pointer to _Users
+    movielist: Array
+    title: string
+    description: string
+    }
+- Comments
 
+- Used via HttpClient with session tokens
 
 👥 Authors
 Milena Georgieva – Project Lead & Developer
