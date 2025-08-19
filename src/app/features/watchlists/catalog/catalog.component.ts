@@ -23,7 +23,7 @@ export class CatalogComponent implements OnInit {
   }
 
   delWatchlistHandler(watchlistId:string, watchlistTitle:string){
-    const choice:boolean=confirm(`Are you sure you want to delete ${watchlistTitle} watchlist`)
+    const choice:boolean=confirm(`Are you sure you want to delete ${watchlistTitle} watchlist?`)
     if (choice) {
     this.watchlistService.delWatchlist(watchlistId).subscribe({
       next: () => {

@@ -42,3 +42,13 @@ h2{
     display: block;
     padding: 1rem 0 0.4rem 0;
 }
+
+.moveList-container{
+margin: 1rem;
+display: flex;
+justify-content: center;
+}
+
+.moveList-container li{
+margin: 1rem;
+}

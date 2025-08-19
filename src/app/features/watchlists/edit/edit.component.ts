@@ -20,7 +20,8 @@ export class EditComponent {
 
   movieList = [] as MovieItem[];
   watchlistId: string = '';
-  errorMsg: string = ''
+  errorMsg: string = '';
+  loading: boolean = false;
 
   editForm = this.fb.group({
     title: ['', [Validators.required, Validators.minLength(3)]],
@@ -35,16 +36,16 @@ export class EditComponent {
       }
       this.watchlistsService.getById(this.watchlistId).subscribe({
         next: (data: resWatchlist) => {
-          this.errorMsg=''
+          this.errorMsg = '';
           this.movieList = data.movieList || [];
           this.editForm.setValue({
             title: data.title,
             description: data.description,
           });
         },
-        error: (err)=>{
-           console.error("Edit failed:", err)
-        }
+        error: (err) => {
+          console.error('Edit failed:', err);
+        },
       });
     });
   }
@@ -70,5 +71,31 @@ export class EditComponent {
       description: '',
     });
     this.router.navigate(['/watchlists']);
+  }
+
+  delMovieHandler(movieId: number, title: string) {
+    const choice: boolean = confirm(
+      `Are you sure you want to delete ${title} movie from ${
+        this.editForm.get('title')?.value
+      } watchlist?`
+    );
+    if (choice) {
+      this.loading = true;
+      this.movieList = this.movieList.filter((w) => w.id !== movieId);
+      this.watchlistsService
+        .updateMovieList(this.watchlistId, this.movieList)
+        .subscribe({
+          next: () => {
+            this.loading = false;
+            console.log(`Deleted ${title}`);
+          },
+          error: (err) => {
+            this.errorMsg = `Error occured: ${err.error.error}!`;
+            this.loading = false;
+            console.log('error from comp', err);
+            console.error('Delete failed:', err);
+          },
+        });
+    }
   }
 }

@@ -13,7 +13,6 @@ export class LoginComponent {
   domains = EMAIL_DOMAINS;
   lockUntilChange = false;
   loading = false;
-  requestFailed:boolean=false;
   errMsg:string=''
   constructor(private userService: UserService, private router: Router) {}
 

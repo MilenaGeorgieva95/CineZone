@@ -73,6 +73,15 @@ export class WatchlistsService {
     );
   }
 
+    updateMovieList(
+    watchlistId: string,
+    movieList: MovieItem[]
+  ): Observable<any> {
+        return this.apiService.putRequest(`${this.baseUrl}/${watchlistId}`, {
+          movieList,
+        });
+  }
+
   delWatchlist(watchlistId: string) {
     return this.apiService.delRequest(`${this.baseUrl}/${watchlistId}`);
   }

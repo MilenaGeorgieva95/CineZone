@@ -18,9 +18,6 @@
     </div>
     
     <div class="error-msg" *ngIf="lockUntilChange">
-      <p>Error: Invalid form values!</p>
-    </div>
-    <div class="error-msg" *ngIf="requestFailed">
     <p>{{errMsg}}</p>
     </div>
     <ng-container *ngIf="loading">

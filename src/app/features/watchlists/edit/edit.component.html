@@ -26,4 +26,16 @@
       <span (click)="cancelHandler()" class="edit-btn">Cancel</span>
     </div>
   </form>
+
+  <div>
+    <ul class="moveList-container"  *ngIf="movieList.length>0">
+    <li *ngFor="let movie of movieList">
+      <ng-container *ngIf="loading">
+        <app-loader></app-loader>
+      </ng-container>
+      <button [disabled]="loading" class="edit-btn" (click)="delMovieHandler(movie.id, movie.title)">Remove from Watchlist</button>
+      <app-movie-card [movie]="movie"></app-movie-card>
+    </li>
+  </ul>
+</div>
 </div>
