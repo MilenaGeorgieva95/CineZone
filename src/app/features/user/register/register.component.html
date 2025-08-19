@@ -38,7 +38,15 @@
       </div>
     </ng-container>
 
-    <button class="register-btn" [disabled]="registerForm.invalid">Create Account</button>
+    <div class="error-msg" *ngIf="errMsg">
+      <p>{{errMsg}}</p>
+    </div>
+
+    <ng-container *ngIf="loading">
+      <app-loader></app-loader>
+    </ng-container>
+
+    <button class="register-btn" [disabled]="registerForm.invalid || loading">Create Account</button>
 
     <div>
       Have an account?

@@ -12,9 +12,15 @@ import { EMAIL_DOMAINS } from 'src/app/constants';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent {
+  loading = false;
+  errMsg: string = '';
+
   registerForm = this.fb.group({
     username: ['', [Validators.required, Validators.minLength(3)]],
-    email: ['', [Validators.required, Validators.email, emailValidator(EMAIL_DOMAINS)]],
+    email: [
+      '',
+      [Validators.required, Validators.email, emailValidator(EMAIL_DOMAINS)],
+    ],
     passGroup: this.fb.group(
       {
         password: ['', [Validators.required, Validators.minLength(3)]],
@@ -33,22 +39,27 @@ export class RegisterComponent {
   ) {}
 
   handleSubmit(): void {
-  if (this.registerForm.invalid) return;
+    if (this.registerForm.invalid) return;
+    this.loading = true;
+    const username = this.registerForm.get('username')?.value;
+    const email = this.registerForm.get('email')?.value;
+    const password = this.registerForm.get('passGroup')?.get('password')?.value;
 
-  const username = this.registerForm.get('username')?.value;
-  const email = this.registerForm.get('email')?.value;
-  const password = this.registerForm.get('passGroup')?.get('password')?.value;
-
-  if (username && email && password) {
-    this.userService.register(username, email, password).subscribe({
-      next: () => {
-        this.registerForm.reset();
-        this.router.navigate(['/catalog']);
-      },
-      error: (err) => {
-        console.error('Registration failed:', err);
-      }
-    });
+    if (username && email && password) {
+      this.userService.register(username, email, password).subscribe({
+        next: () => {
+          this.registerForm.reset();
+          this.router.navigate(['/catalog']);
+          this.loading = false;
+          this.registerForm.reset();
+        },
+        error: (err) => {
+          this.loading = false;
+          this.errMsg = `Error occured: ${err.error.error || err.message}!`;
+          console.log(err);
+          
+        },
+      });
+    }
   }
-}
 }

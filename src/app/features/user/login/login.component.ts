@@ -36,8 +36,7 @@ export class LoginComponent {
       error: (err) => {
         this.loading = false;
         this.lockUntilChange = true;
-        this.errMsg=`Error occured: ${err.error.error}!`
-        console.log('error from comp', err);
+        this.errMsg=`Error occured: ${err.error.error || err.message}!`
       },
     });
   }
