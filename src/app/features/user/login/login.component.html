@@ -16,12 +16,16 @@
     <div class="error-msg" *ngIf="passwordInput.touched">
       <p *ngIf="passwordInput.errors?.['required']">Error: Password is required!</p>
     </div>
-        <div class="error-msg" *ngIf="lockUntilChange">
+    
+    <div class="error-msg" *ngIf="lockUntilChange">
       <p>Error: Invalid form values!</p>
     </div>
-      <div class="error-msg" *ngIf="requestFailed">
+    <div class="error-msg" *ngIf="requestFailed">
     <p>{{errMsg}}</p>
-  </div>
+    </div>
+    <ng-container *ngIf="loading">
+      <app-loader></app-loader>
+    </ng-container>
     <button class="login-btn" [disabled]="loading || loginForm.invalid || lockUntilChange">Login</button>
     <p>
       Have an account?
