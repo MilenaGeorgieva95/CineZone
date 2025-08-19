@@ -33,16 +33,22 @@ export class RegisterComponent {
   ) {}
 
   handleSubmit(): void {
-    if (this.registerForm.invalid) {
-      return;
-    }
-    const username = this.registerForm.get('username')?.value;
-    const email = this.registerForm.get('email')?.value;
-    const password = this.registerForm.get('passGroup')?.get('password')?.value;
-    
-    if (username && email && password) {
-      this.userService.register(username, email, password);
-      this.router.navigate(['/catalog']);
-    }
+  if (this.registerForm.invalid) return;
+
+  const username = this.registerForm.get('username')?.value;
+  const email = this.registerForm.get('email')?.value;
+  const password = this.registerForm.get('passGroup')?.get('password')?.value;
+
+  if (username && email && password) {
+    this.userService.register(username, email, password).subscribe({
+      next: () => {
+        this.registerForm.reset();
+        this.router.navigate(['/catalog']);
+      },
+      error: (err) => {
+        console.error('Registration failed:', err);
+      }
+    });
   }
+}
 }

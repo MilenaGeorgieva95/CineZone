@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { tap } from 'rxjs';
 import { ApiService } from 'src/app/shared/services/api-service';
 import { UserForAuth } from 'src/app/types/user';
 
@@ -46,26 +47,22 @@ export class UserService {
   }
 
   register(username: string, email: string, password: string) {
-    localStorage.removeItem(this.USER_KEY);
-    this.apiService
-      .postRequest(this.endpoints.register, { username, password, email })
-      .subscribe({
-        next: (userData) => {
-          localStorage.setItem(
-            this.USER_KEY,
-            JSON.stringify({ ...userData, username, email })
-          );
+  localStorage.removeItem(this.USER_KEY);
 
-          try {
-            const lsUser = localStorage.getItem(this.USER_KEY) || '';
-            this.user = JSON.parse(lsUser);
-          } catch (error) {
-            this.user = undefined;
-          }
-        },
-        error: (err) => {
-          console.error('Login failed:', err);
-        },
-      });
-  }
+  return this.apiService.postRequest(this.endpoints.register, { username, email, password }).pipe(
+    tap(userData => {
+      localStorage.setItem(
+        this.USER_KEY,
+        JSON.stringify({ ...userData, username, email })
+      );
+
+      try {
+        const lsUser = localStorage.getItem(this.USER_KEY) || '';
+        this.user = JSON.parse(lsUser);
+      } catch {
+        this.user = undefined;
+      }
+    })
+  );
+}
 }
