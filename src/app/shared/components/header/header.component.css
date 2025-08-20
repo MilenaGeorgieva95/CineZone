@@ -2,6 +2,13 @@ a{
   text-decoration: none;
   cursor: pointer;
   color: #fff;
+  padding: 5px 20px;
+  margin: 2px;
+}
+
+a:hover, a:focus{
+background-color: #ea0c64;
+border-radius: 10px;
 }
 
 .header-container {
@@ -19,6 +26,7 @@ a{
   font-size: 0.8em;
   padding: 0 4em;
 }
+
 .links {
   flex: 3;
 }
