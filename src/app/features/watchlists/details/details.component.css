@@ -67,7 +67,7 @@ h2 {
   max-width: 300px;
 }
 
-.watchlists-wrapper{
+.watchlists-wrapper {
   background-color: #aa0547;
   text-align: center;
   border-radius: 10px;
@@ -77,32 +77,33 @@ h2 {
   min-height: 40px;
 }
 
-.watchlists-wrapper a{
-font-weight: 400;
-text-decoration: none;
-color: #fff;
-cursor: pointer;
+.watchlists-wrapper a {
+  font-weight: 400;
+  text-decoration: none;
+  color: #fff;
+  cursor: pointer;
 }
 
-.watchlists-wrapper span{
-font-weight: 400;
-text-decoration: none;
-color: #0000EE;
+.watchlists-wrapper span {
+  font-weight: 400;
+  text-decoration: none;
+  color: #0000ee;
 }
 
-.watchlists-wrapper select, .watchlists-wrapper button{
-font-weight: 400;
-color: #0000EE;
-padding: 10px;
-border-radius: 10px;
-margin: 0 5px;
-border: none;
+.watchlists-wrapper select,
+.watchlists-wrapper button {
+  font-weight: 400;
+  color: #0000ee;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 0 5px;
+  border: none;
 }
 
-.comments-wrapper{
+.comments-wrapper {
   background-color: rgba(36, 35, 35, 0.7);
   padding: 1rem;
-  margin:10px;
+  margin: 10px;
   border-radius: 10px;
   width: 100%;
   display: flex;
@@ -112,7 +113,7 @@ border: none;
   align-items: center;
 }
 
-.comment-body{
+.comment-body {
   padding: 1.2rem;
   background-color: #484747;
   width: fit-content;
@@ -120,10 +121,20 @@ border: none;
   margin: 5px;
 }
 
-.comment-date{
+.comment-date {
   font-size: 10px;
   text-align: right;
   color: rgb(232, 232, 176);
   font-style: oblique;
   padding-top: 3px;
+}
+
+.login-msg {
+  color: #111;
+}
+
+.login-msg a {
+  color: #7f3f3f;
+  text-decoration: none;
+  cursor: pointer;
 }

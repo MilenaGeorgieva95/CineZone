@@ -7,6 +7,10 @@
     <div>Description: <span>{{watchlist.description}}</span></div>
   </div>
   <h3>Comments</h3>
+  <div *ngIf="!(isLoggedIn$|async)" class="login-msg">
+    <p ><a routerLink="/login">Login</a> or <a routerLink="/register">Register</a> to add comments.</p>
+  </div>
+  <div *ngIf="(isLoggedIn$|async)">
   <form class="create-comment" [formGroup]="commentForm" (ngSubmit)="postComment()">
     <div>
       <input type="text" id="title" name="title" formControlName="title" placeholder="Title..." />
@@ -30,7 +34,7 @@
       <button class="post-btn">Post Comment</button>
     </div>
   </form>
-
+</div>
 <div class="comments-wrapper">
 <ul class="comments-wrapper" *ngIf="commentsList.length>0" >
   <li *ngFor="let comment of commentsList" class="comment-body">

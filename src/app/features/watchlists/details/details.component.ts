@@ -88,6 +88,8 @@ export class DetailsComponent {
         .subscribe({
           next: (newComment:FullComment) => {
             console.log(newComment);
+            newComment.title=title;
+            newComment.comment=comment;
             this.commentsList.push(newComment)
             this.commentForm.reset()
           },

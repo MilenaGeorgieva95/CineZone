@@ -4,8 +4,9 @@ import { CatalogComponent } from './features/movies/catalog/catalog.component';
 import { PageNotFoundComponent } from './shared/components/page-not-found/page-not-found.component';
 
 const routes: Routes = [
-   { path: '', pathMatch: 'full', redirectTo: 'catalog' },
+   { path: '', component: CatalogComponent },
    { path: 'home', pathMatch: 'full', redirectTo: 'catalog' },
+   { path: 'logout', component: CatalogComponent },
   { path: 'catalog', component: CatalogComponent },
   { path: '**', component: PageNotFoundComponent },
 ];

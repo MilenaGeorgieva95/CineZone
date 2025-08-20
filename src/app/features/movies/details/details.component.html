@@ -71,7 +71,7 @@
               {{ watchlist.title }}
             </option>
           </select>
-          <button [disabled]="addToWatchlistForm.invalid">
+          <button [disabled]="addToWatchlistForm.invalid || isLoading">
             Add to Watchlist
           </button>
         </form>
