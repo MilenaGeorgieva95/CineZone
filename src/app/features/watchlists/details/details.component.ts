@@ -86,8 +86,9 @@ export class DetailsComponent {
       this.commentsService
         .createComment(title, comment, this.watchlistId)
         .subscribe({
-          next: (data) => {
-            console.log(data);
+          next: (newComment:FullComment) => {
+            console.log(newComment);
+            this.commentsList.push(newComment)
             this.commentForm.reset()
           },
           error: (err) => {

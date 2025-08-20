@@ -43,7 +43,7 @@ export class UserService {
       .postRequest<UserForAuth>(this.endpoints.login, { username, password })
       .pipe(
         tap((userData) => {
-          localStorage.setItem(this.USER_KEY, JSON.stringify({ ...userData }));
+          localStorage.setItem(this.USER_KEY, JSON.stringify(userData ));
           this.isAuthSubject$$.next(true);
         })
       );
@@ -62,7 +62,7 @@ export class UserService {
       .postRequest(this.endpoints.register, { username, email, password })
       .pipe(
         tap((userData) => {
-          localStorage.setItem(this.USER_KEY, JSON.stringify({ ...userData }));
+          localStorage.setItem(this.USER_KEY, JSON.stringify(userData));
           this.isAuthSubject$$.next(true);
           try {
             const lsUser = localStorage.getItem(this.USER_KEY) || '';

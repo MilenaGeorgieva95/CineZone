@@ -5,7 +5,7 @@ import { ApiService } from 'src/app/shared/services/api-service';
 import { ApiWatchlistResponse, resWatchlist } from 'src/app/types/watchlist';
 import { Observable, switchMap, throwError } from 'rxjs';
 import { MovieItem } from 'src/app/types/movie';
-import { CommentsResponse, CreateComment } from 'src/app/types/comment';
+import { CommentsResponse, CreateComment, FullComment } from 'src/app/types/comment';
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +21,7 @@ export class CommentsService {
     this.user = this.userService.user;
   }
 
-  createComment(title: string, comment: string, watchlistId: string) {
+  createComment(title: string, comment: string, watchlistId: string):Observable<FullComment> {
     const userId = this.user?.objectId;
     if (!userId) {
       return throwError(() => new Error('Invalid User'));

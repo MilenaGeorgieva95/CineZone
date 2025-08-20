@@ -30,8 +30,10 @@
     <ng-container *ngIf="loading">
       <app-loader></app-loader>
     </ng-container>
+
+      <ng-template #noWatchlists>
+    <p *ngIf="!loading">No watchlists found.</p>
+      </ng-template>
 <div>
-  <ng-template #noWatchlists >
-    <p ngIf="!loading">No watchlists found.</p>
-  </ng-template>
+
 

@@ -6,6 +6,7 @@
     <div>Title: <span>{{watchlist.title}}</span></div>
     <div>Description: <span>{{watchlist.description}}</span></div>
   </div>
+  <h3>Comments</h3>
   <form class="create-comment" [formGroup]="commentForm" (ngSubmit)="postComment()">
     <div>
       <input type="text" id="title" name="title" formControlName="title" placeholder="Title..." />
@@ -29,6 +30,18 @@
       <button class="post-btn">Post Comment</button>
     </div>
   </form>
+
+<div class="comments-wrapper">
+<ul class="comments-wrapper" *ngIf="commentsList.length>0" >
+  <li *ngFor="let comment of commentsList" class="comment-body">
+   
+    <div>Title: {{comment.title}}</div>
+    <div>Comment: {{comment.comment}}</div>
+     <div class="comment-date"><span>{{comment.createdAt | date:'longDate' }}</span></div>
+
+  </li>
+</ul>
+  </div>
 
   <div>
     <div class="error-msg" *ngIf="errorMsg">

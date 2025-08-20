@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.development';
 import { UserForAuth } from 'src/app/types/user';
@@ -37,28 +37,24 @@ export class ApiService {
     return this.http.get<T>(this.baseUrl + url, { headers});
   }
 
-  postRequest<T>(url: string, data: object) {
+  postRequest<T>(url: string, data: object): Observable<T>  {
     const userJson = localStorage.getItem('user');
     if (userJson) {
       this.user = JSON.parse(userJson) as UserForAuth;
     }
-    const options: any = {
-      headers: {
+    let headers=new HttpHeaders({
         'X-Parse-Application-Id': environment.APP_ID,
         'X-Parse-REST-API-Key': environment.API_KEY,
-        'X-Parse-Revocable-Session': 1,
+        'X-Parse-Revocable-Session': '1',
         'Content-Type': 'application/json',
-      },
-    };
+      },)
     const token = this.user?.sessionToken;
     if (token) {
-      console.log(token);
-
-      options.headers['X-Parse-Session-Token'] = token;
+       headers = headers.set('X-Parse-Session-Token', token);
     }
 
     const body = JSON.stringify(data);
-    return this.http.post<T>(this.baseUrl + url, body, options);
+    return this.http.post<T>(this.baseUrl + url, body, {headers});
   }
 
     putRequest(url: string, data: object) {
@@ -70,7 +66,7 @@ export class ApiService {
       headers: {
         'X-Parse-Application-Id': environment.APP_ID,
         'X-Parse-REST-API-Key': environment.API_KEY,
-        'X-Parse-Revocable-Session': 1,
+        'X-Parse-Revocable-Session': '1',
         'Content-Type': 'application/json',
       },
     };
@@ -94,7 +90,7 @@ export class ApiService {
       headers: {
         'X-Parse-Application-Id': environment.APP_ID,
         'X-Parse-REST-API-Key': environment.API_KEY,
-        'X-Parse-Revocable-Session': 1,
+        'X-Parse-Revocable-Session': '1',
         'Content-Type': 'application/json',
       },
     };

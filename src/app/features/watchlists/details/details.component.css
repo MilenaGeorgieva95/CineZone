@@ -98,3 +98,32 @@ border-radius: 10px;
 margin: 0 5px;
 border: none;
 }
+
+.comments-wrapper{
+  background-color: rgba(36, 35, 35, 0.7);
+  padding: 1rem;
+  margin:10px;
+  border-radius: 10px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.comment-body{
+  padding: 1.2rem;
+  background-color: #484747;
+  width: fit-content;
+  border-radius: 10px;
+  margin: 5px;
+}
+
+.comment-date{
+  font-size: 10px;
+  text-align: right;
+  color: rgb(232, 232, 176);
+  font-style: oblique;
+  padding-top: 3px;
+}
