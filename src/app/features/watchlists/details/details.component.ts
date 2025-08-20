@@ -6,6 +6,7 @@ import { resWatchlist } from 'src/app/types/watchlist';
 import { MovieItem } from 'src/app/types/movie';
 import { Observable } from 'rxjs';
 import { UserService } from '../../user/user.service';
+import { CommentsService } from '../services/comments.service';
 
 @Component({
   selector: 'app-details',
@@ -18,7 +19,8 @@ constructor(
     private watchlistsService: WatchlistsService,
     private router: Router,
     private fb: FormBuilder,
-    private userService:UserService
+    private userService:UserService,
+    private commentsService: CommentsService
   ) {
   this.isLoggedIn$ = this.userService.isAuthSubject$$;
   }
@@ -67,11 +69,10 @@ constructor(
     if (title && comment) {
       console.log();
       
-      // this.watchlistsService
-      //   .editWatchlist(this.watchlistId, title, comment)
-      //   .subscribe((data) => console.log(data));
+      this.commentsService
+        .createComment( title, comment, this.watchlistId)
+        .subscribe((data) => console.log(data));
     }
-    // this.router.navigate(['/watchlists']);
   }
 
 }
