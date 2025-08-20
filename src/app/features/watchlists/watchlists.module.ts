@@ -8,6 +8,7 @@ import { WatchlistsRoutingModule } from './watchlists-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { RouterModule } from '@angular/router';
+import { MyWatchlistsComponent } from './my-watchlists/my-watchlists.component';
 
 
 
@@ -16,7 +17,8 @@ import { RouterModule } from '@angular/router';
     CatalogComponent,
     CreateComponent,
     EditComponent,
-    DetailsComponent
+    DetailsComponent,
+    MyWatchlistsComponent
   ],
   imports: [
     CommonModule,
