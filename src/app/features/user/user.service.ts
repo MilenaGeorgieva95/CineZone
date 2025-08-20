@@ -45,6 +45,7 @@ export class UserService {
         tap((userData) => {
           localStorage.setItem(this.USER_KEY, JSON.stringify(userData ));
           this.isAuthSubject$$.next(true);
+          this.user = userData;
         })
       );
   }
