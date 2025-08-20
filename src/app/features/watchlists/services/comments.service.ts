@@ -5,7 +5,7 @@ import { ApiService } from 'src/app/shared/services/api-service';
 import { ApiWatchlistResponse, resWatchlist } from 'src/app/types/watchlist';
 import { Observable, switchMap, throwError } from 'rxjs';
 import { MovieItem } from 'src/app/types/movie';
-import { CreateComment } from 'src/app/types/comment';
+import { CommentsResponse, CreateComment } from 'src/app/types/comment';
 
 @Injectable({
   providedIn: 'root',
@@ -42,5 +42,10 @@ export class CommentsService {
     };
 
     return this.apiService.postRequest(this.baseUrl, commentData);
+  }
+
+  getByWatchlistId(watchlistId:string): Observable<CommentsResponse> {
+    const searchParam = `where={"watchlistId":{"__type":"Pointer","className":"watchlists","objectId":"${watchlistId}"}}`;
+    return this.apiService.getRequest(`${this.baseUrl}?${searchParam}`);
   }
 }
