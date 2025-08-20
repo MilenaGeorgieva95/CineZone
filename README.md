@@ -202,7 +202,12 @@ In the Back4App database are needed the Columns:
     title: string
     description: string
     }
-- Comments
+- Comments {
+    ownerId: Pointer to _Users
+    watchlistId: Pointer to watchlists
+    title: string
+    comment: string
+    }
 
 - Used via HttpClient with session tokens
 
