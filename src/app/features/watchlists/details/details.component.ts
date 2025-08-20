@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { WatchlistsService } from '../services/watchlists.service';
 import { resWatchlist } from 'src/app/types/watchlist';
 import { MovieItem } from 'src/app/types/movie';
+import { Observable } from 'rxjs';
+import { UserService } from '../../user/user.service';
 
 @Component({
   selector: 'app-details',
@@ -15,8 +17,14 @@ constructor(
     private route: ActivatedRoute,
     private watchlistsService: WatchlistsService,
     private router: Router,
-    private fb: FormBuilder
-  ) {}
+    private fb: FormBuilder,
+    private userService:UserService
+  ) {
+  this.isLoggedIn$ = this.userService.isAuthSubject$$;
+  }
+
+
+  isLoggedIn$: Observable<boolean>;
 
   movieList = [] as MovieItem[];
   watchlistId: string = '';
@@ -57,11 +65,13 @@ constructor(
     const comment = this.commentForm.get('comment')?.value;
 
     if (title && comment) {
-      this.watchlistsService
-        .editWatchlist(this.watchlistId, title, comment)
-        .subscribe((data) => console.log(data));
+      console.log();
+      
+      // this.watchlistsService
+      //   .editWatchlist(this.watchlistId, title, comment)
+      //   .subscribe((data) => console.log(data));
     }
-    this.router.navigate(['/watchlists']);
+    // this.router.navigate(['/watchlists']);
   }
 
 }

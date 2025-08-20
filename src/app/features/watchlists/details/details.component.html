@@ -35,7 +35,7 @@
       <p>{{errorMsg}}</p>
     </div>
       <h2>Movie List</h2>
-    <ul class="moveList-container"  *ngIf="movieList.length>0">
+    <ul class="moveList-container"  *ngIf="movieList.length>0; else noMovies ">
     <li *ngFor="let movie of movieList">
       <ng-container *ngIf="loading">
         <app-loader></app-loader>
@@ -46,3 +46,22 @@
 </div>
 </div>
 </div>
+
+<ng-template #noMovies>
+  <div class="watchlists-wrapper">
+    <ng-container *ngIf="(isLoggedIn$ | async)">
+      <a routerLink="/catalog">
+        <p>There aren't any movies here yet.</p>
+        <p><span>Browse the catalog</span> to create watchlists and save
+        movies.</p></a
+      >
+    </ng-container>
+    <ng-container *ngIf="!(isLoggedIn$ | async)">
+      <p>There aren't any movies here yet.</p>
+      <p>
+        <a routerLink="/register"><span>Register</span></a> or <a routerLink="/login"><span>Login</span></a> to create watchlists and save
+        movies.
+      </p>
+    </ng-container>
+  </div>
+</ng-template>

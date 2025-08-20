@@ -10,6 +10,7 @@ import {
 import { WatchlistsService } from '../../watchlists/services/watchlists.service';
 import { NgForm } from '@angular/forms';
 import { UserService } from '../../user/user.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-details',
@@ -29,7 +30,11 @@ export class DetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private watchlistsService: WatchlistsService,
     private userService:UserService
-  ) {}
+  ) {
+      this.isLoggedIn$ = this.userService.isAuthSubject$$;
+  }
+
+   isLoggedIn$: Observable<boolean>;
 
   ngOnInit(): void {
     this.isAuth=this.userService.isAuth;
