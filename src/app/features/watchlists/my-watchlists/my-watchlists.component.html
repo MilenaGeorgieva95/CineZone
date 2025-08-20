@@ -1,1 +1,37 @@
-<p>my-watchlists works!</p>
+<div>
+  <h1>Watchlists Catalog</h1>
+  <ul  *ngIf="watchlists.length > 0; else noWatchlists">
+    <li class="watchlists-wrapper" *ngFor="let watchlist of watchlists">
+      <h2>{{ watchlist.title }}</h2>
+      <div>{{ watchlist.description }}</div>
+
+      <div class="watchlist-btns">
+        <a  routerLink="/watchlists/{{watchlist.objectId}}/details" class="btn details">Details</a>
+        <a *ngIf="watchlist.ownerId.objectId===currentUserId" routerLink="/watchlists/{{watchlist.objectId}}/edit" class="btn edit">Edit</a>
+        <span *ngIf="watchlist.ownerId?.objectId===currentUserId" class="btn del" (click)="delWatchlistHandler(watchlist.ownerId.objectId, watchlist.objectId, watchlist.title)">Delete</span>
+      </div>
+
+      <div>
+        <ul class="catalog-wrapper" *ngIf="watchlist.movieList&&watchlist.movieList.length > 0; else noMovies">
+          <li class="movie-card" *ngFor="let movie of watchlist.movieList">
+            <app-movie-card [movie]="movie"></app-movie-card>
+          </li>
+        </ul>
+        <ng-template #noMovies>
+          <p>No movies here yet.</p>
+        </ng-template>
+      </div>
+    </li>
+  </ul>
+
+    <div class="error-msg" *ngIf="errMsg">
+    <p>{{errMsg}}</p>
+    </div>
+    <ng-container *ngIf="loading">
+      <app-loader></app-loader>
+    </ng-container>
+    
+      <ng-template #noWatchlists>
+    <p *ngIf="!loading">No watchlists found.</p>
+      </ng-template>
+<div>

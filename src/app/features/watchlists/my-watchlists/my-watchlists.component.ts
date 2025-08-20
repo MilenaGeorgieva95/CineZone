@@ -1,10 +1,68 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { WatchlistsService } from '../services/watchlists.service';
+import { ApiWatchlistResponse, resWatchlist } from 'src/app/types/watchlist';
+import { UserService } from '../../user/user.service';
 
 @Component({
   selector: 'app-my-watchlists',
   templateUrl: './my-watchlists.component.html',
   styleUrls: ['./my-watchlists.component.css']
 })
-export class MyWatchlistsComponent {
+export class MyWatchlistsComponent implements OnInit {
+  constructor(
+    private watchlistService: WatchlistsService,
+    private userService: UserService
+  ) {}
 
+  watchlists: resWatchlist[] = [];
+  currentUserId: string = '';
+  loading = false;
+  errMsg: string = '';
+
+  ngOnInit(): void {
+    this.loading = true;
+    this.errMsg=''
+    this.currentUserId = this.userService.userId;
+    this.watchlistService.getByOwner().subscribe({
+      next: (data: ApiWatchlistResponse) => {
+        this.watchlists = data.results || [];
+        this.loading = false;
+      },
+      error: (err) => {
+        this.loading = false;
+        this.errMsg = `Error occured: ${err.error.error || err.message}!`;
+      },
+    });
+  }
+
+  delWatchlistHandler(
+    ownerId: string,
+    watchlistId: string,
+    watchlistTitle: string
+  ) {
+    if (ownerId !== this.currentUserId) {
+      return;
+    }
+    const choice: boolean = confirm(
+      `Are you sure you want to delete ${watchlistTitle} watchlist?`
+    );
+    if (choice) {
+      this.loading = true;
+      this.errMsg=''
+      this.watchlistService.delWatchlist(watchlistId).subscribe({
+        next: () => {
+          this.watchlists = this.watchlists.filter(
+            (w) => w.objectId !== watchlistId
+          );
+
+          this.loading = false;
+          console.log(`Deleted ${watchlistTitle}`);
+        },
+        error: (err) => {
+          this.loading = false;
+          this.errMsg = `Error occured: ${err.error.error || err.message}!`;
+        },
+      });
+    }
+  }
 }

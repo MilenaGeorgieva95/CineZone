@@ -1,0 +1,60 @@
+.watchlists-wrapper{
+  text-align: center;
+  margin: 0.8rem 0.8rem;
+  background-color:  rgba(36, 35, 35, 0.7);
+  border-radius: 8px;
+  padding: 1.2rem 0;
+}
+
+.catalog-wrapper {
+  list-style: none;
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.movie-card {
+  display: inline-block;
+  margin: 1em;
+  background-color: #3c3c3c;
+  border-radius: 8px;
+  cursor: pointer;
+  max-width: 250px;
+}
+
+h1{
+  font-weight: 200;
+  text-align: center;
+  margin: 0.8rem 0;
+  padding: 0 0.4em;
+  font-size: 20px;
+  word-wrap: wrap;
+}
+
+.watchlist-btns {
+  margin: 20px 0 10px 0;
+}
+
+
+.watchlist-btns .btn {
+  text-decoration: none;
+  background-color: #C2185B;
+  color: white;
+  padding: 10px 20px;
+  margin: 1em;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.watchlist-btns .edit{
+    background-color: rgb(74, 239, 110);
+    padding: 10px 30px;
+}
+
+.watchlist-btns .del{
+    background-color: rgb(235, 28, 45);
+}
