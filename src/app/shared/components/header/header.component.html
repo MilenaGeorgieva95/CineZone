@@ -9,6 +9,9 @@
     <a [hidden]="!(isLoggedIn$ | async)" mat-button routerLink="/watchlists/create" routerLinkActive="active-link"
       >Create Watchlist</a
     >
+    <a [hidden]="!(isLoggedIn$ | async)" mat-button routerLink="/watchlists/mywatchlists" routerLinkActive="active-link"
+      >My Watchlist</a
+    >
   </div>
   <div class="auth top-bar">
     <a [hidden]="(isLoggedIn$ | async)" mat-button routerLink="/login" routerLinkActive="active-link">Login</a>

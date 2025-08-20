@@ -6,6 +6,7 @@ import { EditComponent } from './edit/edit.component';
 import { CreateComponent } from './create/create.component';
 import { AuthActivate } from 'src/app/core/guards/auth.activate';
 import { OwnerGuard } from 'src/app/core/guards/is-owner.activate';
+import { MyWatchlistsComponent } from './my-watchlists/my-watchlists.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,11 @@ const routes: Routes = [
         path: ':watchlistId/edit',
         component: EditComponent,
         canActivate: [OwnerGuard],
+      },
+      {
+        path: 'mywatchlists',
+        component: MyWatchlistsComponent,
+        canActivate: [AuthActivate],
       },
     ],
   },
