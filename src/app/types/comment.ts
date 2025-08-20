@@ -1,5 +1,5 @@
 export interface CreateComment {
-  title: string;
+  nickname: string;
   comment: string;
   watchlistId: Pointer;
   ownerId: Pointer;

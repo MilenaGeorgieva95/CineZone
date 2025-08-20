@@ -2,9 +2,7 @@ import { Injectable } from '@angular/core';
 import { UserService } from '../../user/user.service';
 import { UserForAuth } from 'src/app/types/user';
 import { ApiService } from 'src/app/shared/services/api-service';
-import { ApiWatchlistResponse, resWatchlist } from 'src/app/types/watchlist';
-import { Observable, switchMap, throwError } from 'rxjs';
-import { MovieItem } from 'src/app/types/movie';
+import { Observable, throwError } from 'rxjs';
 import { CommentsResponse, CreateComment, FullComment } from 'src/app/types/comment';
 
 @Injectable({
@@ -21,13 +19,13 @@ export class CommentsService {
     this.user = this.userService.user;
   }
 
-  createComment(title: string, comment: string, watchlistId: string):Observable<FullComment> {
+  createComment(nickname: string, comment: string, watchlistId: string):Observable<FullComment> {
     const userId = this.user?.objectId;
     if (!userId) {
       return throwError(() => new Error('Invalid User'));
     }
     const commentData: CreateComment = {
-      title,
+      nickname,
       comment,
       watchlistId: {
         __type: 'Pointer',

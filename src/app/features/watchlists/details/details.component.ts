@@ -39,7 +39,7 @@ export class DetailsComponent {
   commentLoading: boolean=false;
 
   commentForm = this.fb.group({
-    title: ['', [Validators.required, Validators.minLength(3)]],
+    nickname: ['', [Validators.required, Validators.minLength(3)]],
     comment: ['', [Validators.required, Validators.minLength(3)]],
   });
 
@@ -79,16 +79,16 @@ export class DetailsComponent {
       return;
     }
 
-    const title = this.commentForm.get('title')?.value;
+    const nickname = this.commentForm.get('nickname')?.value;
     const comment = this.commentForm.get('comment')?.value;
 
-    if (title && comment) {
+    if (nickname && comment) {
       this.commentsService
-        .createComment(title, comment, this.watchlistId)
+        .createComment(nickname, comment, this.watchlistId)
         .subscribe({
           next: (newComment:FullComment) => {
             console.log(newComment);
-            newComment.title=title;
+            newComment.nickname=nickname;
             newComment.comment=comment;
             this.commentsList.push(newComment)
             this.commentForm.reset()
