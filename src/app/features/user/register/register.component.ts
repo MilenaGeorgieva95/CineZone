@@ -55,9 +55,9 @@ export class RegisterComponent {
         },
         error: (err) => {
           this.loading = false;
-          this.errMsg = `Error occured: ${err.error.error || err.message}!`;
-          console.log(err);
-          
+          const errMsg=(err.error.error || err.message).replace('username', 'email')
+          this.registerForm.get('passGroup')?.reset()
+          this.errMsg = `Error occured: ${errMsg}`;
         },
       });
     }

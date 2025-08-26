@@ -36,7 +36,7 @@ export class LoginComponent {
       error: (err) => {
         this.loading = false;
         form.form.controls['password'].setValue('');
-        form.form.controls['password'].markAsUntouched()
+        form.form.controls['password'].markAsUntouched();
         this.lockUntilChange = true;
         this.errMsg = `Error occured: ${err.error.error || err.message}!`;
       },

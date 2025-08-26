@@ -61,7 +61,7 @@ export class AppInterceptor implements HttpInterceptor {
        if (err.status === 401) {
           this.router.navigate(['/login'])
         } 
-        else if(err.status !== 404){
+        else if(err.status !== 404 && err.status !== 400){
           this.globalErrorService.setError(err);
           this.router.navigate(['/error'])
         }
