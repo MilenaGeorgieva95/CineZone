@@ -9,7 +9,7 @@
           <span class="stars-rating">{{
             movie.vote_average | starRating
           }}</span>
-          <h3>{{ movie.title }}</h3>
+          <h3>{{ movie.title | slice : 22}}</h3>
 
           <div class="details-btn">
             <span routerLink="{{ showDetails(movie.id) }}">Details</span>

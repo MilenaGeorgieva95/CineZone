@@ -9,10 +9,11 @@ import { MovieCardComponent } from './components/movie-card/movie-card.component
 import { LoaderComponent } from './components/loader/loader.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { ElapsedTimePipe } from './pipes/elapsed-time.pipe';
+import { SlicePipe } from './pipes/slice.pipe';
 
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent, StarRatingPipe, EmailDirective,MovieCardComponent, LoaderComponent, PageNotFoundComponent, ElapsedTimePipe],
+  declarations: [HeaderComponent, FooterComponent, StarRatingPipe, EmailDirective,MovieCardComponent, LoaderComponent, PageNotFoundComponent, ElapsedTimePipe, SlicePipe],
   imports: [CommonModule, RouterModule],
-  exports: [HeaderComponent, FooterComponent, StarRatingPipe, EmailDirective, MovieCardComponent, LoaderComponent, PageNotFoundComponent, ElapsedTimePipe],
+  exports: [HeaderComponent, FooterComponent, StarRatingPipe, EmailDirective, MovieCardComponent, LoaderComponent, PageNotFoundComponent, ElapsedTimePipe, SlicePipe],
 })
 export class SharedModule {}
