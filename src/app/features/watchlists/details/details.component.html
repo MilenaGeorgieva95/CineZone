@@ -41,7 +41,7 @@
    
     <div>{{comment.nickname}}:</div>
     <div>"{{comment.comment}}"</div>
-     <div class="comment-date"><span>{{comment.createdAt | date:'longDate' }}</span></div>
+     <div class="comment-date"><span>{{comment.createdAt | elapsedTime }}</span></div>
 
   </li>
 </ul>
