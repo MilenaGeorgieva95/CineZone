@@ -9,7 +9,7 @@ import { CommentsResponse, CreateComment, FullComment } from 'src/app/types/comm
   providedIn: 'root',
 })
 export class CommentsService {
-  baseUrl = '/classes/comments';
+  baseUrl = '/comments';
   user: UserForAuth | undefined;
 
   constructor(

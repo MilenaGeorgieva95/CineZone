@@ -14,7 +14,7 @@ import { MovieItem } from 'src/app/types/movie';
   providedIn: 'root',
 })
 export class WatchlistsService {
-  baseUrl = '/classes/watchlists';
+  baseUrl = '/watchlists';
   user: UserForAuth | undefined;
 
   constructor(

@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MoviesRoutingModule } from './features/movies/movies-routing.module';
 import { WatchlistsModule } from './features/watchlists/watchlists.module';
 import { UserModule } from './features/user/user.module';
+import { appInterceptorPtovider } from './app.interceptor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,7 +27,7 @@ import { UserModule } from './features/user/user.module';
     WatchlistsModule,
     AppRoutingModule,
   ],
-  providers: [],
+  providers: [appInterceptorPtovider],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
