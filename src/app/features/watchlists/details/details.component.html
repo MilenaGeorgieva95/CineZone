@@ -8,7 +8,7 @@
   </div>
   <h3>Comments</h3>
   <div *ngIf="!(isLoggedIn$|async)" class="login-msg">
-    <p ><a routerLink="/login">Login</a> or <a routerLink="/register">Register</a> to add comments.</p>
+    <p ><a routerLink="/auth/login">Login</a> or <a routerLink="/auth/register">Register</a> to add comments.</p>
   </div>
   <div *ngIf="(isLoggedIn$|async)">
   <form class="create-comment" [formGroup]="commentForm" (ngSubmit)="postComment()">
@@ -76,7 +76,7 @@
     <ng-container *ngIf="!(isLoggedIn$ | async)">
       <p>There aren't any movies here yet.</p>
       <p>
-        <a routerLink="/register"><span>Register</span></a> or <a routerLink="/login"><span>Login</span></a> to create watchlists and save
+        <a routerLink="/auth/register"><span>Register</span></a> or <a routerLink="/auth/login"><span>Login</span></a> to create watchlists and save
         movies.
       </p>
     </ng-container>

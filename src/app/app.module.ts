@@ -10,7 +10,6 @@ import { MoviesModule } from './features/movies/movies.module';
 import { HttpClientModule } from '@angular/common/http';
 import { MoviesRoutingModule } from './features/movies/movies-routing.module';
 import { WatchlistsModule } from './features/watchlists/watchlists.module';
-import { UserModule } from './features/user/user.module';
 import { appInterceptorPtovider } from './app.interceptor';
 
 @NgModule({
@@ -22,7 +21,6 @@ import { appInterceptorPtovider } from './app.interceptor';
     BrowserAnimationsModule,
     HttpClientModule,
     LayoutModule,
-    UserModule,
     MoviesModule,
     WatchlistsModule,
     AppRoutingModule,

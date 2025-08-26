@@ -14,8 +14,8 @@
     >
   </div>
   <div class="auth top-bar">
-    <a [hidden]="(isLoggedIn$ | async)" mat-button routerLink="/login" routerLinkActive="active-link">Login</a>
-    <a [hidden]="(isLoggedIn$ | async)" mat-button routerLink="/register" routerLinkActive="active-link"
+    <a [hidden]="(isLoggedIn$ | async)" mat-button routerLink="/auth/login" routerLinkActive="active-link">Login</a>
+    <a [hidden]="(isLoggedIn$ | async)" mat-button routerLink="/auth/register" routerLinkActive="active-link"
       >Register</a
     >
     <a [hidden]="!(isLoggedIn$ | async)" mat-button (click)="logout()"

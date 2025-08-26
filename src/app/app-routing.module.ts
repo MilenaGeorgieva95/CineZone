@@ -7,6 +7,7 @@ import { GlobalErrorComponent } from './core/global-error/global-error.component
 const routes: Routes = [
    { path: '', component: CatalogComponent },
    { path: 'home', pathMatch: 'full', redirectTo: 'catalog' },
+   { path: 'auth', loadChildren: () => import('./features/user/user.module').then((m) => m.UserModule)},
    { path: 'logout', component: CatalogComponent },
   { path: 'catalog', component: CatalogComponent },
   { path: 'error', component: GlobalErrorComponent },
