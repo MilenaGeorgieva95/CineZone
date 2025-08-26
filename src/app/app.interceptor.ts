@@ -7,7 +7,9 @@ import {
   HTTP_INTERCEPTORS,
   HttpResponse,
 } from '@angular/common/http';
-import { Observable, tap } from 'rxjs';
+import { catchError, Observable, tap, throwError } from 'rxjs';
+import { GlobalErrorService } from './core/global-error/global-error.service';
+import { Router } from '@angular/router';
 
 const endpoints = {
   b4app: 'https://parseapi.back4app.com',
@@ -19,7 +21,7 @@ const endpoints = {
 @Injectable()
 export class AppInterceptor implements HttpInterceptor {
   private readonly USER_KEY = '[user]';
-  constructor() {}
+  constructor(private globalErrorService:GlobalErrorService, private router:Router) {}
 
   intercept(
     request: HttpRequest<unknown>,
@@ -50,10 +52,20 @@ export class AppInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(
       tap((event) => {
         if (event instanceof HttpResponse && event.url?.includes('/login')) {
-          console.log(event.body);
           localStorage.removeItem(this.USER_KEY);
           localStorage.setItem(this.USER_KEY, JSON.stringify(event.body));
         }
+      }),
+      catchError((err) => {
+  
+       if (err.status === 401) {
+          this.router.navigate(['/login'])
+        } 
+        else if(err.status !== 404){
+          this.globalErrorService.setError(err);
+          this.router.navigate(['/error'])
+        }
+        return throwError(()=>err)
       })
     );
   }

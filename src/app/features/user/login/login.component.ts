@@ -13,9 +13,9 @@ export class LoginComponent {
   domains = EMAIL_DOMAINS;
   lockUntilChange = false;
   loading = false;
-  errMsg:string=''
+  errMsg: string = '';
   private readonly USER_KEY = '[user]';
-  
+
   constructor(private userService: UserService, private router: Router) {}
 
   formSubmithandler(form: NgForm) {
@@ -28,21 +28,23 @@ export class LoginComponent {
     this.userService.login(email, password).subscribe({
       next: (userData) => {
         localStorage.setItem(this.USER_KEY, JSON.stringify(userData));
-      this.router.navigate(['/catalog']);
-      this.loading = false;
-      this.lockUntilChange = false;
-      form.reset();
+        this.router.navigate(['/catalog']);
+        this.loading = false;
+        this.lockUntilChange = false;
+        form.reset();
       },
       error: (err) => {
         this.loading = false;
+        form.form.controls['password'].setValue('');
+        form.form.controls['password'].markAsUntouched()
         this.lockUntilChange = true;
-        this.errMsg=`Error occured: ${err.error.error || err.message}!`
+        this.errMsg = `Error occured: ${err.error.error || err.message}!`;
       },
     });
   }
   onInputChange() {
-  if (this.lockUntilChange) {
-    this.lockUntilChange = false;
+    if (this.lockUntilChange) {
+      this.lockUntilChange = false;
+    }
   }
-}
 }

@@ -38,12 +38,10 @@ export class UserService {
     }
   }
   login(username: string, password: string) {
-    // localStorage.removeItem(this.USER_KEY);
     return this.apiService
       .postRequest<UserForAuth>(this.endpoints.login, { username, password })
       .pipe(
         tap((userData) => {
-          // localStorage.setItem(this.USER_KEY, JSON.stringify(userData ));
           this.isAuthSubject$$.next(true);
           this.user = userData;
         })

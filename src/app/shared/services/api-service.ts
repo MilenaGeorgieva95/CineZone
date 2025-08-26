@@ -9,7 +9,6 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ApiService {
-  // baseUrl = environment.BASE_URL;
   baseUrl = '/api'
   user: UserForAuth | undefined;
 
