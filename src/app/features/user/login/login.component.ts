@@ -38,7 +38,11 @@ export class LoginComponent {
         form.form.controls['password'].setValue('');
         form.form.controls['password'].markAsUntouched();
         this.lockUntilChange = true;
-        this.errMsg = `Error occured: ${err.error.error || err.message}!`;
+        const errMessage = (err.error.error || err.message).replace(
+          'username',
+          'email'
+        );
+        this.errMsg = `Error occured: ${errMessage}!`;
       },
     });
   }
