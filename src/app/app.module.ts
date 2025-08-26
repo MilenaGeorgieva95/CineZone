@@ -9,7 +9,6 @@ import { LayoutModule } from './layout/layout.module';
 import { MoviesModule } from './features/movies/movies.module';
 import { HttpClientModule } from '@angular/common/http';
 import { MoviesRoutingModule } from './features/movies/movies-routing.module';
-import { WatchlistsModule } from './features/watchlists/watchlists.module';
 import { appInterceptorPtovider } from './app.interceptor';
 
 @NgModule({
@@ -22,7 +21,6 @@ import { appInterceptorPtovider } from './app.interceptor';
     HttpClientModule,
     LayoutModule,
     MoviesModule,
-    WatchlistsModule,
     AppRoutingModule,
   ],
   providers: [appInterceptorPtovider],

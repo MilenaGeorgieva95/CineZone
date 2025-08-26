@@ -9,27 +9,22 @@ import { OwnerGuard } from 'src/app/core/guards/is-owner.activate';
 import { MyWatchlistsComponent } from './my-watchlists/my-watchlists.component';
 
 const routes: Routes = [
+  { path: '', pathMatch: 'full', component: CatalogComponent },
+  { path: ':watchlistId/details', component: DetailsComponent },
   {
-    path: 'watchlists',
-    children: [
-      { path: '', pathMatch: 'full', component: CatalogComponent },
-      { path: ':watchlistId/details', component: DetailsComponent },
-      {
-        path: 'create',
-        component: CreateComponent,
-        canActivate: [AuthActivate],
-      },
-      {
-        path: ':watchlistId/edit',
-        component: EditComponent,
-        canActivate: [OwnerGuard],
-      },
-      {
-        path: 'mywatchlists',
-        component: MyWatchlistsComponent,
-        canActivate: [AuthActivate],
-      },
-    ],
+    path: 'create',
+    component: CreateComponent,
+    canActivate: [AuthActivate],
+  },
+  {
+    path: ':watchlistId/edit',
+    component: EditComponent,
+    canActivate: [OwnerGuard],
+  },
+  {
+    path: 'mywatchlists',
+    component: MyWatchlistsComponent,
+    canActivate: [AuthActivate],
   },
 ];
 
