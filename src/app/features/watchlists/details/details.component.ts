@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
-import { FormBuilder, NgForm, Validators } from '@angular/forms';
+import { FormBuilder,Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { WatchlistsService } from '../services/watchlists.service';
 import { resWatchlist } from 'src/app/types/watchlist';
 import { MovieItem } from 'src/app/types/movie';
 import { Observable } from 'rxjs';
 import { UserService } from '../../user/user.service';
-import { CommentsService } from '../services/comments.service';
-import { CommentsResponse, FullComment } from 'src/app/types/comment';
+import { CommentsService } from '../../comments/services/comments.service';
+import { CommentsResponse, FullComment } from 'src/app/types/comment'; 
 
 @Component({
   selector: 'app-details',
@@ -39,7 +39,6 @@ export class DetailsComponent {
   commentLoading: boolean=false;
 
   commentForm = this.fb.group({
-    nickname: ['', [Validators.required, Validators.minLength(3)]],
     comment: ['', [Validators.required, Validators.minLength(3)]],
   });
 
@@ -62,9 +61,7 @@ export class DetailsComponent {
       this.commentsService.getByWatchlistId(this.watchlistId).subscribe({
         next: (data: CommentsResponse) => {
           this.commentErrMsg = '';
-          this.commentsList = data.results || [];
-          console.log(data);
-          
+          this.commentsList = data.results || [];          
         },
         error: (err) => {
           console.error('Posting comment failed:', err);
@@ -79,17 +76,14 @@ export class DetailsComponent {
       return;
     }
 
-    const nickname = this.commentForm.get('nickname')?.value;
     const comment = this.commentForm.get('comment')?.value;
 
-    if (nickname && comment) {
+    if (comment) {
       this.commentsService
-        .createComment(nickname, comment, this.watchlistId)
+        .createComment(comment, this.watchlistId)
         .subscribe({
           next: (newComment:FullComment) => {
             console.log(newComment);
-            newComment.nickname=nickname;
-            newComment.comment=comment;
             this.commentsList.push(newComment)
             this.commentForm.reset()
           },

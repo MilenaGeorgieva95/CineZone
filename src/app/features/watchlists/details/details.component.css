@@ -138,3 +138,8 @@ h2 {
   text-decoration: none;
   cursor: pointer;
 }
+
+.post-btn:disabled{
+  background-color: #b7b7df;
+  color: #484747;
+}

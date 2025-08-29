@@ -12,14 +12,6 @@
   </div>
   <div *ngIf="(isLoggedIn$|async)">
   <form class="create-comment" [formGroup]="commentForm" (ngSubmit)="postComment()">
-    <div>
-      <input type="text" id="nickname" name="nickname" formControlName="nickname" placeholder="Add a nickname..." />
-    </div>
-
-    <div class="error-msg" *ngIf="commentForm.get('nickname')?.touched">
-      <p *ngIf="commentForm.get('nickname')?.errors?.['required']">Title is required!</p>
-      <p *ngIf="commentForm.get('nickname')?.errors?.['minlength']">Title must be at least 3 characters!</p>
-    </div>
     
     <div>
       <input type="text" id="comment" name="comment" formControlName="comment" placeholder="Comment..." />
@@ -31,7 +23,7 @@
     </div>
 
     <div class="form-btns">
-      <button class="post-btn">Post Comment</button>
+      <button class="post-btn"  [disabled]="commentForm.invalid&&commentForm.touched">Post Comment</button>
     </div>
   </form>
 </div>
@@ -39,7 +31,7 @@
 <ul class="comments-wrapper" *ngIf="commentsList.length>0" >
   <li *ngFor="let comment of commentsList" class="comment-body">
    
-    <div>{{comment.nickname}}:</div>
+    <div>{{comment.username}}:</div>
     <div>"{{comment.comment}}"</div>
      <div class="comment-date"><span>{{comment.createdAt | elapsedTime }}</span></div>
 

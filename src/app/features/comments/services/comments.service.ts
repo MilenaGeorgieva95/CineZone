@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { UserService } from '../../user/user.service';
 import { UserForAuth } from 'src/app/types/user';
 import { ApiService } from 'src/app/shared/services/api-service';
-import { Observable, throwError } from 'rxjs';
+import { map, Observable, throwError } from 'rxjs';
 import { CommentsResponse, CreateComment, FullComment } from 'src/app/types/comment';
 
 @Injectable({
@@ -19,13 +19,14 @@ export class CommentsService {
     this.user = this.userService.user;
   }
 
-  createComment(nickname: string, comment: string, watchlistId: string):Observable<FullComment> {
+  createComment( comment: string, watchlistId: string):Observable<FullComment> {
     const userId = this.user?.objectId;
-    if (!userId) {
+    const username = this.user?.username;
+    if (!userId || !username) {
       return throwError(() => new Error('Invalid User'));
     }
     const commentData: CreateComment = {
-      nickname,
+      username,
       comment,
       watchlistId: {
         __type: 'Pointer',
@@ -39,7 +40,9 @@ export class CommentsService {
       },
     };
 
-    return this.apiService.postRequest(this.baseUrl, commentData);
+    return this.apiService.postRequest<FullComment>(this.baseUrl, commentData).pipe(
+      map(createdComment=>({...createdComment, username, comment}))
+    )
   }
 
   getByWatchlistId(watchlistId:string): Observable<CommentsResponse> {
