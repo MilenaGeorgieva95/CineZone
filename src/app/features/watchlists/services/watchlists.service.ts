@@ -44,13 +44,15 @@ export class WatchlistsService {
   }
 
   getAll(): Observable<ApiWatchlistResponse> {
-    return this.apiService.getRequest(this.baseUrl);
+    const orderParam = `order=-createdAt`
+    return this.apiService.getRequest(`${this.baseUrl}?${orderParam}`);
   }
 
   getByOwner(): Observable<ApiWatchlistResponse> {
     const userId = this.userService.user?.objectId;
+    const orderParam = `order=-createdAt`
     const searchParam = `where={"ownerId":{"__type":"Pointer","className":"_User","objectId":"${userId}"}}`;
-    return this.apiService.getRequest(`${this.baseUrl}?${searchParam}`);
+    return this.apiService.getRequest(`${this.baseUrl}?${searchParam}&${orderParam}`);
   }
 
   getById(watchlistId: string): Observable<resWatchlist> {

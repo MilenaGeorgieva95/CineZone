@@ -47,6 +47,7 @@ export class CommentsService {
 
   getByWatchlistId(watchlistId:string): Observable<CommentsResponse> {
     const searchParam = `where={"watchlistId":{"__type":"Pointer","className":"watchlists","objectId":"${watchlistId}"}}`;
-    return this.apiService.getRequest(`${this.baseUrl}?${searchParam}`);
+    const orderParam = `order=-createdAt`
+    return this.apiService.getRequest(`${this.baseUrl}?${searchParam}&${orderParam}`);
   }
 }

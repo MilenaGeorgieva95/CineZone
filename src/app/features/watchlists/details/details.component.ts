@@ -84,7 +84,7 @@ export class DetailsComponent {
         .subscribe({
           next: (newComment:FullComment) => {
             console.log(newComment);
-            this.commentsList.push(newComment)
+            this.commentsList.unshift(newComment)
             this.commentForm.reset()
           },
           error: (err) => {
