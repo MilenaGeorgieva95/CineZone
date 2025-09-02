@@ -21,7 +21,7 @@ export class DetailsComponent {
     private router: Router,
     private fb: FormBuilder,
     private userService: UserService,
-    private commentsService: CommentsService
+    private commentsService: CommentsService,
   ) {
     this.isLoggedIn$ = this.userService.isAuthSubject$$;
   }
@@ -101,11 +101,10 @@ export class DetailsComponent {
       this.commentsService
         .deleteById(comment.objectId)
         .subscribe({
-          next:((data) =>{
+          next:(() =>{
            this.commentsList = this.commentsList.filter(el=>el.objectId!==comment.objectId)
           }),
           error:(err)=>console.log(err)
-          
         })
     }
   }
