@@ -93,4 +93,8 @@ export class DetailsComponent {
         });
     }
   }
+
+  deleteCommentHandler(comment:FullComment){}
+  likeCommentHandler(comment:FullComment){}
+  dislikeCommentHandler(comment:FullComment){}
 }

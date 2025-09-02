@@ -6,6 +6,7 @@
     <div>Title: <span>{{watchlist.title}}</span></div>
     <div>Description: <span>{{watchlist.description}}</span></div>
   </div>
+<!-- Create Comment -->
   <h3>Comments</h3>
   <div *ngIf="!(isLoggedIn$|async)" class="login-msg">
     <p ><a routerLink="/auth/login">Login</a> or <a routerLink="/auth/register">Register</a> to add comments.</p>
@@ -26,19 +27,31 @@
       <button class="post-btn"  [disabled]="commentForm.invalid&&commentForm.touched">Post Comment</button>
     </div>
   </form>
-</div>
+  </div>
+<!--/ Create Comment -->
+<!-- Comments List -->
 <div class="comments-wrapper">
 <ul class="comments-wrapper" *ngIf="commentsList.length>0" >
   <li *ngFor="let comment of commentsList" class="comment-body">
    
     <div>{{comment.username}}:</div>
     <div>"{{comment.comment}}"</div>
-     <div class="comment-date"><span>{{comment.createdAt | elapsedTime }}</span></div>
+    <div class="comment-date"><span>{{comment.createdAt | elapsedTime }}</span></div>
 
+    <div class="comment-controls-user">
+      <div class="comment-owner">
+          <a class="green-btn" routerLink="['/comments',{{comment.objectId}},'/edit']">Edit</a>
+          <span class="red-btn" (click)="deleteCommentHandler(comment)">Delete</span>
+      </div>
+      <div class="comment-not-owner">
+          <span class="green-btn" (click)="likeCommentHandler(comment)">Like</span>
+          <span class="red-btn" (click)="dislikeCommentHandler(comment)">Dislike</span>
+      </div>
+    </div>
   </li>
 </ul>
   </div>
-
+<!--/ Comments List -->
   <div>
     <div class="error-msg" *ngIf="errorMsg">
       <p>{{errorMsg}}</p>

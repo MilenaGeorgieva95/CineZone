@@ -143,3 +143,33 @@ h2 {
   background-color: #b7b7df;
   color: #484747;
 }
+
+.comment-controls-user{
+  display: flex;
+  justify-content: space-around;
+  color: #fff;
+}
+
+.comment-controls-user div{
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.comment-controls-user a,
+.comment-controls-user span{
+text-decoration: none;
+color: #fff;
+padding: 7px 20px;
+border-radius: 20px;
+min-width: 3rem;
+cursor: pointer;
+}
+
+.comment-controls-user .green-btn{
+border: 2px solid green;
+}
+
+.comment-controls-user .red-btn{
+border: 2px solid red;
+}
