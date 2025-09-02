@@ -33,10 +33,10 @@
 <div class="comments-wrapper">
 <ul class="comments-wrapper" *ngIf="commentsList.length>0" >
   <li *ngFor="let comment of commentsList" class="comment-body">
-   
+    <div class="comment-date"><span>{{comment.createdAt | elapsedTime }}</span></div>
     <div>{{comment.username}}:</div>
     <div>"{{comment.comment}}"</div>
-    <div class="comment-date"><span>{{comment.createdAt | elapsedTime }}</span></div>
+    <div class="comment-date"><span>{{comment.createdAt | elapsedTime }}<mat-icon>thumb_up</mat-icon></span></div>
 
     <div class="comment-controls-user" *ngIf="currentUserId">
       <div class="comment-owner" *ngIf="currentUserId===comment.ownerId.objectId">
