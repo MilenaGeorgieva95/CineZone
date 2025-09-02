@@ -160,7 +160,7 @@ h2 {
 .comment-controls-user span{
 text-decoration: none;
 color: #fff;
-padding: 7px 20px;
+padding: 5px 18px;
 border-radius: 20px;
 min-width: 3rem;
 cursor: pointer;
@@ -169,7 +169,16 @@ cursor: pointer;
 .comment-controls-user .green-btn{
 border: 2px solid green;
 }
+.comment-controls-user .green-btn:hover,
+.comment-controls-user .green-btn:focus{
+background-color: #63cf7a;
+}
 
 .comment-controls-user .red-btn{
-border: 2px solid red;
+border: 2px solid #C2185B;
+}
+
+.comment-controls-user .red-btn:hover,
+.comment-controls-user .red-btn:focus{
+background-color: #d53575;
 }
