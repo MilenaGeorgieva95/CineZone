@@ -15,8 +15,9 @@ export interface FullComment extends CreateComment {
   objectId: string;
   createdAt: string;
   updatedAt: string;
+  likes: string[];
 }
 
 export interface CommentsResponse {
-    results: FullComment[]
+  results: FullComment[];
 }

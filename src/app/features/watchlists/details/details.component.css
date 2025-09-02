@@ -116,7 +116,7 @@ h2 {
 .comment-body {
   padding: 1.2rem;
   background-color: #484747;
-  width: fit-content;
+  min-width: 40%;
   border-radius: 10px;
   margin: 5px;
 }
@@ -127,6 +127,22 @@ h2 {
   color: rgb(232, 232, 176);
   font-style: oblique;
   padding-top: 3px;
+}
+
+.comment-likes {
+  font-size: 12px;
+  color: rgb(3, 234, 250);
+  padding: 3px;
+  margin-right: 12px;
+  height: fit-content;
+  text-align:right;
+  display: flex;
+  justify-content:flex-end;
+}
+
+.like-icon {
+  height: fit-content;
+  font-size: 1rem;
 }
 
 .login-msg {
