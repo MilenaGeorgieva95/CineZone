@@ -3,7 +3,11 @@ import { UserService } from '../../user/user.service';
 import { UserForAuth } from 'src/app/types/user';
 import { ApiService } from 'src/app/shared/services/api-service';
 import { map, Observable, throwError } from 'rxjs';
-import { CommentsResponse, CreateComment, FullComment } from 'src/app/types/comment';
+import {
+  CommentsResponse,
+  CreateComment,
+  FullComment,
+} from 'src/app/types/comment';
 
 @Injectable({
   providedIn: 'root',
@@ -19,7 +23,7 @@ export class CommentsService {
     this.user = this.userService.user;
   }
 
-  createComment( comment: string, watchlistId: string):Observable<FullComment> {
+  createComment(comment: string, watchlistId: string): Observable<FullComment> {
     const userId = this.user?.objectId;
     const username = this.user?.username;
     if (!userId || !username) {
@@ -40,17 +44,30 @@ export class CommentsService {
       },
     };
 
-    return this.apiService.postRequest<FullComment>(this.baseUrl, commentData).pipe(
-      map(createdComment=>({...createdComment, username, comment}))
-    )
+    return this.apiService
+      .postRequest<FullComment>(this.baseUrl, commentData)
+      .pipe(
+        map((createdComment) => ({
+          ...createdComment,
+          username,
+          comment,
+          ownerId: {
+            __type: 'Pointer',
+            className: '_User',
+            objectId: userId,
+          },
+        }))
+      );
   }
 
-  getByWatchlistId(watchlistId:string): Observable<CommentsResponse> {
+  getByWatchlistId(watchlistId: string): Observable<CommentsResponse> {
     const searchParam = `where={"watchlistId":{"__type":"Pointer","className":"watchlists","objectId":"${watchlistId}"}}`;
-    const orderParam = `order=-createdAt`
-    return this.apiService.getRequest(`${this.baseUrl}?${searchParam}&${orderParam}`);
+    const orderParam = `order=-createdAt`;
+    return this.apiService.getRequest(
+      `${this.baseUrl}?${searchParam}&${orderParam}`
+    );
   }
-  deleteById(commentId:string){
-     return this.apiService.delRequest(`${this.baseUrl}/${commentId}`);
+  deleteById(commentId: string) {
+    return this.apiService.delRequest(`${this.baseUrl}/${commentId}`);
   }
 }

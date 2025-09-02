@@ -100,7 +100,13 @@ export class DetailsComponent {
     if (choice) {
       this.commentsService
         .deleteById(comment.objectId)
-        .subscribe((data) => console.log(data));
+        .subscribe({
+          next:((data) =>{
+           this.commentsList = this.commentsList.filter(el=>el.objectId!==comment.objectId)
+          }),
+          error:(err)=>console.log(err)
+          
+        })
     }
   }
   likeCommentHandler(comment: FullComment) {}

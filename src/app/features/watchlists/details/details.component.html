@@ -38,12 +38,12 @@
     <div>"{{comment.comment}}"</div>
     <div class="comment-date"><span>{{comment.createdAt | elapsedTime }}</span></div>
 
-    <div class="comment-controls-user">
-      <div class="comment-owner">
+    <div class="comment-controls-user" *ngIf="currentUserId">
+      <div class="comment-owner" *ngIf="currentUserId===comment.ownerId.objectId">
           <a class="green-btn" routerLink="['/comments',{{comment.objectId}},'/edit']">Edit</a>
           <span class="red-btn" (click)="deleteCommentHandler(comment)">Delete</span>
       </div>
-      <div class="comment-not-owner">
+      <div class="comment-not-owner" *ngIf="currentUserId!==comment.ownerId.objectId">
           <span class="green-btn" (click)="likeCommentHandler(comment)">Like</span>
           <span class="red-btn" (click)="dislikeCommentHandler(comment)">Dislike</span>
       </div>
