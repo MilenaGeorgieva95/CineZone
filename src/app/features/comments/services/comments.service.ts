@@ -50,4 +50,7 @@ export class CommentsService {
     const orderParam = `order=-createdAt`
     return this.apiService.getRequest(`${this.baseUrl}?${searchParam}&${orderParam}`);
   }
+  deleteById(commentId:string){
+     return this.apiService.delRequest(`${this.baseUrl}/${commentId}`);
+  }
 }

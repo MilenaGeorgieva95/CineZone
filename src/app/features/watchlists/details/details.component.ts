@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder,Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { WatchlistsService } from '../services/watchlists.service';
 import { resWatchlist } from 'src/app/types/watchlist';
@@ -7,7 +7,7 @@ import { MovieItem } from 'src/app/types/movie';
 import { Observable } from 'rxjs';
 import { UserService } from '../../user/user.service';
 import { CommentsService } from '../../comments/services/comments.service';
-import { CommentsResponse, FullComment } from 'src/app/types/comment'; 
+import { CommentsResponse, FullComment } from 'src/app/types/comment';
 
 @Component({
   selector: 'app-details',
@@ -27,16 +27,16 @@ export class DetailsComponent {
   }
 
   isLoggedIn$: Observable<boolean>;
-
+  currentUserId: string = '';
   movieList = [] as MovieItem[];
   watchlistId: string = '';
   watchlist = {} as resWatchlist;
   errorMsg: string = '';
   loading: boolean = false;
 
-  commentsList: FullComment[]=[]
-  commentErrMsg:string=''
-  commentLoading: boolean=false;
+  commentsList: FullComment[] = [];
+  commentErrMsg: string = '';
+  commentLoading: boolean = false;
 
   commentForm = this.fb.group({
     comment: ['', [Validators.required, Validators.minLength(3)]],
@@ -61,13 +61,13 @@ export class DetailsComponent {
       this.commentsService.getByWatchlistId(this.watchlistId).subscribe({
         next: (data: CommentsResponse) => {
           this.commentErrMsg = '';
-          this.commentsList = data.results || [];          
+          this.commentsList = data.results || [];
         },
         error: (err) => {
           console.error('Posting comment failed:', err);
         },
       });
-
+      this.currentUserId = this.userService.userId;
     });
   }
 
@@ -79,22 +79,30 @@ export class DetailsComponent {
     const comment = this.commentForm.get('comment')?.value;
 
     if (comment) {
-      this.commentsService
-        .createComment(comment, this.watchlistId)
-        .subscribe({
-          next: (newComment:FullComment) => {
-            console.log(newComment);
-            this.commentsList.unshift(newComment)
-            this.commentForm.reset()
-          },
-          error: (err) => {
-            console.log(err);
-          },
-        });
+      this.commentsService.createComment(comment, this.watchlistId).subscribe({
+        next: (newComment: FullComment) => {
+          console.log(newComment);
+          this.commentsList.unshift(newComment);
+          this.commentForm.reset();
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
     }
   }
 
-  deleteCommentHandler(comment:FullComment){}
-  likeCommentHandler(comment:FullComment){}
-  dislikeCommentHandler(comment:FullComment){}
+  deleteCommentHandler(comment: FullComment) {
+    if(this.currentUserId!==comment.ownerId.objectId){
+      return;
+    }
+    const choice = confirm('Are you sure you want to delete the comment?');
+    if (choice) {
+      this.commentsService
+        .deleteById(comment.objectId)
+        .subscribe((data) => console.log(data));
+    }
+  }
+  likeCommentHandler(comment: FullComment) {}
+  dislikeCommentHandler(comment: FullComment) {}
 }
