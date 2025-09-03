@@ -2,7 +2,7 @@
 
 ### 🔗 Live Site (Hosted on Firebase): [https://cinezone-2894c.web.app](https://cinezone-2894c.web.app)
 
-**CineZone** is a feature-rich Angular 16 application built as a student project. It functions as a community forum and watchlist manager that leverages the **TMDB API** for dynamic movie data and **Back4App** (Parse Server) for user authentication, watchlist storage, likes, and comments.
+**CineZone** is a modern Single Page Application (SPA) built with Angular. It functions as a community forum and watchlist manager that leverages the **TMDB API** for dynamic movie data and **Back4App** (Parse Server) for user authentication, watchlist storage, likes, and comments.
 
 ---
 
