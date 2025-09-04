@@ -10,12 +10,14 @@ import { MoviesModule } from './features/movies/movies.module';
 import { HttpClientModule } from '@angular/common/http';
 import { MoviesRoutingModule } from './features/movies/movies-routing.module';
 import { appInterceptorPtovider } from './app.interceptor';
+import { CommentsRoutingModule } from './features/comments/comments.routing.module';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
     MoviesRoutingModule,
+    CommentsRoutingModule,
     SharedModule,
     BrowserAnimationsModule,
     HttpClientModule,
