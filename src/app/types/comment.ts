@@ -22,11 +22,6 @@ export interface CommentsResponse {
   results: FullComment[];
 }
 
-export interface likeCommentRes {
-  likes: string[];
-  updatedAt: string;
-}
-
 export interface likeCommentResWithId {
   likes: string[];
   updatedAt: string;

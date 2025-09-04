@@ -18,7 +18,6 @@ export class DetailsComponent {
   constructor(
     private route: ActivatedRoute,
     private watchlistsService: WatchlistsService,
-    private router: Router,
     private fb: FormBuilder,
     private userService: UserService,
     private commentsService: CommentsService

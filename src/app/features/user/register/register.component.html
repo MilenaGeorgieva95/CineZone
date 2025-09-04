@@ -1,5 +1,5 @@
 <div class="container">
-  <form [formGroup]="registerForm" (ngSubmit)="handleSubmit()" class="register">
+  <form [formGroup]="registerForm" (ngSubmit)="handleSubmit()" class="form">
     <h2>Registration Form</h2>
     <div>
       <input type="text" name="username" id="username" placeholder="Username..." formControlName="username"/>
@@ -46,7 +46,7 @@
       <app-loader></app-loader>
     </ng-container>
 
-    <button class="register-btn" [disabled]="registerForm.invalid || loading">Create Account</button>
+    <button class="form-btn" [disabled]="registerForm.invalid || loading">Create Account</button>
 
     <div>
       Have an account?

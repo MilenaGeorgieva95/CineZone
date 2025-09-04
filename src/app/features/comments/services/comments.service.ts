@@ -7,7 +7,6 @@ import {
   CommentsResponse,
   CreateComment,
   FullComment,
-  likeCommentRes,
   likeCommentResWithId,
 } from 'src/app/types/comment';
 
@@ -23,6 +22,10 @@ export class CommentsService {
     private apiService: ApiService
   ) {
     this.user = this.userService.user;
+  }
+
+  getById(commentId: string): Observable<FullComment> {
+    return this.apiService.getRequest(`${this.baseUrl}/${commentId}`);
   }
 
   createComment(comment: string, watchlistId: string): Observable<FullComment> {
@@ -69,6 +72,10 @@ export class CommentsService {
       );
   }
 
+  editById(commentId: string, comment:string): Observable<FullComment> {
+    return this.apiService.putRequest(`${this.baseUrl}/${commentId}`, {comment});
+  }
+
   getByWatchlistId(watchlistId: string): Observable<CommentsResponse> {
     const searchParam = `where={"watchlistId":{"__type":"Pointer","className":"watchlists","objectId":"${watchlistId}"}}`;
     const orderParam = `order=-createdAt`;
@@ -80,27 +87,33 @@ export class CommentsService {
     return this.apiService.delRequest(`${this.baseUrl}/${commentId}`);
   }
 
-  addLike(commentId: string, currentUserId: string): Observable<likeCommentResWithId> {
+  addLike(
+    commentId: string,
+    currentUserId: string
+  ): Observable<likeCommentResWithId> {
     const body = {
       likes: {
-        "__op": "AddUnique",
-        "objects": [currentUserId]
-      }
+        __op: 'AddUnique',
+        objects: [currentUserId],
+      },
     };
-    return this.apiService.putRequest<likeCommentResWithId>(`${this.baseUrl}/${commentId}`, body).pipe(
-      map(res => ({ ...res, objectId: commentId }))
-    )
+    return this.apiService
+      .putRequest<likeCommentResWithId>(`${this.baseUrl}/${commentId}`, body)
+      .pipe(map((res) => ({ ...res, objectId: commentId })));
   }
 
-    removeLike(commentId: string, currentUserId: string): Observable<likeCommentResWithId> {
+  removeLike(
+    commentId: string,
+    currentUserId: string
+  ): Observable<likeCommentResWithId> {
     const body = {
       likes: {
-        "__op": "Remove",
-        "objects": [currentUserId]
-      }
+        __op: 'Remove',
+        objects: [currentUserId],
+      },
     };
-    return this.apiService.putRequest<likeCommentResWithId>(`${this.baseUrl}/${commentId}`, body).pipe(
-      map(res => ({ ...res, objectId: commentId }))
-    )
+    return this.apiService
+      .putRequest<likeCommentResWithId>(`${this.baseUrl}/${commentId}`, body)
+      .pipe(map((res) => ({ ...res, objectId: commentId })));
   }
 }

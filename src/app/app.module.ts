@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MoviesRoutingModule } from './features/movies/movies-routing.module';
 import { appInterceptorPtovider } from './app.interceptor';
 import { CommentsRoutingModule } from './features/comments/comments.routing.module';
+import { CommentsModule } from './features/comments/comments.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,6 +24,7 @@ import { CommentsRoutingModule } from './features/comments/comments.routing.modu
     HttpClientModule,
     LayoutModule,
     MoviesModule,
+    CommentsModule,
     AppRoutingModule,
   ],
   providers: [appInterceptorPtovider],

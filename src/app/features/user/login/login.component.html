@@ -1,5 +1,5 @@
 <div class="container">
-  <form class="login" #loginForm="ngForm" (ngSubmit)="formSubmithandler(loginForm)">
+  <form class="form" #loginForm="ngForm" (ngSubmit)="formSubmithandler(loginForm)">
     <h2>Login Form</h2>
 
     <div>
@@ -23,7 +23,7 @@
     <ng-container *ngIf="loading">
       <app-loader></app-loader>
     </ng-container>
-    <button class="login-btn" [disabled]="loading || loginForm.invalid || lockUntilChange">Login</button>
+    <button class="form-btn" [disabled]="loading || loginForm.invalid || lockUntilChange">Login</button>
     <p>
       Have an account?
       <a routerLink="/auth/register">Register</a>

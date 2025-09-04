@@ -1,0 +1,35 @@
+.form{
+    text-align: center;
+    margin: 1em;
+}
+
+.form input{
+  padding: 10px 16px;
+    border-radius: 4px;
+}
+
+.error-msg p{
+  color: red;
+  font-weight: 400;
+  padding: 6px;
+  margin: 0 0.2em;
+  font-size: 10px;
+}
+
+.form-btn {
+  background-color: rgb(226 21 28);
+  color: white;
+  padding: 10px 20px;
+  margin: 1em;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.form-btn:disabled {
+  background-color: #cccccc;
+  color: #666666;
+  cursor: not-allowed;
+  opacity: 0.6;
+}

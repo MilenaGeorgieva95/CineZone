@@ -1,1 +1,37 @@
-<p>edit works!</p>
+<div>
+  <form
+    class="form"
+    #editCommentForm="ngForm"
+    (ngSubmit)="editCommentHandler(editCommentForm)"
+  >
+    <h2>Edit Comment Form</h2>
+    <div>
+      <input
+        type="text"
+        name="comment"
+        [ngModel]="comment?.comment"
+        #commentInput="ngModel"
+        placeholder="Comment..."
+        required
+        minlength="3"
+        ngModel
+      />
+    </div>
+
+    <div class="error-msg" *ngIf="commentInput.touched">
+      <p *ngIf="commentInput.errors?.['required']">Comment is required!</p>
+      <p *ngIf="commentInput.errors?.['minlength']">
+        Comment must be at least 3 characters!
+      </p>
+    </div>
+    <ng-container *ngIf="loading">
+      <app-loader></app-loader>
+    </ng-container>
+    <div>
+      <button [disabled]="loading || editCommentForm.invalid" class="form-btn">
+        Save Changes
+      </button>
+      <span class="form-btn" (click)="goBack()">Cancel</span>
+    </div>
+  </form>
+</div>
