@@ -135,5 +135,19 @@ export class DetailsComponent {
     ) {
       return;
     }
+
+    this.commentsService
+      .removeLike(comment.objectId, this.currentUserId)
+      .subscribe({
+        next: (data) => {
+          const dislikedComment = this.commentsList.find(
+            (el) => el.objectId === data.objectId
+          );
+          if (dislikedComment) {
+            dislikedComment.likes=dislikedComment.likes.filter(id=>id!==this.currentUserId);
+          }
+        },
+        error: (err) => console.log(err),
+      });
   }
 }
