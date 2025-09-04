@@ -45,8 +45,8 @@
           <span class="red-btn" (click)="deleteCommentHandler(comment)">Delete</span>
       </div>
       <div class="comment-not-owner" *ngIf="currentUserId!==comment.ownerId.objectId">
-          <span class="green-btn" (click)="likeCommentHandler(comment)">Like</span>
-          <span class="red-btn" (click)="dislikeCommentHandler(comment)">Dislike</span>
+          <span *ngIf="!comment.likes.includes(currentUserId)" class="green-btn" (click)="likeCommentHandler(comment)">Like</span>
+          <span *ngIf="comment.likes.includes(currentUserId)" class="red-btn" (click)="dislikeCommentHandler(comment)">Dislike</span>
       </div>
     </div>
   </li>

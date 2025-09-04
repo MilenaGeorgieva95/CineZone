@@ -7,6 +7,8 @@ import {
   CommentsResponse,
   CreateComment,
   FullComment,
+  likeCommentRes,
+  likeCommentResWithId,
 } from 'src/app/types/comment';
 
 @Injectable({
@@ -42,6 +44,7 @@ export class CommentsService {
         className: '_User',
         objectId: userId,
       },
+      likes: [],
     };
 
     return this.apiService
@@ -56,6 +59,12 @@ export class CommentsService {
             className: '_User',
             objectId: userId,
           },
+          watchlistId: {
+            __type: 'Pointer',
+            className: 'watchlists',
+            objectId: watchlistId,
+          },
+          likes: [],
         }))
       );
   }
@@ -69,5 +78,29 @@ export class CommentsService {
   }
   deleteById(commentId: string) {
     return this.apiService.delRequest(`${this.baseUrl}/${commentId}`);
+  }
+
+  addLike(commentId: string, currentUserId: string): Observable<likeCommentResWithId> {
+    const body = {
+      likes: {
+        "__op": "AddUnique",
+        "objects": [currentUserId]
+      }
+    };
+    return this.apiService.putRequest<likeCommentResWithId>(`${this.baseUrl}/${commentId}`, body).pipe(
+      map(res => ({ ...res, objectId: commentId }))
+    )
+  }
+
+    removeLike(commentId: string, currentUserId: string): Observable<likeCommentResWithId> {
+    const body = {
+      likes: {
+        "__op": "Remove",
+        "objects": [currentUserId]
+      }
+    };
+    return this.apiService.putRequest<likeCommentResWithId>(`${this.baseUrl}/${commentId}`, body).pipe(
+      map(res => ({ ...res, objectId: commentId }))
+    )
   }
 }

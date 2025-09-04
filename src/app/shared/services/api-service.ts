@@ -57,28 +57,24 @@ export class ApiService {
     return this.http.post<T>(this.baseUrl + url, body, {headers});
   }
 
-    putRequest(url: string, data: object) {
+    putRequest<T>(url: string, data: object):Observable<T> {
     const userJson = localStorage.getItem('user');
     if (userJson) {
       this.user = JSON.parse(userJson) as UserForAuth;
     }
-    const options: any = {
-      headers: {
+let headers=new HttpHeaders({
         'X-Parse-Application-Id': environment.APP_ID,
         'X-Parse-REST-API-Key': environment.API_KEY,
         'X-Parse-Revocable-Session': '1',
         'Content-Type': 'application/json',
-      },
-    };
-    const token = this.user?.sessionToken;
+      },)
+   const token = this.user?.sessionToken;
     if (token) {
-      console.log(token);
-
-      options.headers['X-Parse-Session-Token'] = token;
+       headers = headers.set('X-Parse-Session-Token', token);
     }
 
     const body = JSON.stringify(data);
-    return this.http.put(this.baseUrl + url, body, options);
+    return this.http.put<T>(this.baseUrl + url, body, {headers});
   }
 
   delRequest(url: string) {

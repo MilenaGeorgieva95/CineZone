@@ -21,7 +21,7 @@ export class DetailsComponent {
     private router: Router,
     private fb: FormBuilder,
     private userService: UserService,
-    private commentsService: CommentsService,
+    private commentsService: CommentsService
   ) {
     this.isLoggedIn$ = this.userService.isAuthSubject$$;
   }
@@ -81,7 +81,6 @@ export class DetailsComponent {
     if (comment) {
       this.commentsService.createComment(comment, this.watchlistId).subscribe({
         next: (newComment: FullComment) => {
-          console.log(newComment);
           this.commentsList.unshift(newComment);
           this.commentForm.reset();
         },
@@ -93,21 +92,48 @@ export class DetailsComponent {
   }
 
   deleteCommentHandler(comment: FullComment) {
-    if(this.currentUserId!==comment.ownerId.objectId){
+    if (this.currentUserId !== comment.ownerId.objectId) {
       return;
     }
     const choice = confirm('Are you sure you want to delete the comment?');
     if (choice) {
-      this.commentsService
-        .deleteById(comment.objectId)
-        .subscribe({
-          next:(() =>{
-           this.commentsList = this.commentsList.filter(el=>el.objectId!==comment.objectId)
-          }),
-          error:(err)=>console.log(err)
-        })
+      this.commentsService.deleteById(comment.objectId).subscribe({
+        next: () => {
+          this.commentsList = this.commentsList.filter(
+            (el) => el.objectId !== comment.objectId
+          );
+        },
+        error: (err) => console.log(err),
+      });
     }
   }
-  likeCommentHandler(comment: FullComment) {}
-  dislikeCommentHandler(comment: FullComment) {}
+  likeCommentHandler(comment: FullComment) {
+    if (
+      !this.currentUserId ||
+      comment.ownerId.objectId === this.currentUserId
+    ) {
+      return;
+    }
+    this.commentsService
+      .addLike(comment.objectId, this.currentUserId)
+      .subscribe({
+        next: (data) => {
+          const likedComment = this.commentsList.find(
+            (el) => el.objectId === data.objectId
+          );
+          if (likedComment) {
+            likedComment.likes.push(this.currentUserId);
+          }
+        },
+        error: (err) => console.log(err),
+      });
+  }
+  dislikeCommentHandler(comment: FullComment) {
+    if (
+      !this.currentUserId ||
+      comment.ownerId.objectId === this.currentUserId
+    ) {
+      return;
+    }
+  }
 }

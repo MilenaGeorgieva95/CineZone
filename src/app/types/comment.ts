@@ -3,6 +3,7 @@ export interface CreateComment {
   comment: string;
   watchlistId: Pointer;
   ownerId: Pointer;
+  likes: string[];
 }
 
 interface Pointer {
@@ -15,9 +16,19 @@ export interface FullComment extends CreateComment {
   objectId: string;
   createdAt: string;
   updatedAt: string;
-  likes: string[];
 }
 
 export interface CommentsResponse {
   results: FullComment[];
+}
+
+export interface likeCommentRes {
+  likes: string[];
+  updatedAt: string;
+}
+
+export interface likeCommentResWithId {
+  likes: string[];
+  updatedAt: string;
+  objectId: string;
 }
